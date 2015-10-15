@@ -1,0 +1,13 @@
+﻿# Microsoft Office .gitignore
+
+*.tmp
+~$*.doc*
+~$*.xls*
+*.xlk
+
+# Javaweb compiled .gitignore
+/Artefatos de Código Fonte/ufg-integracao-01/target/
+
+# IDEs .gitignore
+/Artefatos de Código Fonte/ufg-integracao-01/.idea/
+/Artefatos de Código Fonte/ufg-integracao-01/nb-configuration.xml
