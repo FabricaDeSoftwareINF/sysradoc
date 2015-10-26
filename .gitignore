@@ -5,9 +5,22 @@
 ~$*.xls*
 *.xlk
 
-# Javaweb compiled .gitignore
-/Artefatos de Código Fonte/ufg-integracao-01/target/
-
 # IDEs .gitignore
-/Artefatos de Código Fonte/ufg-integracao-01/.idea/
-/Artefatos de Código Fonte/ufg-integracao-01/nb-configuration.xml
+/Artefatos de Código Fonte/.idea/
+/Artefatos de Código Fonte/nb-configuration.xml
+
+# Compiled and Dependencies
+Artefatos de Código Fonte/node_modules/
+/Artefatos de Código Fonte/public/css/site.css
+/Artefatos de Código Fonte/public/vendor/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.*~
+.html
