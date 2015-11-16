@@ -2,6 +2,12 @@ var auth = require('../../config/auth');
 
 module.exports = function (app) {
 
+    var users = app.controllers.users;
+
+    app.post('/api/users', users.createUser);
+    app.post('/api/users/:email', users.recover);
+    app.post('/api/users/:email/:token', users.reset);
+
     app.get('/partials/*', function (req, res) {
         res.render('../../public/app/' + req.params[0]);
     });

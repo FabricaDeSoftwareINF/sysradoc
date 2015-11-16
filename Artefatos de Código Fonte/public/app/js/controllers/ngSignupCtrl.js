@@ -1,4 +1,4 @@
-angular.module('app').controller('apSignupCtrl', function ($scope, apAuth, apNotifier, $location) {
+angular.module('app').controller('ngSignupCtrl', function ($scope, ngAuth, ngNotifier, $location) {
     $scope.data = {
         signup: {
             name: "",
@@ -14,25 +14,25 @@ angular.module('app').controller('apSignupCtrl', function ($scope, apAuth, apNot
         $scope.data.signup.password === "" ||
         $scope.data.signup.name === "" ||
         $scope.data.signup.instructorClass === "-1"){
-            apNotifier.error('Preencha todos os campos de cadastro.');
+            ngNotifier.error('Preencha todos os campos de cadastro.');
             return false;
         }
 
         if ($scope.data.signup.password !== $scope.data.signup.repeatPassword){
-            apNotifier.error('As senhas não coincidem.');
+            ngNotifier.error('As senhas não coincidem.');
             return false;
         }
 
         if ($scope.data.signup.password.length < 6){
-            apNotifier.error('A senha deve possuir no mínimo 6 caracteres.');
+            ngNotifier.error('A senha deve possuir no mínimo 6 caracteres.');
             return false;
         }
 
-        apAuth.createUser($scope.data.signup).then(function() {
-            apNotifier.notify('Usuário criado com sucesso!');
+        ngAuth.createUser($scope.data.signup).then(function() {
+            ngNotifier.notify('Usuário criado com sucesso!');
             $location.path('/dashboard');
         }, function(reason) {
-            apNotifier.error(reason.substr(reason.search(' ') + 1));
+            ngNotifier.error(reason.substr(reason.search(' ') + 1));
         });
     };
 });
