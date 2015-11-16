@@ -22,6 +22,7 @@
     "express": "^4.6.1",
     "express-load": "^1.1.15",
     "express-session": "^1.6.5",
+    "formidable": "^1.0.17",
     "helmet": "^0.12.0",
     "jade": "^1.4.2",
     "method-override": "^2.3.1",

@@ -1,1 +1,72 @@
 .container
+    br
+    br
+    br
+    ul#breadcrumb
+        li(ng-repeat="tab in data.sendRadoc.tabs")
+            a(ng-class="{'disabled': data.sendRadoc.tab !== $index, 'passedDEPRECATED': data.sendRadoc.tab > $index, 'failed': data.sendRadoc.failed && data.sendRadoc.tab === $index, 'active': $last && data.sendRadoc.tab === $index}")
+                | {{tab}}
+                
+    .row(ng-show="data.sendRadoc.tab === 0")
+        .col-md-10.col-md-offset-1
+            .main-blue-color.main-title Instruções para envio
+            br
+            p.main-block
+                | Enviando para o SysRadoc um arquivo PDF do Radoc desejado, fará com que o sistema gere as tabelas a partir do documento, avaliando as entradas com os critérios de notas de acordo com o anexo II da Resolução CONSUNI nº32/2013, e calculando as notas obtidas.
+                br
+                strong
+                    small Observação: O SysRadoc não tem ligação alguma com os sistemas da UFGNet.
+
+        .col-md-6.col-md-offset-3.right
+            input#radoc-input(type='file', nv-file-select='', uploader='data.sendRadoc.uploader')
+            #radoc-button.well.my-drop-zone.center.pointer-element(nv-file-drop='', uploader='data.sendRadoc.uploader')
+                br
+                br
+                br
+                | Arraste aqui o arquivo ou clique para selecionar
+                br
+                br
+                br
+                br
+        .col-md-3
+        .col-md-12.center
+            div
+                strong Arquivo Selecionado: 
+                span(ng-if="data.sendRadoc.uploader.queue.length === 0") nenhum.
+                span(ng-if="data.sendRadoc.uploader.queue.length > 0") 
+                    | {{data.sendRadoc.uploader.queue[0].file.name}}
+            br
+            br
+            button.btn.btn-primary(ng-click="upload()") Enviar arquivo
+    br
+    .row(ng-show="data.sendRadoc.tab === 1 && !data.sendRadoc.failed")
+        .col-md-10.col-md-offset-1
+            .main-blue-color.main-title Processando documento
+            br
+            p.main-block
+                | O SysRadoc agora está processando um possível arquivo PDF válido do Radoc desejado. Em instantes, o sistema mostrará o resultado do envio.
+            br
+            .center
+                img(src="/img/loader.gif")
+                
+    .row(ng-show="data.sendRadoc.tab === 1 && data.sendRadoc.failed")
+        .col-md-10.col-md-offset-1
+            .main-red-color.main-title Falha ao processar documento
+            br
+            p.main-block
+                | O SysRadoc encontrou um problema ao processar o arquivo enviado, pois este é inválido.<br>Tente novamente.
+            br
+            .center
+                button.btn.btn-primary(ng-click="goToTab(0)") Voltar para Enviar Radoc
+                
+    .row(ng-show="data.sendRadoc.tab === 2")
+        .col-md-10.col-md-offset-1
+            .main-green-color.main-title Documento Enviado com Sucesso
+            br
+            p.main-block
+                | O SysRadoc recebeu seu arquivo com sucesso!
+            button.btn.btn-success(ng-click="") Ver Resultado
+            br
+            br
+            button.btn.btn-primary(ng-click="goToTab(0)") Enviar um novo Arquivo
+    
