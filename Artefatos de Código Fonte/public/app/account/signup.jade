@@ -13,15 +13,15 @@
         
             br
             br 
-            label Nome de usuário
+            label Nome
             br
             input.form-control.signup-input(type='text', ng-model="data.signup.name")
-            label.main-gray-color Identificador único para fazer login. Caracteres especiais não são permitidos.
+            label.main-gray-color Coloque seu nome completo.
             br
             br
             label Classe do docente
             br
-            select.form-control.signup-input(ng-model="data.signup.class")
+            select.form-control.signup-input(ng-model="data.signup.instructorClass")
                 option(ng-selected, value="-1") Selecione...
                 option(ng-value="'A'") Classe A - Docente Adjunto A, Docente Assistente A, e Docente Auxiliar
                 option(ng-value="'B'") Classe B - Docente Assistente
@@ -43,9 +43,15 @@
             label.main-gray-color No mínimo 6 caracteres; pode conter letras minúsculas, maiúsculas, números e caracteres especiais.
             br
             br
+            label Repita a Senha
+            br
+            input.form-control.signup-input(type='password', ng-model="data.signup.repeatPassword")
+            label.main-gray-color Repita a mesma senha colocada acima.
+            br
+            br
             br
     .row
         .col-md-12.center
-            button.btn.btn-success(type='button') Criar Conta
+            button.btn.btn-success(type='button', ng-click="signup()") Criar Conta
             br
             br

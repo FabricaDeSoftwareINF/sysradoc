@@ -17,6 +17,29 @@ angular.module('app').factory('apAuth', function ($http, $location, apIdentity, 
             return dfd.promise;
         },
 
+        createUser: function (newUserData) {
+            var newUser = new apUser(newUserData);
+            var dfd = $q.defer();
+
+            newUser.$save().then(function () {
+                apIdentity.currentUser = newUser;
+                dfd.resolve();
+            }, function (response) {
+                dfd.reject(response.data.reason);
+            });
+
+            return dfd.promise;
+        },
+
+        logoutUser: function () {
+            var dfd = $q.defer();
+            $http.post('/logout', {logout: true}).then(function () {
+                apIdentity.currentUser = undefined;
+                dfd.resolve();
+            });
+            return dfd.promise;
+        },
+
         authorizeCurrentUserForRoute: function (role) {
             if (apIdentity.isAuthorized(role)) {
                 return true;

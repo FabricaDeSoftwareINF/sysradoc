@@ -11,6 +11,7 @@ angular.module('app').controller('apMainCtrl', function ($scope, apAuth, apNotif
     $scope.signin = function () {
         if ($scope.data.login.email === "" || $scope.data.login.password === ""){
             apNotifier.error('Preencha todos os campos de login.');
+            return false;
         }
 
         apAuth.authenticateUser($scope.data.login.email, $scope.data.login.password).then(function (success) {

@@ -1,4 +1,6 @@
-angular.module('app').controller('apNavBarCtrl', function ($scope, apIdentity, $location) {
+angular.module('app').controller('apNavBarCtrl', function ($scope, apIdentity, $location, apAuth, apNotifier) {
+    $scope.identity = apIdentity;
+
     $scope.goToHome = function(){
         var url = "/";
 
@@ -6,5 +8,12 @@ angular.module('app').controller('apNavBarCtrl', function ($scope, apIdentity, $
             url = "/dashboard";
 
         $location.path(url);
+    };
+
+    $scope.signout = function () {
+        apAuth.logoutUser().then(function () {
+            apNotifier.notify('Deslogado com sucesso.');
+            $location.path('/');
+        });
     };
 });

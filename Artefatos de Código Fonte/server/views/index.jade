@@ -15,23 +15,17 @@ extends ../includes/layout
                             a.navbar-brand.pointer-element(ng-click="goToHome()")
                                 img(src="/img/sysradoc-logo.png")
 
-                        //
-                            ul.nav.navbar-nav.navbar-right
-                                li.dropdown
-                                    a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                                        | Dropdown 
-                                        span.caret
-                                    ul.dropdown-menu
-                                        li
-                                            a(href='#') Action
-                                        li
-                                            a(href='#') Another action
-                                        li
-                                            a(href='#') Something else here
-                                        li.divider(role='separator')
-                                        li
-                                            a(href='#') Separated link
-
+                    
+                        ul.nav.navbar-nav.navbar-right(ng-if="identity.isAuthenticated()")
+                            li.dropdown
+                                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                                    | {{identity.currentUser.name}}
+                                    span.caret
+                                ul.dropdown-menu
+                                    li
+                                        a(href='#') Configurações
+                                    li
+                                        a(href='#', ng-click="signout()") Encerrar Sessão
 
                 br
                 br
