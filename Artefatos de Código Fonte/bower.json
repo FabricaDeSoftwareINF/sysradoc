@@ -1,10 +1,10 @@
 {
-  "name": "RPG Manor",
+  "name": "Sys Radoc",
   "version": "0.0.0",
   "authors": [
     "Leonardo Freitas dos Santos <leonardo_freitas1995@hotmail.com>"
   ],
-  "description": "House of all RPGs",
+  "description": "",
   "license": "MIT",
   "ignore": [
     "**/.*",

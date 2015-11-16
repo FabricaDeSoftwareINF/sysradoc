@@ -14,6 +14,21 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
     requireBase: false
   });
 
+  var routeRoleChecks = {
+        admin: {
+            auth: function (apAuth) {
+                return apAuth.authorizeCurrentUserForRoute('admin');
+            }},
+        teacher: {
+            auth: function (apAuth) {
+                return apAuth.authorizeCurrentUserForRoute('teacher');
+            }},
+        user: {
+            auth: function (apAuth) {
+                return apAuth.authorizeAuthenticatedUserForRoute();
+            }}
+    };
+
     $routeProvider
             .when('/', {
                 templateUrl: '/partials/main/main',
@@ -30,6 +45,13 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
             .when('/login', {
                 templateUrl: '/partials/auth/login',
                 controller: 'apLoginCtrl'})
+            .when('/dashboard', {
+                templateUrl: '/partials/dashboard/dashboard',
+                controller: 'apDashboardCtrl',
+                resolve: {
+                    auth: routeRoleChecks.user.auth,
+                }
+            })
     ;
 
 });

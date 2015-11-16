@@ -15,6 +15,23 @@ angular.module('app').factory('apAuth', function ($http, $location, apIdentity, 
                 }
             });
             return dfd.promise;
+        },
+
+        authorizeCurrentUserForRoute: function (role) {
+            if (apIdentity.isAuthorized(role)) {
+                return true;
+            } else {
+                return $q.reject('not authorized');
+            }
+
+        },
+
+        authorizeAuthenticatedUserForRoute: function () {
+            if (apIdentity.isAuthenticated()) {
+                return true;
+            } else {
+                return $q.reject('not authorized');
+            }
         }
     };
 });

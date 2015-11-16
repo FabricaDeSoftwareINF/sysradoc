@@ -11,12 +11,6 @@ angular.module('app').factory('apIdentity', function ($window, apUser) {
         },
         isAuthorized: function (role) {
             return !!this.currentUser && this.currentUser.roles.indexOf(role) > -1;
-        },
-        isFirstLogin: function(){
-            if (this.isAuthenticated())
-                return !!this.currentUser.createdAt;
-
-            return false;
         }
     };
 });
