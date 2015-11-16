@@ -58,8 +58,8 @@ exports.parseTableSection = function(pdfArray, objectArray, sectionConfig) {
         xLabelPos = [],
         labels = sectionConfig.labels;
 
-    for (var lx = 0; lx < labels.length; lx++){
-        xLabelPos.push(objectArray[pos + lx].x);
+    for (var l = 0; l < labels.length; l++){
+        xLabelPos.push(objectArray[pos + l].x);
     }
     pos += labels.length;
 
