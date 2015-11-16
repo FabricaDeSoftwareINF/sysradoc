@@ -1,4 +1,4 @@
-angular.module('app').controller('ngDashboardCtrl', function ($scope, FileUploader, ngNotifier) {
+angular.module('app').controller('ngDashboardCtrl', function ($scope, FileUploader, ngNotifier, ngIdentity) {
     $scope.data = {
         sendRadoc: {
             tab: 0,
@@ -15,6 +15,7 @@ angular.module('app').controller('ngDashboardCtrl', function ($scope, FileUpload
     $scope.data.sendRadoc.uploader.queueLimit = 1;
     $scope.data.sendRadoc.uploader.url = "/api/radoc/";
     $scope.data.sendRadoc.uploader.alias = "radoc";
+
     $scope.data.sendRadoc.uploader.onSuccessItem = function(item, response, status, headers){
         if (response.success){
             ngNotifier.notify("Arquivo enviado com sucesso!");

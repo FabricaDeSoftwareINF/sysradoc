@@ -3,14 +3,14 @@ angular.module('app').controller('ngSignupCtrl', function ($scope, ngAuth, ngNot
         signup: {
             name: "",
             instructorClass: "-1",
-            email: "",
+            emailR: "",
             password: "",
             repeatPassword: ""
         }
     };
 
     $scope.signup = function(){
-        if ($scope.data.signup.email === "" ||
+        if ($scope.data.signup.emailR === "" ||
         $scope.data.signup.password === "" ||
         $scope.data.signup.name === "" ||
         $scope.data.signup.instructorClass === "-1"){
@@ -30,7 +30,7 @@ angular.module('app').controller('ngSignupCtrl', function ($scope, ngAuth, ngNot
 
         ngAuth.createUser($scope.data.signup).then(function() {
             ngNotifier.notify('Usuário criado com sucesso!');
-            $location.path('/dashboard');
+            $location.path('/');
         }, function(reason) {
             ngNotifier.error(reason.substr(reason.search(' ') + 1));
         });

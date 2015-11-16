@@ -24,13 +24,14 @@ module.exports = function(app){
 
     controller.createUser = function (req, res, next) {
         var userData = req.body;
-
+		var email = req.body.emailR;
         userData.roles = ["teacher"];
+		userData.email = email;
         userData.salt = encryption.createSalt();
         userData.hashedPwd = encryption.hashPwd(userData.salt, userData.password);
-        userData.access = undefined;
 		userData.password = undefined;
 		userData.repeatPassword = undefined;
+		userData.emailR = undefined;
 
         User.create(userData, function (err, user) {
             if (err) {
@@ -41,14 +42,7 @@ module.exports = function(app){
                 return res.send({reason: err.toString()});
             }
 
-            req.logIn(user, function (err) {
-                if (err) {
-                    return next(err);
-                }
-                user.salt = undefined;
-                user.hashedPwd = undefined;
-                res.send(user);
-            });
+            res.send({success: true});
         });
     };
 

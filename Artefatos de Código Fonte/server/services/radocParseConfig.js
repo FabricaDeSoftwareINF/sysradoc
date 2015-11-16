@@ -5,6 +5,10 @@
     nextSection: nome da próxima seção
     afterHeaderSkip: quantidade de linhas a pular para início dos dados (contando com a header)
     labels: campos da secção
+
+    /!\ ATENÇÃO /!\
+    Este arquivo de configuração também reflete como os Schemas do mongoose são criados
+    Alterar algo aqui significa também mudar a modelagem do banco.
 */
 
 exports.sections = [
