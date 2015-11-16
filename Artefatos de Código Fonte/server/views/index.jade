@@ -4,7 +4,7 @@ extends ../includes/layout
     block main-content
         .main-content
             section.content
-                nav.navbar.navbar-default.navbar-fixed-top(ng-controller="ngNavBarCtrl")
+                nav.navbar.navbar-default.navbar-fixed-top(ng-controller="apNavBarCtrl")
                     .container-fluid
                         .navbar-header
                             button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
@@ -23,7 +23,7 @@ extends ../includes/layout
                                     span.caret
                                 ul.dropdown-menu
                                     li
-                                        a(href='#', ng-click="goToConfig()") Configurações da Conta
+                                        a(href='#') Configurações
                                     li
                                         a(href='#', ng-click="signout()") Encerrar Sessão
 

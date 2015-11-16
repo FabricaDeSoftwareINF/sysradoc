@@ -10,6 +10,7 @@
             br
             p.main-block
                 | Preencha todos os campos abaixo:
+        
             br
             br 
             label Nome
@@ -22,7 +23,7 @@
             br
             select.form-control.signup-input(ng-model="data.signup.instructorClass")
                 option(ng-selected, value="-1") Selecione...
-                option(ng-value="'A'") Classe A - Docente Adjunto A, Docente Assistente A e Docente Auxiliar
+                option(ng-value="'A'") Classe A - Docente Adjunto A, Docente Assistente A, e Docente Auxiliar
                 option(ng-value="'B'") Classe B - Docente Assistente
                 option(ng-value="'C'") Classe C - Docente Adjunto
                 option(ng-value="'D'") Classe D - Docente Associado
@@ -32,7 +33,7 @@
             br
             label Endereço de e-mail
             br
-            input.form-control.signup-input(type='email', ng-model="data.signup.emailR")
+            input.form-control.signup-input(type='email', ng-model="data.signup.email")
             label.main-gray-color E-mail acadêmico do usuário que será utilizado em caso de perda de senha.
             br
             br
