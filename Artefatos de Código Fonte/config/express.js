@@ -32,7 +32,7 @@ module.exports = function (app, config) {
     app.use(require('method-override')());
     app.use(session(
       {
-       secret:'5y5_r4d0c_5up3r_53cr3t',
+       secret:'rpg_m@n0r_5up3r_53cr3t',
        resave:true,
        saveUninitialized:true
       }

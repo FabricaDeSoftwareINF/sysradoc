@@ -7,7 +7,7 @@ var app = express();
 var config = require('./config/config')[env];
 
 require('./config/express')(app, config);
-require('./config/database')(config);
+require('./config/database')(app, config);
 require('./config/passport')(app);
 
 app.listen(config.port);

@@ -17,7 +17,19 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
     $routeProvider
             .when('/', {
                 templateUrl: '/partials/main/main',
-                controller: 'apMainCtrl'})
+                controller: 'apMainCtrl'
+            })
+            .when('/recovery', {
+                templateUrl: '/partials/account/recover-password',
+                controller: 'apRecoverPasswordCtrl'
+            })
+            .when('/signup', {
+                templateUrl: '/partials/account/signup',
+                controller: 'apSignupCtrl'
+            })
+            .when('/login', {
+                templateUrl: '/partials/auth/login',
+                controller: 'apLoginCtrl'})
     ;
 
 });

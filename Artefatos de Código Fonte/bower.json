@@ -1,10 +1,10 @@
 {
-  "name": "sysradoc",
+  "name": "RPG Manor",
   "version": "0.0.0",
   "authors": [
     "Leonardo Freitas dos Santos <leonardo_freitas1995@hotmail.com>"
   ],
-  "description": "",
+  "description": "House of all RPGs",
   "license": "MIT",
   "ignore": [
     "**/.*",
