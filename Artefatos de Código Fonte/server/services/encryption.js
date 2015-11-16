@@ -11,3 +11,7 @@ exports.hashPwd = function(salt, pwd) {
     hmac.end();
     return hmac.read();
 };
+
+exports.createToken = function(){
+    return crypto.randomBytes(128).toString('hex');
+};

@@ -1,0 +1,44 @@
+.container
+    br
+    br
+    br
+    br
+    .row
+        .col-md-8.center
+            .main-blue-color.main-title Sistema de Processamento de RADOCs
+            br
+            br
+            .row
+                .col-md-8.col-md-offset-2
+                    p.main-block
+                        | O SYSRadoc é um sistema que executa a avaliação lógica e direta do pessoal docente, em relação a estágio probatório, progressão funcional e promoção na Carreira do Magistério Superior.
+                
+                    br
+                    br
+            .main-blue-color.main-title Ainda não tem cadastro?
+            br
+            a.btn.btn-lg.btn-success(type='button', href="/signup") Cadastre-se
+        .col-md-4.main-login-block
+            br
+            .jumbotron
+                .span-title Login
+                br
+                input.form-control(type='email', placeholder='Nome de usuário', ng-model="data.login.email")
+                br
+                input.form-control(type='password', placeholder='Senha', ng-model="data.login.password")
+                br
+                button.btn.btn-primary(type='button', ng-click="signin()") Entrar
+                br
+                br
+                a(href="/recovery")
+                    small Esqueci minha senha
+        
+    br
+    br    
+    .row
+        .col-md-6.col-md-offset-3.center
+            .main-blue-color.main-title Como funciona o SysRadoc?
+            br
+            p.main-block
+                | O SYSRadoc pega como entrada do usuário o RADOC (Registro Anual do Docente) do professor gerado pelos sistemas da UFG (um arquivo PDF), gera as tabelas a partir do documento, avaliando as entradas com os critérios de notas e se o referido docente foi aprovado, de acordo com a resolução do CONSUNI Nº 32/2013.
+    br

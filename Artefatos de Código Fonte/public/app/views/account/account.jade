@@ -1,0 +1,56 @@
+.container
+    br
+    br
+    br
+    br
+    .row
+        .col-md-8
+            .main-blue-color.main-title Bem vindo à sua conta, {{data.identity.name}}
+            br
+            br
+            p.main-block
+                | Atualmente, seus dados são:
+            br
+            br 
+            label Nome
+            br
+            input.form-control.signup-input(type='text', ng-disabled="data.editing", ng-model="data.modifiedUser.name")
+            label.main-gray-color Identificação de nome completo.
+            br
+            br
+            label Classe do docente
+            br
+            select.form-control.signup-input(ng-disabled="data.editing", ng-model="data.modifiedUser.instructorClass")
+                option(ng-selected, value="-1") Selecione...
+                option(ng-value="'A'") Classe A - Docente Adjunto A, Docente Assistente A e Docente Auxiliar
+                option(ng-value="'B'") Classe B - Docente Assistente
+                option(ng-value="'C'") Classe C - Docente Adjunto
+                option(ng-value="'D'") Classe D - Docente Associado
+                option(ng-value="'E'") Classe E - Docente Titular
+            label.main-gray-color Classe do usuário no que se refere a carreira de magistério superior.
+            br
+            br
+            label Endereço de e-mail
+            br
+            input.form-control.signup-input(type='email', ng-disabled="data.editing", ng-model="data.modifiedUser.emailR")
+            label.main-gray-color E-mail acadêmico do usuário que será utilizado em caso de perda de senha.
+            br
+            br
+            label Senha
+            br
+            input.form-control.signup-input(type='password', ng-disabled="data.editing", ng-model="data.modifiedUser.password")
+            label.main-gray-color No mínimo 6 caracteres; pode conter letras minúsculas, maiúsculas, números e caracteres especiais.
+            br
+            br
+            label Repita a Senha
+            br
+            input.form-control.signup-input(type='password', ng-disabled="data.editing", ng-model="data.modifiedUser.repeatPassword")
+            label.main-gray-color Repita a mesma senha colocada acima.
+            br
+            br
+            br
+    .row
+        .col-md-12.center
+            button.btn.btn-success(type='button', ng-click="enable_disable_input()") {{buttonLabel}}
+            br
+            br

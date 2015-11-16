@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngResource', 'ngRoute']);
+var app = angular.module('app', ['ngResource', 'ngRoute', 'angularFileUpload']);
 
 
 app.config(function ($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide) {
@@ -16,38 +16,43 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
 
   var routeRoleChecks = {
         admin: {
-            auth: function (apAuth) {
-                return apAuth.authorizeCurrentUserForRoute('admin');
+            auth: function (ngAuth) {
+                return ngAuth.authorizeCurrentUserForRoute('admin');
             }},
         teacher: {
-            auth: function (apAuth) {
-                return apAuth.authorizeCurrentUserForRoute('teacher');
+            auth: function (ngAuth) {
+                return ngAuth.authorizeCurrentUserForRoute('teacher');
             }},
         user: {
-            auth: function (apAuth) {
-                return apAuth.authorizeAuthenticatedUserForRoute();
+            auth: function (ngAuth) {
+                return ngAuth.authorizeAuthenticatedUserForRoute();
             }}
     };
 
     $routeProvider
             .when('/', {
-                templateUrl: '/partials/main/main',
-                controller: 'apMainCtrl'
+                templateUrl: '/partials/views/main/main',
+                controller: 'ngMainCtrl'
             })
             .when('/recovery', {
-                templateUrl: '/partials/account/recover-password',
-                controller: 'apRecoverPasswordCtrl'
+                templateUrl: '/partials/views/account/recover-password',
+                controller: 'ngRecoverPasswordCtrl'
+            })
+            .when('/resetPassword', {
+                templateUrl: '/partials/views/account/reset-password',
+                controller: 'ngResetPasswordCtrl'
             })
             .when('/signup', {
-                templateUrl: '/partials/account/signup',
-                controller: 'apSignupCtrl'
+                templateUrl: '/partials/views/account/signup',
+                controller: 'ngSignupCtrl'
             })
-            .when('/login', {
-                templateUrl: '/partials/auth/login',
-                controller: 'apLoginCtrl'})
+            .when('/account', {
+                templateUrl: '/partials/views/account/account',
+                controller: 'ngAccountCtrl',
+            })
             .when('/dashboard', {
-                templateUrl: '/partials/dashboard/dashboard',
-                controller: 'apDashboardCtrl',
+                templateUrl: '/partials/views/dashboard/dashboard',
+                controller: 'ngDashboardCtrl',
                 resolve: {
                     auth: routeRoleChecks.user.auth,
                 }
