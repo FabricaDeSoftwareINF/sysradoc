@@ -1,13 +1,17 @@
 var crypto = require('crypto');
 
-exports.createSalt = function() {
+exports.createHash = function() {
     return crypto.randomBytes(128).toString('base64');
 };
 
-exports.hashPwd = function(salt, pwd) {
-    var hmac = crypto.createHmac('sha512', salt);
+exports.gerarSenhaAleatoria = function(){
+	return crypto.randomBytes(8).toString('hex');
+};
+
+exports.hashPassword = function(hash, password) {
+    var hmac = crypto.createHmac('sha512', hash);
     hmac.setEncoding('hex');
-    hmac.write(pwd);
+    hmac.write(password);
     hmac.end();
     return hmac.read();
 };

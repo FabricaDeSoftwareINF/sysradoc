@@ -19,7 +19,7 @@ module.exports = function (app) {
        res.send(404);
     });
 
-    app.post('/login', auth.authenticate);
+    app.post('/login', auth.autenticar);
 
     app.post('/logout', function (req, res) {
         req.logout();

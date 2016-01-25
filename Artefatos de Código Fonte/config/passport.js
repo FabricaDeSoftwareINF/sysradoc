@@ -3,13 +3,13 @@ var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function (app) {
-    var User = app.models.user;
+    var User = app.models.usuario;
 
     passport.use(new LocalStrategy(
         function (username, password, done) {
-            User.findOne({email: username}).exec(function (err, user) {
-                if (user && user.authenticate(password)) {
-                    return done(null, user);
+            User.findOne({email: username}).exec(function (err, usuario) {
+                if (usuario && usuario.autenticar(password)) {
+                    return done(null, usuario);
                 } else {
                     return done(null, false);
                 }
@@ -17,9 +17,9 @@ module.exports = function (app) {
         }
     ));
 
-    passport.serializeUser(function (user, done) {
-        if (user) {
-            done(null, user._id);
+    passport.serializeUser(function (usuario, done) {
+        if (usuario) {
+            done(null, usuario._id);
         }
     });
 

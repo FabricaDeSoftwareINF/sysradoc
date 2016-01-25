@@ -4,13 +4,13 @@ var encryption = require('../server/services/encryption');
 var createDefaultUsers = function(User) {
     User.find({}).exec(function (err, collection) {
         if (collection.length === 0){
-            var salt = encryption.createSalt();
-            var hashedPwd = encryption.hashPwd(salt, "12345");
+            var hash = encryption.createHash();
+            var hashedPwd = encryption.hashPassword(hash, "12345");
             User.create({
-                name: "Leonardo Freitas",
+                name: "Administrador",
                 email: "leonardo_freitas1995@hotmail.com",
                 instructorClass: "A",
-                salt: salt,
+                hash: hash,
                 hashedPwd: hashedPwd,
                 roles: ["teacher"]
             });
@@ -19,7 +19,7 @@ var createDefaultUsers = function(User) {
 };
 
 module.exports = function (app, config) {
-    userModel = app.models.user;
+    modeloUsuario = app.models.usuario;
     mongoose.connect(config.db);
     var db = mongoose.connection;
 
@@ -33,5 +33,5 @@ module.exports = function (app, config) {
 		console.log('sysradoc db is disconnected in: ' + config.db);
 	});
 
-    createDefaultUsers(userModel);
+    createDefaultUsers(modeloUsuario);
 };
