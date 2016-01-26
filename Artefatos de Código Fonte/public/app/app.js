@@ -46,9 +46,9 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
                 templateUrl: '/partials/views/account/signup',
                 controller: 'ngSignupCtrl'
             })
-            .when('/dashboard', {
-                templateUrl: '/partials/views/dashboard/dashboard',
-                controller: 'ngDashboardCtrl',
+            .when('/sendRadoc', {
+                templateUrl: '/partials/views/deprecated/send-radoc',
+                controller: 'ngSendRadocCtrl',
                 resolve: {
                     auth: routeRoleChecks.user.auth,
                 }
