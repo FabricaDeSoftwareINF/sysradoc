@@ -2,7 +2,7 @@ var auth = require('../../config/auth');
 
 module.exports = function (app) {
 
-    var users = app.controllers.users,
+    var users = app.controllers.usuarioController,
         radocs = app.controllers.radocs;
 
     app.post('/api/users', users.createUser);

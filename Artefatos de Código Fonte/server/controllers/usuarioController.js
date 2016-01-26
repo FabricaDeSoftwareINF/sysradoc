@@ -1,5 +1,6 @@
 var encryption = require('../services/encryption'),
-	nodemailer = require('nodemailer');
+	nodemailer = require('nodemailer'),
+    usuarioService = require("./../services/usuarioService");
 
 var transporter = nodemailer.createTransport({
 	service: "Zoho",
@@ -14,19 +15,6 @@ var mailOptions = {
 	to: '',
 	subject: '',
 	html: ""
-};
-
-var criarUsuarioPelaCategoria = function (userData) {
-	app.models[userData.categoria].create(userData, function (err, user) {
-		if (err) {
-			if (err.toString().indexOf('E11000') > -1) {
-				err = new Error('Este email já foi cadastrado no sistema.');
-			}
-			res.status(400);
-			return {reason: err.toString()};
-		}
-		return {success: true};
-	});
 };
 
 var enviarEmail = function (email, assunto, conteudo, numeroTentativas) {
@@ -47,10 +35,13 @@ var enviarEmail = function (email, assunto, conteudo, numeroTentativas) {
 				console.log(error);
 				if (tentarNovamente && tentativas > 0)
 					console.log("Retry[" + (3 - tentativas) + "/3]...");
-				else
+				else{
 					console.log("Out of retries.");
+					return {reason: error.toString()};
+				}
 			} else {
 				console.log('Message sent: ' + info.response);
+				return {success: true}
 			}
 		});
 	}
@@ -58,15 +49,18 @@ var enviarEmail = function (email, assunto, conteudo, numeroTentativas) {
 };
 
 module.exports = function (app) {
-	var Usuario = app.models.usuario,
-		Token = app.models.token;
+	var models = app.models;
+
+	var Usuario = models.usuario,
+		Token = models.token;
+
 
 	var controller = {};
 
 	controller.createUser = function (req, res, next) {
 		var userData = req.body;
 		var senhaAleatoria = encryption.gerarSenhaAleatoria();
-
+		var resposta;
 
 		userData.email = req.body.emailRequest;
 		userData.hash = encryption.createHash();
@@ -74,7 +68,7 @@ module.exports = function (app) {
 		userData.password = undefined;
 		userData.repeatPassword = undefined;
 
-		var resposta = criarUsuarioPelaCategoria(userData.categoria);
+		resposta = usuarioService.criarUsuarioPelaCategoria(userData, models);
 
 		if(resposta.reason){
 			res.send(resposta);
@@ -83,7 +77,7 @@ module.exports = function (app) {
 			var assunto = 'Bem-vindo ao SysRadoc';
 			var conteudo = 'Sua senha no sistema SysRadoc é: ' + senhaAleatoria;
 
-			var resposta = enviarEmail(email, assunto, conteudo, 3);
+			resposta = enviarEmail(email, assunto, conteudo, 3);
 
 			res.send(resposta);
 		}

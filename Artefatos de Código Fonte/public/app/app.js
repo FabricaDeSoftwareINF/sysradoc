@@ -61,9 +61,9 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
             .when('/newUser', {
                 templateUrl: '/partials/views/manager/new-user',
                 controller: 'ngNewUserCtrl',
-                resolve: {
-                    auth: routeRoleChecks.manager.auth,
-                }
+                //resolve: {
+                //    auth: routeRoleChecks.manager.auth,
+                //}
             })
     ;
 

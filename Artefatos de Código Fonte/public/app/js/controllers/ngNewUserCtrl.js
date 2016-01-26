@@ -34,7 +34,7 @@ angular.module('app').controller("ngNewUserCtrl", function($scope, ngNotifier, n
             C: [1, 2, 3, 4],
             D: [1, 2, 3, 4],
             E: [1]
-        },
+        }
 
     };
 
