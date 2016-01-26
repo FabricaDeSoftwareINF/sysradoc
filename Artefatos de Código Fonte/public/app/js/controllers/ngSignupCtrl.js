@@ -3,14 +3,14 @@ angular.module('app').controller('ngSignupCtrl', function ($scope, ngAuth, ngNot
         signup: {
             name: "",
             instructorClass: "-1",
-            emailR: "",
+            emailRequest: "",
             password: "",
             repeatPassword: ""
         }
     };
 
     $scope.signup = function(){
-        if ($scope.data.signup.emailR === "" ||
+        if ($scope.data.signup.emailRequest === "" ||
         $scope.data.signup.password === "" ||
         $scope.data.signup.name === "" ||
         $scope.data.signup.instructorClass === "-1"){
