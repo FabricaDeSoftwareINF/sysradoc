@@ -3,20 +3,24 @@ var mongoose = require('mongoose'),
 
 module.exports =  function(){
     var userSchema = mongoose.Schema({
-        name: String,
+        nome: String,
         email: {
             type: String,
             unique: true
         },
-        instructorClass: String,
+        matricula: String,
         salt: {type: String, required: '{PATH} is required!'},
-        hashedPwd: {type: String, required: '{PATH} is required!'},
-        roles: { type: [String], required: '{PATH} is required!'}
+        hash: {type: String, required: '{PATH} is required!'},
+        papeis: [String]
+    },
+    {
+        collection: 'users',
+        discriminatorKey: '_categoria'
     });
 
     userSchema.methods = {
         authenticate: function (passwordToMatch) {
-            return encryption.hashPwd(this.salt, passwordToMatch) === this.hashedPwd;
+            return encryption.hashPwd(this.salt, passwordToMatch) === this.hash;
         },
         hasRole: function(role) {
             return this.roles.indexOf(role) > -1;

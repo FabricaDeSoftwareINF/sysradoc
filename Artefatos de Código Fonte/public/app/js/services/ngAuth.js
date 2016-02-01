@@ -6,7 +6,7 @@ angular.module('app').factory('ngAuth', function ($http, $location, ngIdentity, 
                 if (response.data.success) {
                     var user = new ngUser();
                     delete response.data.user.salt;
-                    delete response.data.user.hashedPwd;
+                    delete response.data.user.hash;
                     angular.extend(user, response.data.user);
                     ngIdentity.currentUser = user;
                     dfd.resolve(true);
@@ -22,9 +22,9 @@ angular.module('app').factory('ngAuth', function ($http, $location, ngIdentity, 
             var dfd = $q.defer();
 
             newUser.$save().then(function () {
-                dfd.resolve();
+                dfd.resolve(response.data);
             }, function (response) {
-                dfd.reject(response.reason);
+                dfd.reject(response.data);
             });
 
             return dfd.promise;

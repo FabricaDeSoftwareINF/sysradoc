@@ -45,8 +45,9 @@ angular.module('app').controller("ngNewUserCtrl", function($scope, ngNotifier, n
     $scope.createUser = function(){
         ngAuth.createUser($scope.data.newUser).then(function() {
             ngNotifier.notify('Usuário criado com sucesso!');
-        }, function(reason) {
-            ngNotifier.error(reason);
+        }, function(data) {
+            console.log(data);
+            ngNotifier.error(data.reason);
         });
     };
 

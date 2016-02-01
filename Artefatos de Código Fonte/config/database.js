@@ -5,13 +5,13 @@ var createDefaultUsers = function(User) {
     User.find({}).exec(function (err, collection) {
         if (collection.length === 0){
             var salt = encryption.createSalt();
-            var hashedPwd = encryption.hashPwd(salt, "12345");
+            var hash = encryption.hashPwd(salt, "12345");
             User.create({
                 name: "Leonardo Freitas",
                 email: "leonardo_freitas1995@hotmail.com",
                 instructorClass: "A",
                 salt: salt,
-                hashedPwd: hashedPwd,
+                hash: hash,
                 roles: ["teacher"]
             });
         }

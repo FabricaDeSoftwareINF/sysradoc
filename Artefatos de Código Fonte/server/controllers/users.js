@@ -1,5 +1,6 @@
 var encryption = require('../services/encryption'),
-	nodemailer = require('nodemailer');
+	nodemailer = require('nodemailer'),
+    mongoose = require('mongoose');
 
 var transporter = nodemailer.createTransport({
     service: "Zoho",
@@ -24,22 +25,20 @@ module.exports = function(app){
 
     controller.createUser = function (req, res, next) {
         var userData = req.body;
-		var email = req.body.emailR;
-        userData.roles = ["teacher"];
-		userData.email = email;
+        userData.password = encryption.createRandomPassword();
+		userData.email = req.body.emailRequest;
         userData.salt = encryption.createSalt();
-        userData.hashedPwd = encryption.hashPwd(userData.salt, userData.password);
-		userData.password = undefined;
-		userData.repeatPassword = undefined;
-		userData.emailR = undefined;
+        userData.hash = encryption.hashPwd(userData.salt, userData.password);
 
-        User.create(userData, function (err, user) {
+        var model = mongoose.model(userData.categoria);
+        model.create(userData, function (err, user) {
             if (err) {
+                var errString = "Um erro ocorreu, tente novamente.";
                 if (err.toString().indexOf('E11000') > -1) {
-                    err = new Error('Este email já foi cadastrado no sistema.');
+                    errString = "Este email já foi cadastrado no sistema.";
                 }
                 res.status(400);
-                return res.send({reason: err.toString()});
+                return res.send({reason: errString});
             }
 
             res.send({success: true});
@@ -99,9 +98,9 @@ module.exports = function(app){
 	        if (!!token){
 				User.findOne({email: email}).exec(function (err, user) {
 					var salt = encryption.createSalt();
-					var hashedPwd = encryption.hashPwd(salt, password);
+					var hash = encryption.hashPwd(salt, password);
 					user.salt = salt;
-					user.hashedPwd = hashedPwd;
+					user.hash = hash;
 					user.save();
 					res.send({success: true});
 				});
