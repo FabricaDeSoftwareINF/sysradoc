@@ -19,14 +19,6 @@ extends ../includes/layout
                         ul.nav.navbar-nav.navbar-right(ng-if="identity.isAuthenticated()")
                             li.dropdown
                                 a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                                    | Navegar&nbsp;
-                                    span.caret
-                                ul.dropdown-menu
-                                    li(ng-if="identity.isAuthorized('Secretaria') || identity.isAuthorized('Administrador')")
-                                        a(href='/newUser') Cadastrar Usuário
-                                        
-                            li.dropdown
-                                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                                     | {{identity.currentUser.name}}
                                     span.caret
                                 ul.dropdown-menu
