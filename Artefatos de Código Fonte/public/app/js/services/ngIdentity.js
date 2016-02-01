@@ -10,7 +10,20 @@ angular.module('app').factory('ngIdentity', function ($window, ngUser) {
             return !!this.currentUser;
         },
         isAuthorized: function (role) {
-            return !!this.currentUser && this.currentUser.roles.indexOf(role) > -1;
+            return !!this.currentUser && this.currentUser.papeis.indexOf(role) > -1;
+        },
+        isGrantedAccess: function(level){
+            return level === this.getAccessLevel();
+        },
+        getAccessLevel: function(){
+            if (!this.currentUser)
+                return null;
+
+            var accessLevel = this.currentUser._categoria;
+            if (!accessLevel)
+                accessLevel = "Administrador";
+
+            return accessLevel;
         }
     };
 });

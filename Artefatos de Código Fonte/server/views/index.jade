@@ -22,12 +22,12 @@ extends ../includes/layout
                                     | Navegar&nbsp;
                                     span.caret
                                 ul.dropdown-menu
-                                    li(ng-if="identity.isAuthorized('Secretaria') || identity.isAuthorized('Administrador')")
+                                    li(ng-if="identity.isGrantedAccess('Secretaria') || identity.isGrantedAccess('Administrador')")
                                         a(href='/newUser') Cadastrar Usuário
                                         
                             li.dropdown
                                 a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                                    | {{identity.currentUser.name}}
+                                    | {{identity.currentUser.nome}}
                                     span.caret
                                 ul.dropdown-menu
                                     li

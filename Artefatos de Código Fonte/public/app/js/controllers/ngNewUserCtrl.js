@@ -1,4 +1,4 @@
-angular.module('app').controller("ngNewUserCtrl", function($scope, ngNotifier, ngAuth) {
+angular.module('app').controller("ngNewUserCtrl", function($scope, ngNotifier, ngAuth, ngIdentity) {
     $scope.data = {
         newUser: {
             nome: "",
@@ -39,14 +39,13 @@ angular.module('app').controller("ngNewUserCtrl", function($scope, ngNotifier, n
     };
 
     $scope.getUserType = function(){
-        return "Administrador";
+        return ngIdentity.getAccessLevel();
     };
 
     $scope.createUser = function(){
         ngAuth.createUser($scope.data.newUser).then(function() {
             ngNotifier.notify('Usuário criado com sucesso!');
         }, function(data) {
-            console.log(data);
             ngNotifier.error(data.reason);
         });
     };

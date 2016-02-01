@@ -22,7 +22,7 @@ angular.module('app').factory('ngAuth', function ($http, $location, ngIdentity, 
             var dfd = $q.defer();
 
             newUser.$save().then(function () {
-                dfd.resolve(response.data);
+                dfd.resolve(response);
             }, function (response) {
                 dfd.reject(response.data);
             });
@@ -37,6 +37,23 @@ angular.module('app').factory('ngAuth', function ($http, $location, ngIdentity, 
                 dfd.resolve();
             });
             return dfd.promise;
+        },
+
+        grantAccessLevelForRoute: function(level){
+            if (ngIdentity.isGrantedAccess(level)) {
+                return true;
+            } else {
+                return $q.reject('not authorized');
+            }
+        },
+
+        grantAnyAccessLevelForRoute: function(levels){
+            for (var level = 0; level < levels.length; level++){
+                if (ngIdentity.isGrantedAccess(levels[level]))
+                    return true;
+            }
+
+            return $q.reject('not authorized');
         },
 
         authorizeCurrentUserForRoute: function (role) {
