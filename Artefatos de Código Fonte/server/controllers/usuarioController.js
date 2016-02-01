@@ -86,7 +86,8 @@ module.exports = function (app) {
 	controller.recover = function (req, res) {
 		var email = req.params.email;
 		Usuario.findOne({email: email}).exec(function (err, user) {
-			if (!!user) {
+            //TODO: Avaliar necessidade de dupla negaçao. (Melhoria de legibilidade)
+            if (!!user) {
 				var tokenGenerated = encryption.createToken().substring(0, 16);
 				var resetPage = 'http://' + req.headers.host + "/resetPassword";
 				var pageParams = "?email=" + email + "&token=" + tokenGenerated;
@@ -94,14 +95,18 @@ module.exports = function (app) {
 				var assunto = "Redefinição de Senha - SysRadoc";
 				var conteudo = "Prezada(o),<br><br>Foi requisitada no SysRadoc uma redefinição de senha. Para informar uma nova senha, clique <a href='" + (resetPage + pageParams) + "'>aqui</a> e defina sua nova senha.<br><br>Caso o link não funcione, siga as seguintes instruções:<br><ol><li>Entre em <a href='" + resetPage + "'>" + resetPage + "</a></li><li>Informe seu email</li><li>Informe a chave: <strong>" + tokenGenerated + "</strong></li><li>Informe a nova senha</li></ol><br><br>Caso não tenha requisitado essa redefinição, ignore este email.<br><br>Sysradoc.";
 
-				enviarEmail(email, assunto, conteudo, 3);
+				var resposta = enviarEmail(email, assunto, conteudo, 3);
+
+				if(resposta.reason){
+					return res.send(resposta.reason);
+				}
 
 				Token.findOne({email: email}).exec(function (err, tokenFound) {
+					//TODO: Avaliar necessidade de dupla negaçao. (Melhoria de legibilidade)
 					if (!!tokenFound) {
 						tokenFound.token = tokenGenerated;
 						tokenFound.save();
-					}
-					else {
+					} else {
 						Token.create({email: email, token: tokenGenerated});
 					}
 				});
@@ -118,6 +123,7 @@ module.exports = function (app) {
 		var tokenUsed = req.params.token;
 		var password = req.body.password;
 		Token.findOneAndRemove({email: email, token: tokenUsed}, function (err, token) {
+            //TODO: Avaliar necessidade de dupla negacao. (melhoria de legibilidade)
 			if (!!token) {
 				Usuario.findOne({email: email}).exec(function (err, user) {
 					var hash = encryption.createHash();

@@ -19,7 +19,7 @@ var createDefaultUsers = function(User) {
 };
 
 module.exports = function (app, config) {
-    modeloUsuario = app.models.usuario;
+    var modeloUsuario = app.models.usuario;
     mongoose.connect(config.db);
     var db = mongoose.connection;
 
