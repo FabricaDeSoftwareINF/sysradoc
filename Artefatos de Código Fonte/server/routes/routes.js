@@ -2,7 +2,7 @@ var auth = require('../../config/auth');
 
 module.exports = function (app) {
 
-    var users = app.controllers.usuarioController,
+    var users = app.controllers.users,
         radocs = app.controllers.radocs;
 
     app.post('/api/users', users.createUser);
@@ -19,7 +19,7 @@ module.exports = function (app) {
        res.send(404);
     });
 
-    app.post('/login', auth.autenticar);
+    app.post('/login', auth.authenticate);
 
     app.post('/logout', function (req, res) {
         req.logout();

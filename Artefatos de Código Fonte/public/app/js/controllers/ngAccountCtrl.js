@@ -8,14 +8,14 @@ angular.module('app').controller('ngAccountCtrl', function ($scope, ngAuth, ngNo
             repeatPassword: ""
         },
         editing: false,
-        identity: ngIdentity,
-        buttonLabel: "Editar Informações"
+        identity = ngIdentity,
+        buttonLabel: "Editar Informações",
     };
 
     $scope.enable_disable_input = function(){
       $scope.data.editing = !$scope.data.editing;
       if(!$scope.data.editing){
-        $scope.data.buttonLabel = "Salvar Alterações";
+        $scope.data.buttonLabel: "Salvar Alterações";
       }
       else {
         modifyUser();

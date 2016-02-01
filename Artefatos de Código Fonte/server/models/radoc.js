@@ -6,7 +6,7 @@ module.exports =  function(){
         "ano-base": String,
         "usuario": mongoose.Schema.Types.ObjectId,
         "instituição": String,
-        "urlPdf": String
+        "urlPdf": String,
     };
 
     var sectionsSchemas = [];

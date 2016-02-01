@@ -47,8 +47,7 @@ module.exports = function (app, config) {
     app.use(helmet.hidePoweredBy({setTo:'PHP 5.5.14'}));
     app.use(express.static(config.rootPath + '/public'));
 
-    load('models/usuario', {cwd: 'server'})
-		.then('models')
+    load('models', {cwd: 'server'})
         .then('controllers')
         .then('routes')
         .into(app);
