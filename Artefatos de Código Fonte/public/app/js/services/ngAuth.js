@@ -21,8 +21,8 @@ angular.module('app').factory('ngAuth', function ($http, $location, ngIdentity, 
             var newUser = new ngUser(newUserData);
             var dfd = $q.defer();
 
-            newUser.$save().then(function () {
-                dfd.resolve(response);
+            newUser.$save().then(function (response) {
+                dfd.resolve(response.data);
             }, function (response) {
                 dfd.reject(response.data);
             });

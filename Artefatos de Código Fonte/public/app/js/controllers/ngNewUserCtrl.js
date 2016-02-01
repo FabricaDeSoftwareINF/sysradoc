@@ -1,17 +1,19 @@
 angular.module('app').controller("ngNewUserCtrl", function($scope, ngNotifier, ngAuth, ngIdentity) {
-    $scope.data = {
-        newUser: {
-            nome: "",
-            emailRequest: "",
-            matricula: "",
-            papeis: [],
-            categoria: "",
+    var cleanNewUserData = {
+        nome: "",
+        emailRequest: "",
+        matricula: "",
+        papeis: [],
+        categoria: "",
 
-            // Professor data
-            dataDeIngresso: new Date(),
-            classe: "",
-            nivel: ""
-        },
+        // Professor data
+        dataDeIngresso: new Date(),
+        classe: "",
+        nivel: ""
+    };
+
+    $scope.data = {
+        newUser: angular.copy(cleanNewUserData),
         userTypes: {
             Administrador: [
                 "Secretaria",
@@ -45,6 +47,7 @@ angular.module('app').controller("ngNewUserCtrl", function($scope, ngNotifier, n
     $scope.createUser = function(){
         ngAuth.createUser($scope.data.newUser).then(function() {
             ngNotifier.notify('Usuário criado com sucesso!');
+            $scope.data.newUser = angular.copy(cleanNewUserData);
         }, function(data) {
             ngNotifier.error(data.reason);
         });
