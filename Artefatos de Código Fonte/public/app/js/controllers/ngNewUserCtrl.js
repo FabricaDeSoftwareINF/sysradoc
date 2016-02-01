@@ -1,0 +1,56 @@
+angular.module('app').controller("ngNewUserCtrl", function($scope, ngNotifier, ngAuth) {
+    $scope.data = {
+        newUser: {
+            nome: "",
+            emailRequest: "",
+            matricula: "",
+            papeis: [],
+            categoria: "",
+
+            // Professor data
+            dataDeIngresso: new Date(),
+            classe: "",
+            nivel: ""
+        },
+        userTypes: {
+            Administrador: [
+                "Secretaria",
+                "Professor"
+            ],
+            Secretaria: [
+                "Professor"
+            ]
+        },
+        classes: [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+        ],
+        levels: {
+            A: [1, 2],
+            B: [1, 2],
+            C: [1, 2, 3, 4],
+            D: [1, 2, 3, 4],
+            E: [1]
+        },
+
+    };
+
+    $scope.getUserType = function(){
+        return "Administrador";
+    };
+
+    $scope.createUser = function(){
+        ngAuth.createUser($scope.data.newUser).then(function() {
+            ngNotifier.notify('Usuário criado com sucesso!');
+        }, function(reason) {
+            ngNotifier.error(reason);
+        });
+    };
+
+    $scope.$watch(function(scope){ return scope.data.newUser.classe; }, function(newValue, oldValue) {
+        $scope.data.newUser.nivel = "";
+    });
+});

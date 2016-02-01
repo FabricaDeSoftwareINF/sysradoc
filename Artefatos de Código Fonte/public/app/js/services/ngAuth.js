@@ -22,10 +22,9 @@ angular.module('app').factory('ngAuth', function ($http, $location, ngIdentity, 
             var dfd = $q.defer();
 
             newUser.$save().then(function () {
-                ngIdentity.currentUser = newUser;
                 dfd.resolve();
             }, function (response) {
-                dfd.reject(response.data.reason);
+                dfd.reject(response.reason);
             });
 
             return dfd.promise;
@@ -47,6 +46,15 @@ angular.module('app').factory('ngAuth', function ($http, $location, ngIdentity, 
                 return $q.reject('not authorized');
             }
 
+        },
+
+        authorizeAnyCurrentUserForRoute: function (roles) {
+            for (var role = 0; role < roles.length; role++){
+                if (ngIdentity.isAuthorized(roles[role]))
+                    return true;
+            }
+
+            return $q.reject('not authorized');
         },
 
         authorizeAuthenticatedUserForRoute: function () {

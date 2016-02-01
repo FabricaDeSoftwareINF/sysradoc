@@ -1,0 +1,50 @@
+.container(style="padding-top: 60px")
+    .col-md-8.col-md-offset-2
+        h2 Cadastro de Usuários
+        hr
+        form.form-horizontal(name="signupForm")
+            .form-group
+                label.col-md-4.control-label Nome:
+                .col-md-6
+                    input.form-control(type="text", name="userName", ng-model="data.newUser.nome", required)
+                    
+            .form-group
+                label.col-md-4.control-label Email:
+                .col-md-6
+                    input.form-control(type="email", name="userEmail", ng-model="data.newUser.emailRequest", required)  
+                      
+            .form-group
+                label.col-md-4.control-label Matricula:
+                .col-md-6
+                    input.form-control(type="text", name="userRegistration", ng-model="data.newUser.matricula", required)
+                    
+            .form-group
+                label.col-md-4.control-label Tipo de Usuario:
+                .col-md-6
+                    select.form-control(name="userRegistration", ng-model="data.newUser.categoria", required)  
+                        option(value="") Escolha...
+                        option(ng-repeat="category in data.userTypes[getUserType()]", ng-value="category") {{category}}
+            
+            div(ng-if="data.newUser.categoria === 'Professor'")
+                .form-group
+                    label.col-md-4.control-label Data de Ingresso:
+                    .col-md-6
+                        uib-datepicker(ng-model="data.newUser.dataDeIngresso", class="well well-sm")
+                        
+                .form-group
+                    label.col-md-4.control-label Classes
+                    .col-md-6
+                        select.form-control(name="userClass", ng-model="data.newUser.classe", required)  
+                            option(value="") Escolha...
+                            option(ng-repeat="class in data.classes", ng-value="class") {{class}}
+                            
+                .form-group
+                    label.col-md-4.control-label Nivel
+                    .col-md-6
+                        select.form-control(name="userLevel", ng-model="data.newUser.nivel", required)  
+                            option(value="") Escolha...
+                            option(ng-repeat="level in data.levels[data.newUser.classe]", ng-value="level") {{level}} 
+                br
+            .form-group
+                .col-md-6.col-md-offset-4.text-center
+                    button.btn.btn-md.btn-primary(ng-click="createUser()", ng-disabled="!signupForm.$valid") Criar

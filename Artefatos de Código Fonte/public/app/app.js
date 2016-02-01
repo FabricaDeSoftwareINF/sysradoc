@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngResource', 'ngRoute', 'angularFileUpload']);
+var app = angular.module('app', ['ui.bootstrap', 'ngResource', 'ngRoute', 'angularFileUpload']);
 
 
 app.config(function ($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide) {
@@ -15,13 +15,18 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
   });
 
   var routeRoleChecks = {
+        manager: {
+            auth: function(ngAuth){
+                return ngAuth.authorizeAnyCurrentUserForRoute(['Administrador', 'Professor']);
+            }
+        },
         admin: {
             auth: function (ngAuth) {
-                return ngAuth.authorizeCurrentUserForRoute('admin');
+                return ngAuth.authorizeCurrentUserForRoute('Administrador');
             }},
         teacher: {
             auth: function (ngAuth) {
-                return ngAuth.authorizeCurrentUserForRoute('teacher');
+                return ngAuth.authorizeCurrentUserForRoute('Professor');
             }},
         user: {
             auth: function (ngAuth) {
@@ -51,6 +56,13 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
                 controller: 'ngSendRadocCtrl',
                 resolve: {
                     auth: routeRoleChecks.user.auth,
+                }
+            })
+            .when('/newUser', {
+                templateUrl: '/partials/views/manager/new-user',
+                controller: 'ngNewUserCtrl',
+                resolve: {
+                    auth: routeRoleChecks.manager.auth,
                 }
             })
     ;
