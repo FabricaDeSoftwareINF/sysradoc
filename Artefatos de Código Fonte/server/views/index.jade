@@ -19,14 +19,6 @@ extends ../includes/layout
                         ul.nav.navbar-nav.navbar-right(ng-if="identity.isAuthenticated()")
                             li.dropdown
                                 a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                                    | Navegar&nbsp;
-                                    span.caret
-                                ul.dropdown-menu
-                                    li(ng-if="identity.isGrantedAccess('Secretaria') || identity.isGrantedAccess('Administrador')")
-                                        a(href='/newUser') Cadastrar Usuário
-                                        
-                            li.dropdown
-                                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                                     | {{identity.currentUser.nome}}
                                     span.caret
                                 ul.dropdown-menu
@@ -35,9 +27,15 @@ extends ../includes/layout
                                     li
                                         a(href='#', ng-click="signout()") Encerrar Sessão
 
-                br
-                br
-                div(ng-view)
+                    div(ng-if="layout.hasSideNavbar()")
+                      include user-sidenav
+
+                #page-wrapper(ng-if="layout.hasSideNavbar()")
+                    .container-fluid
+                        div(ng-view)
+
+                div(ng-if="!layout.hasSideNavbar()", ng-view)
+                    .container-fluid
                 
         footer.footer.row
             .col-md-12.center

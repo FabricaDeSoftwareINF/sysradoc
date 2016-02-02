@@ -58,6 +58,13 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
                     auth: routeRoleChecks.user.auth,
                 }
             })
+            .when('/dashboard', {
+                templateUrl: '/partials/views/dashboard/dashboard',
+                controller: 'ngDashboardCtrl',
+                resolve: {
+                    auth: routeRoleChecks.user.auth,
+                }
+            })
             .when('/newUser', {
                 templateUrl: '/partials/views/manager/new-user',
                 controller: 'ngNewUserCtrl',
@@ -69,10 +76,12 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
 
 });
 
-angular.module('app').run(function ($rootScope, $location) {
+angular.module('app').run(function ($rootScope, $location, ngLayoutSvc) {
+    $rootScope.layout = ngLayoutSvc;
     $rootScope.$on('$routeChangeError', function (evt, current, previous, rejection) {
         if (rejection === 'not authorized') {
-            $location.path('/');
+            if ($location.path(""))
+                $location.path('/');
         }
     });
 });
