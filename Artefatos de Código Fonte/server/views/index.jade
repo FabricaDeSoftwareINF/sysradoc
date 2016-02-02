@@ -1,0 +1,51 @@
+extends ../includes/layout
+
+.wrapper
+    block main-content
+        .main-content
+            section.content
+                nav.navbar.navbar-default.navbar-fixed-top(ng-controller="ngNavBarCtrl")
+                    .container-fluid
+                        .navbar-header
+                            button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
+                                span.sr-only Toggle navigation
+                                span.icon-bar
+                                span.icon-bar
+                                span.icon-bar
+                            a.navbar-brand.pointer-element(ng-click="goToHome()")
+                                img(src="/img/sysradoc-logo.png")
+
+                    
+                        ul.nav.navbar-nav.navbar-right(ng-if="identity.isAuthenticated()")
+                            li.dropdown
+                                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                                    | {{identity.currentUser.nome}}
+                                    span.caret
+                                ul.dropdown-menu
+                                    li
+                                        a(href='#') Configurações
+                                    li
+                                        a(href='#', ng-click="signout()") Encerrar Sessão
+
+                    div(ng-if="layout.hasSideNavbar()")
+                      include user-sidenav
+
+                #page-wrapper(ng-if="layout.hasSideNavbar()")
+                    .container-fluid
+                        div(ng-view)
+
+                div(ng-if="!layout.hasSideNavbar()", ng-view)
+                    .container-fluid
+                
+        footer.footer.row
+            .col-md-12.center
+                br
+                | Instituto de Informática (INF) - UFG
+                br
+                | Alameda Palmeiras, Quadra D, Câmpus Samambaia
+                br
+                | Caixa Postal 131 - CEP 74001-970 - Goiânia - GO
+                br
+                | Fone: (62) 3521-1181 / Fax: (62) 3521-1182
+                br
+                br

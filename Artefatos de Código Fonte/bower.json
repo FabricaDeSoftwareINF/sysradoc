@@ -1,0 +1,29 @@
+{
+  "name": "Sys Radoc",
+  "version": "0.0.0",
+  "authors": [
+    "Leonardo Freitas dos Santos <leonardo_freitas1995@hotmail.com>"
+  ],
+  "description": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular": "~1.4.7",
+    "angular-resource": "~1.4.7",
+    "angular-route": "~1.4.7",
+    "bootstrap": "~3.3.5",
+    "angular-bootstrap": "~0.14.2",
+    "toastr": "~2.1.2",
+    "angular-file-upload": "~2.2.0",
+    "metisMenu": "~2.4.0",
+    "startbootstrap-sb-admin-2": "git://github.com/leonardo-freitas-1995/startbootstrap-sb-admin-2.git#gh-pages"
+  }
+}

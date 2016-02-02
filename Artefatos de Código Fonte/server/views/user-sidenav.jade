@@ -1,0 +1,20 @@
+.navbar-default.sidebar(role='navigation')
+    .sidebar-nav.navbar-collapse
+        ul#side-menu.nav
+            li
+            li(ng-repeat="firstLevel in layout.getSidenavStructure()")
+                a.sidenav-a.first-level-item(href="#", ng-click="layout.changeSidenavTab(firstLevel.path)", ng-class="{'active': layout.location.search().page === firstLevel.path}")
+                    i.fa.fa-fw(ng-class="firstLevel.icon")
+                    | 
+                    span(ng-bind-html="firstLevel.item | html")
+                    span.fa.arrow(ng-if="!!firstLevel.secondLevel && firstLevel.secondLevel.length > 0")
+                ul.sidenav-ul.nav.nav-second-level(ng-if="!!firstLevel.secondLevel && firstLevel.secondLevel.length > 0")
+                    li(ng-repeat="secondLevel in firstLevel.secondLevel")
+                        a.sidenav-a.second-level-item(href="#", ng-click="layout.changeSidenavTab(secondLevel.path)", ng-class="{'active': layout.location.search().page === secondLevel.path}")
+                            span(ng-bind-html="secondLevel.item | html")
+                            span.fa.arrow(ng-if="!!secondLevel.thirdLevel && secondLevel.thirdLevel.length > 0")
+                        ul.sidenav-ul.nav.nav-third-level(ng-if="!!secondLevel.thirdLevel && secondLevel.thirdLevel.length > 0")
+                            li(ng-repeat="thirdLevel in secondLevel.thirdLevel")
+                                a.sidenav-a.third-level-item(href="#", ng-click="layout.changeSidenavTab(thirdLevel.path)", ng-class="{'active': layout.location.search().page === thirdLevel.path}")
+                                    span(ng-bind-html="thirdLevel.item | html")
+                span(ng-if="$last", ng-init="layout.reloadSidenav()")
