@@ -1,4 +1,4 @@
-# ![SysRadoc](Projeto/Extras/Logo/SysRadoc.svg)
+# ![SysRadoc](../../wiki/Projeto/Extras/Logo/SysRadoc.svg)
 
 Projeto de Software apresentado como trabalho de conclusão para obtenção de aprovação na disciplina de *Integração 1* e *Métodos e Ferramentas de Engenharia de Software*, elaborado por estudantes do 6º período do semestre 2015/2 do curso de Engenharia de Software da Universidade Federal de Goiás.
 
