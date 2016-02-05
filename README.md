@@ -15,7 +15,7 @@ Instalação
 ----------
 
 **Configuração de Ambiente:** 
-Para rodar localmente o código fonte, é necessário configurar o ambiente, istalando o [Node.js](https://nodejs.org/en/) e o [MongoDB](https://www.mongodb.org/downloads#production). Para Windows, após a instalação do mongo, é preciso ir na partição do Sistema Operacional (Provavelmente *C:\\*), criar uma pasta chamada *data*, e dentro desta pasta uma chamada *db*.
+Para rodar localmente o código fonte, é necessário configurar o ambiente, istalando o [Node.js](https://nodejs.org/en/) e o [MongoDB](https://www.mongodb.org/downloads#production). Para Windows, após a instalação do mongo, é preciso ir na partição do Sistema Operacional (Provavelmente *C:\\*), criar uma pasta chamada *data*, e dentro desta pasta uma outra pasta chamada *db*.
 
 
 **Resolução de Dependências:** 
