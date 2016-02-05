@@ -19,7 +19,7 @@ Para rodar localmente o código fonte, é necessário configurar o ambiente, ist
 
 
 **Resolução de Dependências:** 
-Após a instalação do Node.js e do MongoDB, é preciso resolver as dependências do código (Este passo é necessário sempre que novas dependências são adicionadas, ou o repositorio é clonado do zero). Vá para a pasta do código fonte (Onde se encontra o arquivo **server.js**) com o console/prompt de comando e execute os seguintes comandos (A execução de cada um pode demorar alguns minutos):
+Após a instalação do Node.js e do MongoDB, é preciso resolver as dependências do código (Este passo é necessário sempre que novas dependências são adicionadas, ou o repositorio é clonado do zero). Vá para a pasta do código fonte (Onde se encontra o arquivo *server.js*) com o console/prompt de comando e execute os seguintes comandos (A execução de cada um pode demorar alguns minutos):
 
 
 ```
