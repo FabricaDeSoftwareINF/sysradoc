@@ -15,7 +15,7 @@ Instalação
 ----------
 
 **Configuração de Ambiente:** 
-Para rodar localmente o código fonte, é necessário configurar o ambiente, istalando o [Node.js](https://nodejs.org/en/) e o [MongoDB](https://www.mongodb.org/downloads#production). Para Windows, após a instalação do mongo, é preciso ir na partição do Sistema Operacional (Provavelmente '*C:\\*'), criar uma pasta chamada *data*, e dentro desta pasta uma chamada *db*.
+Para rodar localmente o código fonte, é necessário configurar o ambiente, istalando o [Node.js](https://nodejs.org/en/) e o [MongoDB](https://www.mongodb.org/downloads#production). Para Windows, após a instalação do mongo, é preciso ir na partição do Sistema Operacional (Provavelmente *C:\\*), criar uma pasta chamada *data*, e dentro desta pasta uma chamada *db*.
 
 
 **Resolução de Dependências:** 
@@ -31,7 +31,7 @@ bower install
 
 
 **Execução do Servidor:** 
-Para executar o servidor, primeiro inicie o banco de dados, que provavelmente estará dentro da pasta onde o MongoDB foi instalado, no caminho */bin/mongod.exe*. Após sua inicialização, vá para a pasta do código fonte com o console/prompt de comando, e execute:
+Para executar o servidor, primeiro inicie o banco de dados, que provavelmente estará dentro da pasta onde o MongoDB foi instalado, no caminho *\\bin\\mongod.exe*. Após sua inicialização, vá para a pasta do código fonte com o console/prompt de comando, e execute:
 
 ```
 #!console
