@@ -13,7 +13,34 @@ A aplicação resultante deste projeto deverá auxiliar a CAD, faculdades da UFG
 
 Instalação
 ----------
-*A implementar.*
+
+**Configuração de Ambiente:** 
+Para rodar localmente o código fonte, é necessário configurar o ambiente, istalando o [Node.js](https://nodejs.org/en/) e o [MongoDB](https://www.mongodb.org/downloads#production). Para Windows, após a instalação do mongo, é preciso ir na partição do Sistema Operacional (Provavelmente *C:\*), criar uma pasta chamada *data*, e dentro desta pasta uma chamada *db*.
+
+
+**Resolução de Dependências:** 
+Após a instalação do Node.js e do MongoDB, é preciso resolver as dependências do código (Este passo é necessário sempre que novas dependências são adicionadas, ou o repositorio é clonado do zero). Vá para a pasta do código fonte (Onde se encontra o arquivo **server.js**) com o console/prompt de comando e execute os seguintes comandos (A execução de cada um pode demorar alguns minutos):
+
+
+```
+#!console
+
+npm install
+bower install
+```
+
+
+**Execução do Servidor:** 
+Para executar o servidor, primeiro inicie o banco de dados, que provavelmente estará dentro da pasta onde o MongoDB foi instalado, no caminho */bin/mongod.exe*. Após sua inicialização, vá para a pasta do código fonte com o console/prompt de comando, e execute:
+
+```
+#!console
+
+node server.js
+```
+
+Pronto, o sistema estará disponível por qualquer browser utilizando [http://localhost:3030/](http://localhost:3030/).
+
 
 Autores
 -------
