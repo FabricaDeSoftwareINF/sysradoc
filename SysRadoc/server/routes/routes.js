@@ -5,9 +5,12 @@ module.exports = function (app) {
     var users = app.controllers.users,
         radocs = app.controllers.radocs;
 
+    app.get('/api/users', users.getAllUsers);
     app.post('/api/users', users.createUser);
     app.post('/api/users/:email', users.recover);
     app.post('/api/users/:email/:token', users.reset);
+    app.put('/api/users/:email', users.updateUser);
+    app.delete('/api/users/:email', users.removeUser);
 
     app.post('/api/radoc/', radocs.receiveRadoc);
 

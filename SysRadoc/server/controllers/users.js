@@ -24,6 +24,12 @@ module.exports = function(app){
 
 	var controller = {};
 
+    controller.getAllUsers = function(req, res, next){
+        User.find({}).exec(function(err, users){
+            res.send(users);
+        });
+    };
+
     controller.createUser = function (req, res, next) {
         var userData = req.body;
         userData.password = encryption.createRandomPassword();
@@ -47,6 +53,26 @@ module.exports = function(app){
             emailAgent.sendEmail(userData.email, subject, html, url);
             res.send({success: true});
         });
+    };
+
+    controller.updateUser = function(req, res){
+        var userData = req.body;
+        userData.email = userData.emailRequest;
+        userData._categoria = userData.categoria;
+        User.findOne({email: req.params.email}).exec(function(err, userDoc){
+            for (var attr in userData){
+                userDoc[attr] = userData[attr];
+            }
+            userDoc.save();
+            res.send({});
+        });
+    };
+
+    controller.removeUser = function(req, res){
+        User.remove({email: req.params.email}).exec(function (err, collection) {
+            res.send({});
+        });
+
     };
 
 	controller.recover = function(req, res){

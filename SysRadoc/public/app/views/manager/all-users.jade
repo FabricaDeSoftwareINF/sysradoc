@@ -1,0 +1,84 @@
+.container-fluid(style="padding-top: 60px")
+    .col-md-10.col-md-offset-1
+        h2 Usuários do Sistema
+        hr
+        table.table.table-hover
+            thead
+                tr
+                    th #
+                    th Usuário
+                    th Categoria
+                    th Ações
+            tbody
+                tr(ng-repeat="user in data.users")
+                    td {{$index + 1}}
+                    td {{user.nome}}
+                    td 
+                        span(ng-if="user._categoria") {{user._categoria}}
+                        span(ng-if="!user._categoria") Administrador
+                    td
+                        button.btn.btn-sm.btn-warning(data-toggle="modal", data-target="#modalEdit", ng-click="callEdit($index)", uib-tooltip="Editar Usuário", tooltip-placement="top")
+                            span.fa.fa-fw.fa-pencil
+                        button.btn.btn-sm.btn-danger.side-margins(data-toggle="modal", data-target="#modalRemove", ng-click="callRemove($index)", uib-tooltip="Remover Usuário", tooltip-placement="top")
+                            span.fa.fa-fw.fa-times
+
+    #modalRemove.modal.fade.bs-example-modal-lg(tabindex="-1", role="dialog", aria-labelledby="myLargeModalLabel")
+        .modal-dialog
+            .modal-content
+                .modal-body
+                    h4 Deseja mesmo remover o usuário {{data.removing.name}}?
+                .modal-footer
+                    button.btn.btn-danger.side-margins(ng-click="finishRemove()", data-dismiss="modal")
+                        span Remover
+                    button.btn.btn-default(data-dismiss="modal")
+                        span Cancelar
+                        
+    #modalEdit.modal.fade.bs-example-modal-lg(tabindex="-1", role="dialog", aria-labelledby="myLargeModalLabel")
+        .modal-dialog
+            .modal-content
+                form.form-horizontal(name="editForm")
+                    .modal-header
+                        h4 Editando o usuário {{data.users[data.editing.index].nome}}
+                    .modal-body
+                        .form-group
+                            label.col-md-4.control-label Nome:
+                            .col-md-6
+                                input.form-control(type="text", name="userName", ng-model="data.editing.nome", required)
+                                
+                        .form-group
+                            label.col-md-4.control-label Email:
+                            .col-md-6
+                                input.form-control(type="email", name="userEmail", ng-model="data.editing.emailRequest", required)  
+                                  
+                        .form-group
+                            label.col-md-4.control-label Matricula:
+                            .col-md-6
+                                input.form-control(type="text", name="userRegistration", ng-model="data.editing.matricula", required)
+                                
+                        .form-group
+                            label.col-md-4.control-label Tipo de Usuario:
+                            .col-md-6
+                                select.form-control(name="userRegistration", ng-model="data.editing.categoria", required)  
+                                    option(value="") Escolha...
+                                    option(ng-repeat="category in data.userTypes[getUserType()]", ng-value="category") {{category}}
+                        
+                        div(ng-if="data.editing.categoria === 'Professor'")
+                            .form-group
+                                label.col-md-4.control-label Data de Ingresso:
+                                .col-md-6
+                                    uib-datepicker(ng-model="data.editing.dataDeIngresso")
+                                    
+                            .form-group
+                                label.col-md-4.control-label Classes
+                                .col-md-6
+                                    select.form-control(name="userClass", ng-model="data.editing.classe", ng-options="class as class for class in data.classes", required)  
+                                        
+                            .form-group
+                                label.col-md-4.control-label Nivel
+                                .col-md-6
+                                    select.form-control(name="userLevel", ng-model="data.editing.nivel", ng-options="level as level for level in data.levels[data.editing.classe]", required)  
+                    .modal-footer
+                        button.btn.btn-primary.side-margins(ng-click="finishEdit()", data-dismiss="modal", ng-disabled="!editForm.$valid")
+                            span Salvar
+                        button.btn.btn-default(data-dismiss="modal")
+                            span Cancelar

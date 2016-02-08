@@ -14,7 +14,7 @@ angular.module('app').factory('ngLayoutSvc', function ($location, ngIdentity, ng
                     {
                         icon: "",
                         item: "Editar/Excluir Usuário",
-                        path: "/editUsers"
+                        path: "/allUsers"
                     }
                 ]
             }
@@ -33,7 +33,7 @@ angular.module('app').factory('ngLayoutSvc', function ($location, ngIdentity, ng
                     {
                         icon: "",
                         item: "Editar/Excluir Usuário",
-                        path: "/editUsers"
+                        path: "/allUsers"
                     }
                 ]
             }

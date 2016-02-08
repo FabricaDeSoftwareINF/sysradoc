@@ -72,6 +72,13 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
                     auth: routeRoleChecks.manager.auth,
                 }
             })
+            .when('/allUsers', {
+                templateUrl: '/partials/views/manager/all-users',
+                controller: 'ngAllUsersCtrl',
+                resolve: {
+                    auth: routeRoleChecks.manager.auth,
+                }
+            })
     ;
 
 });

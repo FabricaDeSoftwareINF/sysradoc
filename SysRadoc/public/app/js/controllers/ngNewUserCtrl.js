@@ -31,11 +31,11 @@ angular.module('app').controller("ngNewUserCtrl", function($scope, ngNotifier, n
             "E"
         ],
         levels: {
-            A: [1, 2],
-            B: [1, 2],
-            C: [1, 2, 3, 4],
-            D: [1, 2, 3, 4],
-            E: [1]
+            A: ["1", "2"],
+            B: ["1", "2"],
+            C: ["1", "2", "3", "4"],
+            D: ["1", "2", "3", "4"],
+            E: ["1"]
         },
 
     };
