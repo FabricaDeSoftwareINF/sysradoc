@@ -25,5 +25,9 @@
     "angular-file-upload": "~2.2.0",
     "metisMenu": "~2.4.0",
     "startbootstrap-sb-admin-2": "git://github.com/leonardo-freitas-1995/startbootstrap-sb-admin-2.git#gh-pages"
+  },
+  "resolutions": {
+    "metisMenu": "~2.4.0",
+    "jquery": "~2.1.4"
   }
 }
