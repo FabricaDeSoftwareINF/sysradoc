@@ -79,6 +79,20 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
                     auth: routeRoleChecks.manager.auth,
                 }
             })
+            .when('/newProcess', {
+                templateUrl: '/partials/views/manager/new-process',
+                controller: 'ngNewProcessCtrl',
+                resolve: {
+                    auth: routeRoleChecks.manager.auth,
+                }
+            })
+            .when('/allProcesses', {
+                templateUrl: '/partials/views/manager/all-processes',
+                controller: 'ngAllProcessesCtrl',
+                resolve: {
+                    auth: routeRoleChecks.manager.auth,
+                }
+            })
     ;
 
 });
