@@ -9,6 +9,8 @@
     /!\ ATENÇÃO /!\
     Este arquivo de configuração também reflete como os Schemas do mongoose são criados
     Alterar algo aqui significa também mudar a modelagem do banco.
+    A Ordem das sessões são importantes para o arquivo radocScore.js,
+    pois na hora de pontuar, os nomes das sessões utilizados para referência são os que constam nesta ordem.
 */
 
 exports.sections = [
@@ -49,10 +51,31 @@ exports.sections = [
         ]
     },
     {
-        header: "Atividades de ensino",
+        header: "RGCG - Regime de Graduação Semestral",
         sectionType: "table",
         nextSection: "Atividades de orientação",
-        afterHeaderSkip: 2,
+        afterHeaderSkip: 1,
+        labels: [
+            "Curso",
+            "Disciplina",
+            "CHA",
+            "Ano",
+            "Sem",
+            "Turma",
+            "Sub",
+            "Nº alunos",
+            "Nº sub",
+            "CHT",
+            "CHP",
+            "CHAC",
+            "Conjug"
+        ]
+    },
+    {
+        header: "Pós-Graduação Lato Sensu/Sctricto Sensu (RDC)",
+        sectionType: "table",
+        nextSection: "Atividades de orientação",
+        afterHeaderSkip: 1,
         labels: [
             "Curso",
             "Disciplina",

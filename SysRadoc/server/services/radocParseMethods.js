@@ -1,4 +1,7 @@
 exports.parseLinearSection = function(pdfArray, sectionConfig) {
+    if (pdfArray.indexOf(sectionConfig.header) === -1)
+        return [];
+        
     var start = pdfArray.indexOf(sectionConfig.header) + sectionConfig.afterHeaderSkip,
         pos = start,
         sectionArray = [],
@@ -51,6 +54,9 @@ exports.parseLinearSection = function(pdfArray, sectionConfig) {
 };
 
 exports.parseTableSection = function(pdfArray, objectArray, sectionConfig) {
+    if (pdfArray.indexOf(sectionConfig.header) === -1)
+        return [];
+
     var start = pdfArray.indexOf(sectionConfig.header) + sectionConfig.afterHeaderSkip,
         pos = start,
         end = pdfArray.indexOf(sectionConfig.nextSection),
@@ -71,6 +77,11 @@ exports.parseTableSection = function(pdfArray, objectArray, sectionConfig) {
                 if(xLabelPos[l] == objectArray[pos + walk].x){
                     newSection[labels[l]] = pdfArray[pos + walk];
                     walk++;
+                }
+                else if (xLabelPos[l - 1] == objectArray[pos + walk].x){
+                    newSection[labels[l - 1]] += (" " + pdfArray[pos + walk]);
+                    walk++;
+                    l--;
                 }
                 else{
                     newSection[labels[l]] = "";
