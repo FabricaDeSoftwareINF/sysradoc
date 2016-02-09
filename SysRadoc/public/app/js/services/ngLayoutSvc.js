@@ -13,8 +13,25 @@ angular.module('app').factory('ngLayoutSvc', function ($location, ngIdentity, ng
                     },
                     {
                         icon: "",
-                        item: "Editar/Excluir Usuário",
+                        item: "Gerenciar Usuários",
                         path: "/allUsers"
+                    }
+                ]
+            },
+            {
+                icon: "fa-book",
+                item: "Processos",
+                path: "",
+                secondLevel: [
+                    {
+                        icon: "",
+                        item: "Registrar Processo",
+                        path: "/newProcess"
+                    },
+                    {
+                        icon: "",
+                        item: "Gerenciar Processos",
+                        path: "/allProcesses"
                     }
                 ]
             }
@@ -32,8 +49,25 @@ angular.module('app').factory('ngLayoutSvc', function ($location, ngIdentity, ng
                     },
                     {
                         icon: "",
-                        item: "Editar/Excluir Usuário",
+                        item: "Gerenciar Usuários",
                         path: "/allUsers"
+                    }
+                ]
+            },
+            {
+                icon: "fa-book",
+                item: "Processos",
+                path: "",
+                secondLevel: [
+                    {
+                        icon: "",
+                        item: "Registrar Processo",
+                        path: "/newProcess"
+                    },
+                    {
+                        icon: "",
+                        item: "Gerenciar Processos",
+                        path: "/allProcesses"
                     }
                 ]
             }
