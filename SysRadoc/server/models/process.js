@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 module.exports = function () {
 
-    var processoSchema = mongoose.Schema({
+    var processSchema = mongoose.Schema({
         tipo: String,
         dataDeInicio: Date,
         dataFim: Date,
@@ -14,5 +14,5 @@ module.exports = function () {
 
     });
 
-    return mongoose.model('Processo', processoSchema);
+    return mongoose.model('Processo', processSchema);
 };

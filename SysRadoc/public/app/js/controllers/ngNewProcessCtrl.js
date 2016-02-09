@@ -14,11 +14,15 @@ angular.module('app').controller("ngNewProcessCtrl", function($scope, ngNotifier
             "Progressão Funcional",
             "Promoção na Carreira de Magistério"
             ],
-        evaluators: getAllUsersFromARole("Avaliador"),
-        teachers: getAllUsersFromARole("Professor")
+        evaluators: [],
+        teachers: ngUserSvc.getAllUsersByCategory("Professor")
     };
 
     $scope.createProcess = function(){
+        if ($scope.data.newProcess.evaluatedTeacher === $scope.data.newProcess.processEvaluator){
+            ngNotifier.error("Um professor não pode avaliar ele mesmo em um processo. Escolha outro avaliador.");
+            return false;
+        }
         ngProcessSvc.createProcess($scope.data.newProcess).then(function() {
             ngNotifier.notify('Processo registrado com sucesso!');
             $scope.data.newProcess = angular.copy(cleanNewProcessData);
@@ -31,30 +35,17 @@ angular.module('app').controller("ngNewProcessCtrl", function($scope, ngNotifier
         $scope.data.newProcess.nivel = "";
     });
 
-    function getAllUsersFromARole(role){
-        var i = 0;
-        var usersFiltered = [];
-        var allUsers = ngUserSvc.getAllUsers();
-
-        console.log(allUsers);
+    $scope.$watch(function(){ return $scope.data.teachers.length;}, function(newValue, oldValue) {
+        var allUsers = $scope.data.teachers;
+        var filtered = [];
 
         for (n = 0; n < allUsers.length; n++){
-
-            console.log("allUsers["+x+"] = " + allUsers[x]);
-            console.log("._categoria = " + allUsers[x]._categoria);
-
-            if(allUsers[x]._categoria === role){
-
-                console.log("MATCH!");
-
-                usersFiltered[i++] = allUsers[x];
+            if (allUsers[n].papeis.indexOf("CAD") !== -1){
+                filtered.push(allUsers[n]);
             }
         }
 
-        console.log("role = " + role);
-        console.log(usersFiltered);
-
-        return usersFiltered;
-    }
+        $scope.data.evaluators = filtered;
+    });
 
 });

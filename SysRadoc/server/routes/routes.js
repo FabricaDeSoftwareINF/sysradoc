@@ -6,6 +6,7 @@ module.exports = function (app) {
         radocs = app.controllers.radocs;
 
     app.get('/api/users', users.getAllUsers);
+    app.get('/api/users/:category', users.getAllUsersByCategory);
     app.post('/api/users', users.createUser);
     app.post('/api/users/:email', users.recover);
     app.post('/api/users/:email/:token', users.reset);

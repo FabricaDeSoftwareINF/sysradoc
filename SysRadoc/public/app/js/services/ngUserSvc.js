@@ -5,6 +5,10 @@ angular.module('app').factory('ngUserSvc', function ($q, ngUser) {
             return ngUser.query();
         },
 
+        getAllUsersByCategory: function(category){
+            return ngUser.query({category: category});
+        },
+
         updateUser: function(data){
             var updateUser = new ngUser(data);
             var dfd = $q.defer();

@@ -30,6 +30,12 @@ module.exports = function(app){
         });
     };
 
+    controller.getAllUsersByCategory = function(req, res, next){
+        User.find({_categoria: req.params.category}).exec(function(err, users){
+            res.send(users);
+        });
+    };
+
     controller.createUser = function (req, res, next) {
         var userData = req.body;
         userData.password = encryption.createRandomPassword();
