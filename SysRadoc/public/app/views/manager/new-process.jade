@@ -17,14 +17,14 @@
                 .col-md-6
                     select.form-control(name="teachersList", ng-model="data.newProcess.evaluatedTeacher", required)
                         option(value="") Escolha...
-                        option(ng-repeat="teacher in data.teachers", ng-value="teacher") {{teacher}}
+                        option(ng-repeat="teacher in data.teachers", ng-value="teacher._id") {{teacher.nome}}
                         
             .form-group
                 label.col-md-4.control-label Avaliador do Processo:
                 .col-md-6
-                    select.form-control(name="evaluatorsList", ng-model="data.newProcess.processEvaluators", required)
+                    select.form-control(name="evaluatorsList", ng-model="data.newProcess.processEvaluator", required)
                         option(value="") Escolha...
-                        option(ng-repeat="evaluator in data.evaluators", ng-value="evaluator") {{evaluator}}
+                        option(ng-repeat="evaluator in data.evaluators", ng-value="evaluator._id") {{evaluator.nome}}
 
             div
                 .form-group
