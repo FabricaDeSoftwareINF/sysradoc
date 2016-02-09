@@ -24,6 +24,14 @@ var config = require('./radocParseConfig');
     config.sections[7].header = "Atividades de qualificação"
     config.sections[7].labels[0] = "Tabela:"
 
+    Este arquivo é dividido em duas sessões:
+    -Somas
+    -Podas
+
+    O trecho de somas constitui o calculo de cada item do radoc
+    O trecho de podas constitui a limitação por quantidade máxima de pontos ou por ano
+    de uma atividade
+
 */
 
 var getMonths = function(data){
@@ -35,7 +43,9 @@ var getMonths = function(data){
 exports.calculateScore = function(radoc){
 
     var score = {};
-    var maxScore, cha;
+    var maxScore, cha, maxScores, scoreObj, scoreByYear;
+
+    //Trecho de soma das pontuações
 
     for (var sect = 0; sect < config.sections.length; sect++){
         score[config.sections[sect].header] = [];
@@ -272,18 +282,18 @@ exports.calculateScore = function(radoc){
         }
         else if (description.indexOf("obra artística") !== -1){
             if (description.toLowerCase().indexOf("restauração") !== -1)
-                prodScore.push({subsection: "3", subitem: "16", score: 20});
+                prodScore.push({subsection: "3", subitem: "16.1", score: 20});
             else
-                prodScore.push({subsection: "3", subitem: "16", score: 10});
+                prodScore.push({subsection: "3", subitem: "16.2", score: 10});
         }
         else if (description.indexOf("Curadoria de exposições") !== -1){
             prodScore.push({subsection: "3", subitem: "17", score: 5});
         }
         else if (description.indexOf("Produção de cinema,") !== -1){
             if (description.toLowerCase().indexOf("editor") !== -1)
-                prodScore.push({subsection: "3", subitem: "18", score: 20});
+                prodScore.push({subsection: "3", subitem: "18.1", score: 20});
             else
-                prodScore.push({subsection: "3", subitem: "18", score: 3});
+                prodScore.push({subsection: "3", subitem: "18.2", score: 3});
         }
         else if (description.indexOf("Artigos de opinião veiculados em jornais e revistas") !== -1){
             prodScore.push({subsection: "4", subitem: "1", score: 1});
@@ -346,11 +356,11 @@ exports.calculateScore = function(radoc){
         }
         else if (resTable.indexOf("Palestrante, conferencista ou participante em mesa redonda em evento científico, cultural ou artístico") !== -1){
             if (resTable.toLowerCase().indexOf("evento internacional") !== -1)
-                researchScore.push({subsection: "2", subitem: "8", score: 5});
+                researchScore.push({subsection: "2", subitem: "8.1", score: 5});
             else if (resTable.toLowerCase().indexOf("evento nacional") !== -1)
-                researchScore.push({subsection: "2", subitem: "8", score: 4});
+                researchScore.push({subsection: "2", subitem: "8.2", score: 4});
             else if (resTable.toLowerCase().indexOf("evento regional ou local") !== -1)
-                researchScore.push({subsection: "2", subitem: "8", score: 3});
+                researchScore.push({subsection: "2", subitem: "8.3", score: 3});
         }
         else if (resTable.indexOf("Promoção ou produção de eventos artísticos e científicos locais") !== -1){
             if (resTable.toLowerCase().indexOf("presidente") !== -1)
@@ -407,11 +417,11 @@ exports.calculateScore = function(radoc){
         }
         else if (extTable.indexOf("Palestrante, conferencista ou participante em mesa redonda em evento científico, cultural ou artístico") !== -1){
             if (extTable.toLowerCase().indexOf("evento internacional") !== -1)
-                extScore.push({subsection: "2", subitem: "8", score: 5});
+                extScore.push({subsection: "2", subitem: "8.1", score: 5});
             else if (extTable.toLowerCase().indexOf("evento nacional") !== -1)
-                extScore.push({subsection: "2", subitem: "8", score: 4});
+                extScore.push({subsection: "2", subitem: "8.2", score: 4});
             else if (extTable.toLowerCase().indexOf("evento regional ou local") !== -1)
-                extScore.push({subsection: "2", subitem: "8", score: 3});
+                extScore.push({subsection: "2", subitem: "8.3", score: 3});
         }
         else if (extTable.indexOf("Promoção ou produção de eventos artísticos e científicos locais") !== -1){
             if (extTable.toLowerCase().indexOf("presidente") !== -1)
@@ -736,7 +746,7 @@ exports.calculateScore = function(radoc){
         else if (acdTable.indexOf("Membro de corpo de júri") !== -1){
             if (acdTable.toLowerCase().indexOf("na instituição") !== -1)
                 acdScore.push({subsection: "2", subitem: "8", score: 8});
-            else if (acdTable.toLowerCase().indexOf("em outra instituição") !== -1)
+            else
                 acdScore.push({subsection: "2", subitem: "8", score: 6});
         }
         else if (acdTable.indexOf("Cursos, palestras ou treinamento não curricular ministrados para docentes") !== -1){
@@ -757,10 +767,10 @@ exports.calculateScore = function(radoc){
             quaScore.push({subsection: "3", subitem: "1", score: 12});
         }
         else if (quaTable.indexOf("Estágio Pós-Doutoral ou Estágio Sênior") !== -1){
-            quaScore.push({subsection: "3", subitem: "2", score: 12});
+            quaScore.push({subsection: "3", subitem: "2", score: getMonths(radoc[config.sections[7].header][qualification]) * 12});
         }
         else if (quaTable.indexOf("Docente em licença para capacitação") !== -1){
-            quaScore.push({subsection: "3", subitem: "3", score: 12});
+            quaScore.push({subsection: "3", subitem: "3", score: getMonths(radoc[config.sections[7].header][qualification]) * 12});
         }
         else if (quaTable.indexOf("Curso de aperfeiçoamento realizado com carga horária superior a 40 horas") !== -1){
             quaScore.push({subsection: "3", subitem: "4", score: 3});
@@ -776,7 +786,196 @@ exports.calculateScore = function(radoc){
         }
     }
 
-    console.log(score);
+    /*
+        Trecho de podas
+        maxScores são os objects com os limites de pontuação de cada pontuação
+        de cada item de cada sessão
+        scoreByYear são os objects com limites de 1 item por ano
+    */
+
+    maxScores = {
+        "1-3": {score: 0, maxScore: 10},
+        "1-4": {score: 0, maxScore: 10},
+        "1-5": {score: 0, maxScore: 10},
+        "1-10": {score: 0, maxScore: 40},
+        "1-12": {score: 0, maxScore: 20},
+        "2-4": {score: 0, maxScore: 20},
+        "3-3": {score: 0, maxScore: 10},
+        "3-18": {score: 0, maxScore: 9},
+        "4-4": {score: 0, maxScore: 9},
+        "4-5": {score: 0, maxScore: 3}
+    };
+
+    scoreByYear = {
+        "3-9": false,
+        "3-16.2": false,
+        "3-18.1": false
+    };
+
+    for (var prodScores = 0; prodScores < score[config.sections[10].header].length; prodScores++){
+
+        scoreObj = score[config.sections[10].header][prodScores];
+
+        if (maxScores[scoreObj.subsection + "-" + scoreObj.subitem]){
+            if (maxScores[scoreObj.subsection + "-" + scoreObj.subitem].score === maxScores[scoreObj.subsection + "-" + scoreObj.subitem].maxScore){
+                scoreObj.score = 0;
+            }
+            else{
+                maxScores[scoreObj.subsection + "-" + scoreObj.subitem].score += scoreObj.score;
+            }
+        }
+
+        if (scoreByYear[scoreObj.subsection + "-" + scoreObj.subitem] !== undefined){
+            if (scoreByYear[scoreObj.subsection + "-" + scoreObj.subitem])
+                scoreObj.score = 0;
+            else
+                scoreByYear[scoreObj.subsection + "-" + scoreObj.subitem] = true;
+        }
+
+    }
+
+    maxScores = {
+        "1-3": {score: 0, maxScore: 10},
+        "2-2": {score: 0, maxScore: 15},
+        "2-6": {score: 0, maxScore: 15},
+        "2-7": {score: 0, maxScore: 10},
+        "2-8.1": {score: 0, maxScore: 15},
+        "2-8.2": {score: 0, maxScore: 12},
+        "2-8.3": {score: 0, maxScore: 9}
+    };
+
+    scoreByYear = {
+        "1-1": false,
+        "1-2": false,
+        "1-3": false,
+        "2-1": false,
+        "2-2": false,
+        "2-3": false,
+        "2-4": false,
+        "2-5": false
+    };
+
+    for (var extScores = 0; extScores < score[config.sections[5].header].length + score[config.sections[6].header].length; extScores++){
+        if (extScores >= score[config.sections[5].header].length)
+            scoreObj = score[config.sections[6].header][extScores % score[config.sections[6].header].length];
+        else
+            scoreObj = score[config.sections[5].header][extScores];
+
+        if (maxScores[scoreObj.subsection + "-" + scoreObj.subitem]){
+            if (maxScores[scoreObj.subsection + "-" + scoreObj.subitem].score === maxScores[scoreObj.subsection + "-" + scoreObj.subitem].maxScore){
+                scoreObj.score = 0;
+            }
+            else{
+                maxScores[scoreObj.subsection + "-" + scoreObj.subitem].score += scoreObj.score;
+            }
+        }
+
+        if (scoreByYear[scoreObj.subsection + "-" + scoreObj.subitem] !== undefined){
+            if (scoreByYear[scoreObj.subsection + "-" + scoreObj.subitem])
+                scoreObj.score = 0;
+            else
+                scoreByYear[scoreObj.subsection + "-" + scoreObj.subitem] = true;
+        }
+    }
+
+    maxScores = {
+        "2-2": {score: 0, maxScore: 10}
+    };
+
+    scoreByYear = {
+        "2-1": false,
+        "4-1": false,
+        "4-4": false,
+        "4-5": false,
+        "4-6": false
+    };
+
+    for (var admScores = 0; admScores < score[config.sections[9].header].length; admScores++){
+
+        scoreObj = score[config.sections[9].header][admScores];
+
+        if (maxScores[scoreObj.subsection + "-" + scoreObj.subitem]){
+            if (maxScores[scoreObj.subsection + "-" + scoreObj.subitem].score === maxScores[scoreObj.subsection + "-" + scoreObj.subitem].maxScore){
+                scoreObj.score = 0;
+            }
+            else{
+                maxScores[scoreObj.subsection + "-" + scoreObj.subitem].score += scoreObj.score;
+            }
+        }
+
+        if (scoreByYear[scoreObj.subsection + "-" + scoreObj.subitem] !== undefined){
+            if (scoreByYear[scoreObj.subsection + "-" + scoreObj.subitem])
+                scoreObj.score = 0;
+            else
+                scoreByYear[scoreObj.subsection + "-" + scoreObj.subitem] = true;
+        }
+    }
+
+    maxScores = {
+        "1-10": {score: 0, maxScore: 12},
+        "1-35": {score: 0, maxScore: 40}
+    };
+
+    for (var oriScores = 0; oriScores < score[config.sections[4].header].length; oriScores++){
+
+        scoreObj = score[config.sections[4].header][oriScores];
+
+        if (maxScores[scoreObj.subsection + "-" + scoreObj.subitem]){
+            if (maxScores[scoreObj.subsection + "-" + scoreObj.subitem].score === maxScores[scoreObj.subsection + "-" + scoreObj.subitem].maxScore){
+                scoreObj.score = 0;
+            }
+            else{
+                maxScores[scoreObj.subsection + "-" + scoreObj.subitem].score += scoreObj.score;
+            }
+        }
+    }
+
+    maxScores = {
+        "2-7": {score: 0, maxScore: 10}
+    };
+
+    scoreByYear = {
+        "1-10": false
+    };
+
+    for (var acdScores = 0; acdScores < score[config.sections[8].header].length; acdScores++){
+
+        scoreObj = score[config.sections[8].header][acdScores];
+
+        if (maxScores[scoreObj.subsection + "-" + scoreObj.subitem]){
+            if (maxScores[scoreObj.subsection + "-" + scoreObj.subitem].score === maxScores[scoreObj.subsection + "-" + scoreObj.subitem].maxScore){
+                scoreObj.score = 0;
+            }
+            else{
+                maxScores[scoreObj.subsection + "-" + scoreObj.subitem].score += scoreObj.score;
+            }
+        }
+
+        if (scoreByYear[scoreObj.subsection + "-" + scoreObj.subitem] !== undefined){
+            if (scoreByYear[scoreObj.subsection + "-" + scoreObj.subitem])
+                scoreObj.score = 0;
+            else
+                scoreByYear[scoreObj.subsection + "-" + scoreObj.subitem] = true;
+        }
+    }
+
+    maxScores = {
+        "1-6": {score: 0, maxScore: 3}
+    };
+
+    for (var quaScores = 0; quaScores < score[config.sections[7].header].length; quaScores++){
+
+        scoreObj = score[config.sections[8].header][quaScores];
+
+        if (maxScores[scoreObj.subsection + "-" + scoreObj.subitem]){
+            if (maxScores[scoreObj.subsection + "-" + scoreObj.subitem].score === maxScores[scoreObj.subsection + "-" + scoreObj.subitem].maxScore){
+                scoreObj.score = 0;
+            }
+            else{
+                maxScores[scoreObj.subsection + "-" + scoreObj.subitem].score += scoreObj.score;
+            }
+        }
+    }
 
     return score;
 
