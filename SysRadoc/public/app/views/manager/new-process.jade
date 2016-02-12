@@ -8,21 +8,21 @@
             .form-group
                 label.col-md-4.control-label Tipo de Processo:
                 .col-md-6
-                    select.form-control(name="typesList", ng-model="data.newProcess.type", required)
+                    select.form-control(name="typesList", ng-model="data.newProcess.tipo", required)
                         option(value="") Escolha...
                         option(ng-repeat="type in data.types", ng-value="type") {{type}}
 
             .form-group
                 label.col-md-4.control-label Professor Avaliado:
                 .col-md-6
-                    select.form-control(name="teachersList", ng-model="data.newProcess.evaluatedTeacher", required)
+                    select.form-control(name="teachersList", ng-model="data.newProcess.idProfessor", required)
                         option(value="") Escolha...
                         option(ng-repeat="teacher in data.teachers", ng-value="teacher._id") {{teacher.nome}}
                         
             .form-group
                 label.col-md-4.control-label Avaliador do Processo:
                 .col-md-6
-                    select.form-control(name="evaluatorsList", ng-model="data.newProcess.processEvaluator", required)
+                    select.form-control(name="evaluatorsList", ng-model="data.newProcess.idAvaliador", required)
                         option(value="") Escolha...
                         option(ng-repeat="evaluator in data.evaluators", ng-value="evaluator._id") {{evaluator.nome}}
 
@@ -30,13 +30,13 @@
                 .form-group
                     label.col-md-4.control-label Data de Início:
                     .col-md-6
-                        uib-datepicker(ng-model="data.newProcess.startDate", class="well well-sm")
+                        uib-datepicker(ng-model="data.newProcess.dataDeInicio", class="well well-sm")
 
             div
                 .form-group
                     label.col-md-4.control-label Data de Fim:
                     .col-md-6
-                        uib-datepicker(ng-model="data.newProcess.endDate", class="well well-sm")
+                        uib-datepicker(ng-model="data.newProcess.dataFim", class="well well-sm")
 
                 br
             .form-group
