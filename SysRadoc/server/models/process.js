@@ -10,7 +10,8 @@ module.exports = function () {
         idAvaliador: mongoose.Schema.Types.ObjectId,
         nota: String,
         situacao: String,
-        idQuadroSumario: mongoose.Schema.Types.ObjectId
+        idQuadroSumario: mongoose.Schema.Types.ObjectId,
+        radocs: [mongoose.Schema.Types.ObjectId]
 
     });
 

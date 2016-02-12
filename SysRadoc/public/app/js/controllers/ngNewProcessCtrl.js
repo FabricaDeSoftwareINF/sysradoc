@@ -1,10 +1,10 @@
 angular.module('app').controller("ngNewProcessCtrl", function($scope, ngNotifier, ngProcessSvc, ngUserSvc) {
     var cleanNewProcessData = {
-        type: "",
-        startDate: new Date(),
-        endDate: new Date(),
-        evaluatedTeacher: "",
-        processEvaluator: ""
+        tipo: "",
+        dataDeInicio: new Date(),
+        dataFim: new Date(),
+        idProfessor: "",
+        idAvaliador: ""
     };
 
     $scope.data = {
@@ -19,7 +19,7 @@ angular.module('app').controller("ngNewProcessCtrl", function($scope, ngNotifier
     };
 
     $scope.createProcess = function(){
-        if ($scope.data.newProcess.evaluatedTeacher === $scope.data.newProcess.processEvaluator){
+        if ($scope.data.newProcess.idProfessor === $scope.data.newProcess.idAvaliador){
             ngNotifier.error("Um professor não pode avaliar ele mesmo em um processo. Escolha outro avaliador.");
             return false;
         }
@@ -31,11 +31,7 @@ angular.module('app').controller("ngNewProcessCtrl", function($scope, ngNotifier
         });
     };
 
-    $scope.$watch(function(scope){ return scope.data.newProcess.classe; }, function(newValue, oldValue) {
-        $scope.data.newProcess.nivel = "";
-    });
-
-    $scope.$watch(function(){ return $scope.data.teachers.length;}, function(newValue, oldValue) {
+    $scope.$watch(function(){ return $scope.data.teachers;}, function(newValue, oldValue) {
         var allUsers = $scope.data.teachers;
         var filtered = [];
 
@@ -46,6 +42,6 @@ angular.module('app').controller("ngNewProcessCtrl", function($scope, ngNotifier
         }
 
         $scope.data.evaluators = filtered;
-    });
+    }, true);
 
 });

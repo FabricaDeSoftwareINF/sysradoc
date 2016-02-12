@@ -3,7 +3,8 @@ var auth = require('../../config/auth');
 module.exports = function (app) {
 
     var users = app.controllers.users,
-        radocs = app.controllers.radocs;
+        radocs = app.controllers.radocs,
+        processes = app.controllers.processes;
 
     app.get('/api/users', users.getAllUsers);
     app.get('/api/users/:category', users.getAllUsersByCategory);
@@ -14,6 +15,8 @@ module.exports = function (app) {
     app.delete('/api/users/:email', users.removeUser);
 
     app.post('/api/radoc/', radocs.receiveRadoc);
+
+    app.post('/api/processes/', processes.createProcess);
 
     app.get('/partials/*', function (req, res) {
         res.render('../../public/app/' + req.params[0]);
