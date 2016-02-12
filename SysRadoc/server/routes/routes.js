@@ -2,21 +2,21 @@ var auth = require('../../config/auth');
 
 module.exports = function (app) {
 
-    var users = app.controllers.users,
-        radocs = app.controllers.radocs,
-        processes = app.controllers.processes;
+    var userController = app.controllers.userController,
+        radocController = app.controllers.radocController,
+        processController = app.controllers.processController;
 
-    app.get('/api/users', users.getAllUsers);
-    app.get('/api/users/:category', users.getAllUsersByCategory);
-    app.post('/api/users', users.createUser);
-    app.post('/api/users/:email', users.recover);
-    app.post('/api/users/:email/:token', users.reset);
-    app.put('/api/users/:email', users.updateUser);
-    app.delete('/api/users/:email', users.removeUser);
+    app.get('/api/user', userController.getAllUsers);
+    app.get('/api/user/:category', userController.getAllUsersByCategory);
+    app.post('/api/user', userController.createUser);
+    app.post('/api/user/:email', userController.recover);
+    app.post('/api/user/:email/:token', userController.reset);
+    app.put('/api/user/:email', userController.updateUser);
+    app.delete('/api/user/:email', userController.removeUser);
 
-    app.post('/api/radoc/', radocs.receiveRadoc);
+    app.post('/api/radoc/', radocController.receiveRadoc);
 
-    app.post('/api/processes/', processes.createProcess);
+    app.post('/api/process/', processController.createProcess);
 
     app.get('/partials/*', function (req, res) {
         res.render('../../public/app/' + req.params[0]);
