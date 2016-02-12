@@ -15,5 +15,5 @@ module.exports = function () {
 
     });
 
-    return mongoose.model('Processo', processSchema);
+    return mongoose.model('Process', processSchema);
 };
