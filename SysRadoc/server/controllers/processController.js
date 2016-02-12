@@ -15,20 +15,20 @@ module.exports = function(app){
                     });
                 }
                 else{
-                    Process.count({idProfessor: processData.idProfessor, tipo: "Estágio Probatório"}, function(err, countEstagio){
-                        if (count === 0){
+                    Process.count({idProfessor: processData.idProfessor, tipo: "Estágio Probatório"}, function(err, countType){
+                        if (countType === 0){
                             Process.create(req.body, function(err, process){
-                                res.send({sucess: true});
+                                res.send({success: true});
                             });
                         }
                         else{
-                            res.send({err: "Este docente já realizou seu estágio probatório."});
+                            res.send({reason: "Este docente já realizou seu estágio probatório."});
                         }
                     });
                 }
             }
             else{
-                res.send({err: "Este docente já possui um processo em aberto."});
+                res.send({reason: "Este docente já possui um processo em aberto."});
             }
         });
 

@@ -10,9 +10,12 @@ angular.module('app').factory('ngProcessSvc', function ($q, ngProcess) {
             var dfd = $q.defer();
 
             newProcess.$save().then(function (response) {
-                dfd.resolve(response.data);
+                if(response.success)
+                    dfd.resolve();
+                else
+                    dfd.reject(response);
             }, function (response) {
-                dfd.reject(response.data);
+                dfd.reject({reason: "Não foi possível enviar o pedido de criação de processo."});
             });
 
             return dfd.promise;
