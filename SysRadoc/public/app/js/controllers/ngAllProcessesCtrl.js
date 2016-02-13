@@ -1,14 +1,15 @@
 angular.module('app').controller("ngAllProcessesCtrl", function($scope, ngUserSvc, ngProcessSvc, ngIdentity, ngNotifier){
     $scope.data = {
         allProcesses: ngProcessSvc.getAllProcesses(),
-        filteredProcesses: [],
+        filterType: "professor",
         filter: "",
         evaluators: [],
         teachers: ngUserSvc.getAllUsersByCategory("Professor"),
         associate: {
             idAvaliador: "",
             index: 0
-        }
+        },
+        maxIndex: 0
     };
 
     $scope.getUserType = function(){
@@ -16,7 +17,7 @@ angular.module('app').controller("ngAllProcessesCtrl", function($scope, ngUserSv
     };
 
     $scope.callAssociate = function(index){
-        var process = $scope.data.filteredProcesses[index];
+        var process = $scope.data.allProcesses[index];
         var idAvaliador = "-1";
         if (process.idAvaliador)
             idAvaliador = process.idAvaliador._id;
@@ -27,11 +28,11 @@ angular.module('app').controller("ngAllProcessesCtrl", function($scope, ngUserSv
     };
 
     $scope.finishAssociate = function(){
-        if ($scope.data.filteredProcesses[$scope.data.associate.index].idProfessor._id === $scope.data.associate.idAvaliador){
+        if ($scope.data.allProcesses[$scope.data.associate.index].idProfessor._id === $scope.data.associate.idAvaliador){
             ngNotifier.error("Um professor não pode avaliar ele mesmo em um processo. Escolha outro avaliador.");
             return false;
         }
-        ngProcessSvc.updateAppraiser($scope.data.filteredProcesses[$scope.data.associate.index]._id, $scope.data.associate.idAvaliador).then(function() {
+        ngProcessSvc.updateAppraiser($scope.data.allProcesses[$scope.data.associate.index]._id, $scope.data.associate.idAvaliador).then(function() {
             ngNotifier.notify('Relator associado com sucesso!');
             angular.element('#modalAssociate').modal('hide');
             reloadProcesses();
@@ -46,8 +47,34 @@ angular.module('app').controller("ngAllProcessesCtrl", function($scope, ngUserSv
     };
 
     var applyFilter = function(){
-        if ($scope.data.filter === "")
-            $scope.data.filteredProcesses = $scope.data.allProcesses;
+        var maxIndex = 0;
+        for (var p = 0; p < $scope.data.allProcesses.length; p++){
+            var proc = $scope.data.allProcesses[p];
+            if ($scope.data.filter === ""){
+                proc.hidden = undefined;
+                maxIndex++;
+            }
+
+            else{
+                var field = "";
+                if ($scope.data.filterType === "professor")
+                    field = proc.idProfessor.nome;
+                else if ($scope.data.filterType === "avaliador"){
+                    if (proc.idAvaliador)
+                        field = proc.idAvaliador.nome;
+
+                }
+                if (field.indexOf($scope.data.filter) !== -1){
+                    proc.hidden = undefined;
+                    maxIndex++;
+                }
+                else{
+                    proc.hidden = true;
+                }
+            }
+        }
+
+        $scope.data.maxIndex = maxIndex;
     };
 
     $scope.$watch('data.allProcesses', function(newValue, oldValue) {
@@ -55,6 +82,10 @@ angular.module('app').controller("ngAllProcessesCtrl", function($scope, ngUserSv
     }, true);
 
     $scope.$watch('data.filter', function(newValue, oldValue) {
+        applyFilter();
+    });
+
+    $scope.$watch('data.filterType', function(newValue, oldValue) {
         applyFilter();
     });
 

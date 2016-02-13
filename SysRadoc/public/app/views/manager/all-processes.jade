@@ -1,8 +1,21 @@
 .container-fluid(style="padding-top: 60px")
     .col-md-10.col-md-offset-1
         h2 Lista de Processos
+        br
+        .col-md-12.text-right
+            form.form-inline
+                .input-group
+                    span.input-group-addon
+                        i.fa.fa-fw.fa-search
+                    .form-group
+                        input.form-control(type="text", ng-model="data.filter")
+                    .form-group
+                        select.form-control(ng-model="data.filterType")
+                            option(value="professor") Professor
+                            option(value="avaliador") Relator
+        br
         hr
-        table.table.table-hover
+        table.table.table-hover(ng-if="data.maxIndex > 0")
             thead
                 tr
                     th #
@@ -12,7 +25,7 @@
                     th Situação
                     th Ações
             tbody
-                tr(ng-repeat="process in data.filteredProcesses")
+                tr(ng-repeat="process in data.allProcesses", ng-show="!process.hidden")
                     td {{process.numero}}
                     td {{process.idProfessor.nome}}
                     td
@@ -23,20 +36,23 @@
                     td
                         button.btn.btn-sm.btn-primary(data-toggle="modal", data-target="#modalAssociate", ng-click="callAssociate($index)", uib-tooltip="Associar Relator", tooltip-placement="top")
                             span.fa.fa-fw.fa-user
+                            
+        h4(ng-if="data.maxIndex === 0 && data.allProcesses.length > 0") Não existe nenhum processo com esta busca
+        h4(ng-if="data.maxIndex === 0 && data.allProcesses.length === 0") Não existe nenhum processo cadastrado no momento
 
     #modalAssociate.modal.fade.bs-example-modal-lg(tabindex="-1", role="dialog", aria-labelledby="myLargeModalLabel")
         .modal-dialog
             .modal-content
                 .modal-header
-                    h4 Gerenciar Processo {{data.filteredProcesses[data.associate.index].idProfessor.numero}}
+                    h4 Gerenciar Processo {{data.allProcesses[data.associate.index].idProfessor.numero}}
                 .modal-body
                     .row
                         label.col-md-4.control-label.text-right Docente:
-                        span.col-md-6 {{data.filteredProcesses[data.associate.index].idProfessor.nome}}
+                        span.col-md-6 {{data.allProcesses[data.associate.index].idProfessor.nome}}
                     br
                     .row
                         label.col-md-4.control-label.text-right Tipo:
-                        span.col-md-6 {{data.filteredProcesses[data.associate.index].tipo}}
+                        span.col-md-6 {{data.allProcesses[data.associate.index].tipo}}
                     br
                     .row
                         label.col-md-4.control-label.text-right Relator do Processo:
