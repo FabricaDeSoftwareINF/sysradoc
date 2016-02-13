@@ -6,12 +6,12 @@ module.exports = function () {
         tipo: String,
         dataDeInicio: Date,
         dataFim: Date,
-        idProfessor: mongoose.Schema.Types.ObjectId,
-        idAvaliador: mongoose.Schema.Types.ObjectId,
+        idProfessor: { type: mongoose.Schema.ObjectId, ref: 'User' },
+        idAvaliador: { type: mongoose.Schema.ObjectId, ref: 'User' },
         nota: String,
         situacao: String,
         idQuadroSumario: mongoose.Schema.Types.ObjectId,
-        radocs: [mongoose.Schema.Types.ObjectId]
+        radocs: [{ type: mongoose.Schema.ObjectId, ref: 'Radoc' }]
 
     });
 

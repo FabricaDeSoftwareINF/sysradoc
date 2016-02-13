@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 module.exports = function () {
 
     var requestSchema = mongoose.Schema({
-        idUsuario: mongoose.Schema.Types.ObjectId,
+        idUsuario: { type: mongoose.Schema.ObjectId, ref: 'User' },
         nomeUsuario: String,
         tipo: String
     });

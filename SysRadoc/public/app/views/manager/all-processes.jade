@@ -1,0 +1,25 @@
+.container-fluid(style="padding-top: 60px")
+    .col-md-10.col-md-offset-1
+        h2 Lista de Processos
+        hr
+        table.table.table-hover
+            thead
+                tr
+                    th #
+                    th Docente
+                    th Relator
+                    th Tipo
+                    th Situação
+                    th Ações
+            tbody
+                tr(ng-repeat="process in data.filteredProcesses")
+                    td {{$index + 1}}
+                    td {{process.idProfessor.nome}}
+                    td
+                        span(ng-if="process.idAvaliador") {{process.idAvaliador.nome}}
+                        span(ng-if="!process.idAvaliador") Nenhum
+                    td {{process.tipo}}
+                    td {{process.situacao}}
+                    td
+                        button.btn.btn-sm.btn-primary(data-toggle="modal", data-target="#modalAssociate", ng-click="callAssociate($index)", uib-tooltip="Associar Relator", tooltip-placement="top")
+                            span.fa.fa-fw.fa-user
