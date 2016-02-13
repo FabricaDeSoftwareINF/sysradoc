@@ -1,0 +1,24 @@
+.container-fluid(style="padding-top: 60px")
+    .col-md-10.col-md-offset-1
+        h2 Meus Processos
+        br
+        hr
+        table.table.table-hover(ng-if="data.allProcesses.length > 0")
+            thead
+                tr
+                    th #
+                    th Docente
+                    th Relator
+                    th Tipo
+                    th Situação
+            tbody
+                tr(ng-repeat="process in data.allProcesses", ng-show="!process.hidden")
+                    td {{process.numero}}
+                    td {{process.idProfessor.nome}}
+                    td
+                        span(ng-if="process.idAvaliador") {{process.idAvaliador.nome}}
+                        span(ng-if="!process.idAvaliador") Nenhum
+                    td {{process.tipo}}
+                    td {{process.situacao}}
+                            
+        h4(ng-if="data.allProcesses.length === 0") Não existe nenhum processo cadastrado ainda

@@ -22,11 +22,11 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
         },
         admin: {
             auth: function (ngAuth) {
-                return ngAuth.authorizeCurrentUserForRoute('Administrador');
+                return ngAuth.grantAccessLevelForRoute('Administrador');
             }},
         teacher: {
             auth: function (ngAuth) {
-                return ngAuth.authorizeCurrentUserForRoute('Professor');
+                return ngAuth.grantAccessLevelForRoute('Professor');
             }},
         user: {
             auth: function (ngAuth) {
@@ -91,6 +91,13 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
                 controller: 'ngAllProcessesCtrl',
                 resolve: {
                     auth: routeRoleChecks.manager.auth,
+                }
+            })
+            .when('/myProcesses', {
+                templateUrl: '/partials/views/manager/my-processes',
+                controller: 'ngMyProcessesCtrl',
+                resolve: {
+                    auth: routeRoleChecks.teacher.auth,
                 }
             })
     ;
