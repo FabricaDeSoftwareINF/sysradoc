@@ -13,7 +13,7 @@
                     th Ações
             tbody
                 tr(ng-repeat="process in data.filteredProcesses")
-                    td {{$index + 1}}
+                    td {{process.numero}}
                     td {{process.idProfessor.nome}}
                     td
                         span(ng-if="process.idAvaliador") {{process.idAvaliador.nome}}
@@ -23,3 +23,29 @@
                     td
                         button.btn.btn-sm.btn-primary(data-toggle="modal", data-target="#modalAssociate", ng-click="callAssociate($index)", uib-tooltip="Associar Relator", tooltip-placement="top")
                             span.fa.fa-fw.fa-user
+
+    #modalAssociate.modal.fade.bs-example-modal-lg(tabindex="-1", role="dialog", aria-labelledby="myLargeModalLabel")
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    h4 Gerenciar Processo {{data.filteredProcesses[data.associate.index].idProfessor.numero}}
+                .modal-body
+                    .row
+                        label.col-md-4.control-label.text-right Docente:
+                        span.col-md-6 {{data.filteredProcesses[data.associate.index].idProfessor.nome}}
+                    br
+                    .row
+                        label.col-md-4.control-label.text-right Tipo:
+                        span.col-md-6 {{data.filteredProcesses[data.associate.index].tipo}}
+                    br
+                    .row
+                        label.col-md-4.control-label.text-right Relator do Processo:
+                        .col-md-6
+                            autocomplete(ng-model="data.associate.idAvaliador", attr-input-class="form-control", data="data.evaluators", attr-placeholder="", autocomplete-required="true", click-activation="true", track-by="'_id'", display-by="'nome'")
+                    br
+                    br
+                .modal-footer
+                    button.btn.btn-primary.side-margins(ng-click="finishAssociate()")
+                        span Associar
+                    button.btn.btn-default(data-dismiss="modal")
+                        span Cancelar

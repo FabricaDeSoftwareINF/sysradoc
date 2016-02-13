@@ -53,5 +53,15 @@ module.exports = function(app){
 
     };
 
+    controller.updateAppraiser = function(req, res){
+        if (req.body.idAvaliador === "" || req.body.idAvaliador === "-1")
+            req.body.idAvaliador = undefined;
+        Process.findOne({_id: req.body.id}).exec(function(err, proc){
+            proc.idAvaliador = req.body.idAvaliador;
+            proc.save();
+            res.send({success: true});
+        });
+    };
+
 	return controller;
 };

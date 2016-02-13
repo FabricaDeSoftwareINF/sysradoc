@@ -45,6 +45,16 @@ app.directive('autocomplete', function() {
       // autocompleting drop down on/off
       $scope.completing = false;
 
+      $scope.$watch('trackModel', function(newValue, oldValue){
+        if (newValue){
+            for (var s = 0; s < $scope.suggestions.length; s++){
+                if ($scope.suggestions[s][$scope.trackBy] === newValue){
+                    $scope.searchParam = $scope.suggestions[s][$scope.displayBy];
+                }
+            }
+        }
+      });
+
       // starts autocompleting on typing in something
       $scope.$watch('searchParam', function(newValue, oldValue){
 
