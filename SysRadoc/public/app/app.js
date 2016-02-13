@@ -100,6 +100,27 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
                     auth: routeRoleChecks.teacher.auth,
                 }
             })
+            .when('/newRequest', {
+                templateUrl: '/partials/views/manager/new-request',
+                controller: 'ngNewRequestCtrl',
+                resolve: {
+                    auth: routeRoleChecks.teacher.auth,
+                }
+            })
+            .when('/allRequesst', {
+                templateUrl: '/partials/views/manager/all-requests',
+                controller: 'ngAllRequestsCtrl',
+                resolve: {
+                    auth: routeRoleChecks.manager.auth,
+                }
+            })
+            .when('/myRequests', {
+                templateUrl: '/partials/views/manager/my-requests',
+                controller: 'ngMyRequestsCtrl',
+                resolve: {
+                    auth: routeRoleChecks.teacher.auth,
+                }
+            })
     ;
 
 });

@@ -118,7 +118,12 @@ angular.module('app').factory('ngLayoutSvc', function ($location, ngIdentity, ng
                         {
                             icon: "",
                             item: "Solicitar Processo",
-                            path: "/newRequests"
+                            path: "/newRequest"
+                        },
+                        {
+                            icon: "",
+                            item: "Minhas Solicitações",
+                            path: "/myRequests"
                         }
                     ]
                 }
