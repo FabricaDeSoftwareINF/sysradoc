@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.bootstrap', 'ngResource', 'ngRoute', 'angularFileUpload']);
+var app = angular.module('app', ['autocomplete', 'ui.bootstrap', 'ngResource', 'ngRoute', 'angularFileUpload']);
 
 
 app.config(function ($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide) {

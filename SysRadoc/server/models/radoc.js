@@ -4,7 +4,7 @@ var radocParseConfig = require("./../services/radocParseConfig");
 module.exports =  function(){
     var radocSchemaJSON = {
         "ano-base": String,
-        "usuario": mongoose.Schema.Types.ObjectId,
+        "usuario": { type: mongoose.Schema.ObjectId, ref: 'User' },
         "instituição": String,
         "urlPdf": String,
     };

@@ -7,13 +7,15 @@ module.exports = function(app){
 
 
     controller.getProcesses = function(req, res){
-        Process.find({}).exec(function(err, processes){
+        Process.find({}).populate("idProfessor idAvaliador").populate("radocs", "ano-base").exec(function(err, processes){
             res.send(processes);
         });
     };
 
     controller.createProcess = function(req, res){
         var processData = req.body;
+        if (processData.idAvaliador === "" || processData.idAvaliador === "-1")
+            delete processData.idAvaliador;
         processData.situacao = "ABERTO";
         Process.count({idProfessor: processData.idProfessor, situacao: "ABERTO"}, function(err, countProcess){
             if (countProcess === 0){

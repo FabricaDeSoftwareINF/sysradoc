@@ -15,16 +15,12 @@
             .form-group
                 label.col-md-4.control-label Professor Avaliado:
                 .col-md-6
-                    select.form-control(name="teachersList", ng-model="data.newProcess.idProfessor", required)
-                        option(value="") Escolha...
-                        option(ng-repeat="teacher in data.teachers", ng-value="teacher._id") {{teacher.nome}}
-                        
+                    autocomplete(ng-model="data.newProcess.idProfessor", attr-input-class="form-control", data="data.teachers", attr-placeholder="", autocomplete-required="true", click-activation="true", track-by="'_id'", display-by="'nome'")
+
             .form-group
                 label.col-md-4.control-label Avaliador do Processo:
                 .col-md-6
-                    select.form-control(name="evaluatorsList", ng-model="data.newProcess.idAvaliador", required)
-                        option(value="") Escolha...
-                        option(ng-repeat="evaluator in data.evaluators", ng-value="evaluator._id") {{evaluator.nome}}
+                    autocomplete(ng-model="data.newProcess.idAvaliador", attr-input-class="form-control", data="data.evaluators", attr-placeholder="", autocomplete-required="true", click-activation="true", track-by="'_id'", display-by="'nome'")
 
             div
                 .form-group

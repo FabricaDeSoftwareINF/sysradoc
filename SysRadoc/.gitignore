@@ -1,6 +1,7 @@
 .idea
 node_modules
 /public/css/site.css
+/public/cdd/autocomplete.css
 /public/vendor/
 /uploads
 

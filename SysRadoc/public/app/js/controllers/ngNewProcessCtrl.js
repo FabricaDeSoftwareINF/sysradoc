@@ -33,7 +33,7 @@ angular.module('app').controller("ngNewProcessCtrl", function($scope, ngNotifier
 
     $scope.$watch(function(){ return $scope.data.teachers;}, function(newValue, oldValue) {
         var allUsers = $scope.data.teachers;
-        var filtered = [];
+        var filtered = [{_id: "-1", nome: "Nenhum"}];
 
         for (n = 0; n < allUsers.length; n++){
             if (allUsers[n].papeis.indexOf("CAD") !== -1){
