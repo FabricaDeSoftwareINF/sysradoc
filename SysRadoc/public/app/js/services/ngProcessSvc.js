@@ -5,6 +5,10 @@ angular.module('app').factory('ngProcessSvc', function ($q, ngProcess) {
             return ngProcess.query();
         },
 
+        getProcessesByUser: function(id){
+            return ngProcess.query({id: id});
+        },
+
         createProcess: function (newProcessData) {
             var newProcess = new ngProcess(newProcessData);
             var dfd = $q.defer();

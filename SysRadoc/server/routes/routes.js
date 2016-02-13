@@ -18,6 +18,7 @@ module.exports = function (app) {
     app.post('/api/radoc/', radocController.receiveRadoc);
 
     app.get('/api/process/', processController.getProcesses);
+    app.get('/api/process/:id', processController.getProcessesById);
     app.post('/api/process/', processController.createProcess);
     app.put('/api/process/:idAvaliador', processController.updateAppraiser);
 

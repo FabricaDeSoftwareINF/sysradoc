@@ -12,6 +12,12 @@ module.exports = function(app){
         });
     };
 
+    controller.getProcessesById = function(req, res){
+        Process.find({idProfessor: req.params.id}).populate("idProfessor idAvaliador").populate("radocs", "ano-base").exec(function(err, processes){
+            res.send(processes);
+        });
+    };
+
     controller.createProcess = function(req, res){
         var processData = req.body;
         if (processData.idAvaliador === "" || processData.idAvaliador === "-1")

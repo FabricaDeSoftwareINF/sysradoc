@@ -34,6 +34,18 @@ angular.module('app').factory('ngLayoutSvc', function ($location, ngIdentity, ng
                         path: "/allProcesses"
                     }
                 ]
+            },
+            {
+                icon: "fa-bookmark",
+                item: "Solicitações",
+                path: "",
+                secondLevel: [
+                    {
+                        icon: "",
+                        item: "Gerenciar Solicitações",
+                        path: "/allRequests"
+                    }
+                ]
             }
         ],
         Secretaria: [
@@ -70,11 +82,46 @@ angular.module('app').factory('ngLayoutSvc', function ($location, ngIdentity, ng
                         path: "/allProcesses"
                     }
                 ]
+            },
+            {
+                icon: "fa-bookmark",
+                item: "Solicitações",
+                path: "",
+                secondLevel: [
+                    {
+                        icon: "",
+                        item: "Gerenciar Solicitações",
+                        path: "/allRequests"
+                    }
+                ]
             }
         ],
         Professor: {
             Basico: [
-
+                {
+                    icon: "fa-book",
+                    item: "Processos",
+                    path: "",
+                    secondLevel: [
+                        {
+                            icon: "",
+                            item: "Meus Processos",
+                            path: "/myProcesses"
+                        }
+                    ]
+                },
+                {
+                    icon: "fa-bookmark",
+                    item: "Solicitações",
+                    path: "",
+                    secondLevel: [
+                        {
+                            icon: "",
+                            item: "Solicitar Processo",
+                            path: "/newRequests"
+                        }
+                    ]
+                }
             ],
             CAD: [
 
