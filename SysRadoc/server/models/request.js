@@ -8,5 +8,5 @@ module.exports = function () {
         tipo: String
     });
 
-    return mongoose.model('Request', processSchema);
+    return mongoose.model('Request', requestSchema);
 };
