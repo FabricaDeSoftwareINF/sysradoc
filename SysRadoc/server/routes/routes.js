@@ -19,6 +19,7 @@ module.exports = function (app) {
 
     app.get('/api/process/', processController.getProcesses);
     app.post('/api/process/', processController.createProcess);
+    app.put('/api/process/:idAvaliador', processController.updateAppraiser);
 
     app.get('/api/request/', requestController.getRequests);
     app.post('/api/request/', requestController.createRequest);
