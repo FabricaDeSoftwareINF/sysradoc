@@ -1,0 +1,21 @@
+.container-fluid(style="padding-top: 60px")
+    .col-md-10.col-md-offset-1
+        h2 Minhas Solicitações
+        br
+        hr
+        table.table.table-hover(ng-if="data.allRequests.length > 0")
+            thead
+                tr
+                    th #
+                    th Docente
+                    th Tipo
+                    th Data/Hora
+            tbody
+                tr(ng-repeat="process in data.allRequests")
+                    td {{process.numero}}
+                    td {{process.idUsuario.nome}}
+                    td {{process.tipo}}
+                    td
+                        span(ng-bind-html="process.data | date:'dd/MM/yyyy - HH:mm' | html")
+                            
+        h4(ng-if="data.allRequests.length === 0") Não existe nenhuma solicitação aberta

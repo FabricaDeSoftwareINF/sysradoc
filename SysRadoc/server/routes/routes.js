@@ -23,6 +23,7 @@ module.exports = function (app) {
     app.put('/api/process/:idAvaliador', processController.updateAppraiser);
 
     app.get('/api/request/', requestController.getRequests);
+    app.get('/api/request/:id', requestController.getRequestsById);
     app.post('/api/request/', requestController.createRequest);
 
     app.get('/partials/*', function (req, res) {

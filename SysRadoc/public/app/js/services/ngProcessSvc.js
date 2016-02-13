@@ -56,7 +56,7 @@ angular.module('app').factory('ngProcessSvc', function ($q, ngProcess) {
 
         removeProcess: function(id) {
             var dfd = $q.defer();
-              ngUser.remove({id: id}).$promise.then(function(){
+              ngProcess.remove({id: id}).$promise.then(function(){
                 dfd.resolve();
             },
             function(){

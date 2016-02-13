@@ -1,0 +1,18 @@
+.container-fluid(style="padding-top: 60px")
+    .col-md-8.col-md-offset-2
+        h2 Nova Solicitação
+        hr
+        
+        form.form-horizontal(name="newRequestForm")
+        
+            .form-group
+                label.col-md-4.control-label Tipo de Processo:
+                .col-md-6
+                    select.form-control(name="typesList", ng-model="data.newRequest.tipo", required)
+                        option(value="") Escolha...
+                        option(ng-repeat="type in data.types", ng-value="type") {{type}}
+
+                br
+            .form-group
+                .col-md-6.col-md-offset-4.text-center
+                    button.btn.btn-md.btn-primary(ng-click="createRequest()", ng-disabled="!newRequestForm.$valid") Solicitar
