@@ -1,8 +1,16 @@
 module.exports = function(app){
 
-	var Process = app.models.process;
+	var Process = app.models.process,
+        Request = app.models.request;
 
 	var controller = {};
+
+
+    controller.getProcesses = function(req, res){
+        Process.find({}).exec(function(err, processes){
+            res.send(processes);
+        });
+    };
 
     controller.createProcess = function(req, res){
         var processData = req.body;
@@ -10,12 +18,20 @@ module.exports = function(app){
         Process.count({idProfessor: processData.idProfessor, situacao: "ABERTO"}, function(err, countProcess){
             if (countProcess === 0){
                 if (processData.tipo !== "Estágio Probatório"){
-                    Process.create(req.body, function(err, process){
-                        res.send({success: true});
+                    Request.count({idUsuario: processData.idProfessor, tipo: processData.tipo}, function(err, countRequest){
+                        if (countRequest > 0){
+                            Process.create(req.body, function(err, process){
+                                res.send({success: true});
+                            });
+                        }
+                        else{
+                            res.send({reason: "Não existe nenhuma solicitação de " + processData.tipo + " para este docente."});
+                        }
                     });
+
                 }
                 else{
-                    Process.count({idProfessor: processData.idProfessor, tipo: "Estágio Probatório"}, function(err, countType){
+                    Process.count({idProfessor: processData.idProfessor, tipo: processData.tipo}, function(err, countType){
                         if (countType === 0){
                             Process.create(req.body, function(err, process){
                                 res.send({success: true});
