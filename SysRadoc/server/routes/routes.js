@@ -4,7 +4,8 @@ module.exports = function (app) {
 
     var userController = app.controllers.userController,
         radocController = app.controllers.radocController,
-        processController = app.controllers.processController;
+        processController = app.controllers.processController,
+        requestController = app.controllers.requestController;
 
     app.get('/api/user', userController.getAllUsers);
     app.get('/api/user/:category', userController.getAllUsersByCategory);
@@ -16,7 +17,11 @@ module.exports = function (app) {
 
     app.post('/api/radoc/', radocController.receiveRadoc);
 
+    app.get('/api/process/', processController.getProcesses);
     app.post('/api/process/', processController.createProcess);
+
+    app.get('/api/request/', requestController.getRequests);
+    app.post('/api/request/', requestController.createRequest);
 
     app.get('/partials/*', function (req, res) {
         res.render('../../public/app/' + req.params[0]);
