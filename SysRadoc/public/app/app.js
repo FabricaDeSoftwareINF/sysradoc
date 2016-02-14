@@ -121,6 +121,13 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
                     auth: routeRoleChecks.teacher.auth,
                 }
             })
+            .when('/allRadocs', {
+                templateUrl: '/partials/views/radoc/all-radocs',
+                controller: 'ngAllRadocsCtrl',
+                resolve: {
+                    auth: routeRoleChecks.manager.auth,
+                }
+            })
     ;
 
 });

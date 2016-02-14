@@ -11,11 +11,11 @@
                     th Tipo
                     th Data/Hora
             tbody
-                tr(ng-repeat="process in data.allRequests")
-                    td {{process.numero}}
-                    td {{process.idUsuario.nome}}
-                    td {{process.tipo}}
+                tr(ng-repeat="request in data.allRequests")
+                    td {{request.numero}}
+                    td {{request.idUsuario.nome}}
+                    td {{request.tipo}}
                     td
-                        span(ng-bind-html="process.data | date:'dd/MM/yyyy - HH:mm' | html")
+                        span(ng-bind-html="request.data | date:'dd/MM/yyyy - HH:mm' | html")
                             
         h4(ng-if="data.allRequests.length === 0") Não existe nenhuma solicitação aberta
