@@ -1,4 +1,5 @@
 var auth = require('../../config/auth');
+var fs = require('fs');
 
 module.exports = function (app) {
 
@@ -15,7 +16,9 @@ module.exports = function (app) {
     app.put('/api/user/:email', userController.updateUser);
     app.delete('/api/user/:email', userController.removeUser);
 
+    app.get('/api/radoc/:id', radocController.getRadocsFromUser);
     app.post('/api/radoc/', radocController.receiveRadoc);
+
 
     app.get('/api/process/', processController.getProcesses);
     app.get('/api/process/:id', processController.getProcessesById);
@@ -28,6 +31,12 @@ module.exports = function (app) {
 
     app.get('/partials/*', function (req, res) {
         res.render('../../public/app/' + req.params[0]);
+    });
+
+    app.get('/uploads/*', function (req, res) {
+        var file = fs.readFileSync('uploads/' + req.params[0]);
+        res.writeHead(200, {'Content-Type': 'application/octet-stream' });
+        res.end(file, 'binary');
     });
 
     app.all("/api/*", function (req, res) {

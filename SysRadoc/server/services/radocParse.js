@@ -58,8 +58,8 @@ exports.parse = function(jsonPDF){
     var objectArray = getTextArrayFromPDF(jsonPDF);
     var pdfHeader = getRadocHeader(jsonPDF);
     var radoc = {
-        "instituição": pdfHeader[0],
-        "ano-base": pdfHeader[2].substring(pdfHeader[2].indexOf("ANO BASE") + 10)
+        instituicao: pdfHeader[0],
+        anoBase: parseInt(pdfHeader[2].substring(pdfHeader[2].indexOf("ANO BASE") + 10))
     };
     for (var s = 0; s < parseConfig.sections.length; s++){
         var section = [],
