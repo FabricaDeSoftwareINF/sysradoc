@@ -51,13 +51,6 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
                 templateUrl: '/partials/views/account/signup',
                 controller: 'ngSignupCtrl'
             })
-            .when('/sendRadoc', {
-                templateUrl: '/partials/views/deprecated/send-radoc',
-                controller: 'ngSendRadocCtrl',
-                resolve: {
-                    auth: routeRoleChecks.user.auth,
-                }
-            })
             .when('/dashboard', {
                 templateUrl: '/partials/views/dashboard/dashboard',
                 controller: 'ngDashboardCtrl',
@@ -119,6 +112,13 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
                 controller: 'ngMyRequestsCtrl',
                 resolve: {
                     auth: routeRoleChecks.teacher.auth,
+                }
+            })
+            .when('/sendRadoc', {
+                templateUrl: '/partials/views/radoc/send-radoc',
+                controller: 'ngSendRadocCtrl',
+                resolve: {
+                    auth: routeRoleChecks.manager.auth,
                 }
             })
             .when('/allRadocs', {

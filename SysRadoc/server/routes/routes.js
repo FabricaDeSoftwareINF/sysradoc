@@ -17,7 +17,7 @@ module.exports = function (app) {
     app.delete('/api/user/:email', userController.removeUser);
 
     app.get('/api/radoc/:id', radocController.getRadocsFromUser);
-    app.post('/api/radoc/', radocController.receiveRadoc);
+    app.post('/api/radoc/:id', radocController.receiveRadoc);
 
 
     app.get('/api/process/', processController.getProcesses);

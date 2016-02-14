@@ -1,0 +1,37 @@
+.container-fluid(style="padding-top: 60px")
+    .col-md-10.col-md-offset-1
+        h2 Enviar um novo Radoc
+        br
+        hr
+        div(ng-show="!data.sending")
+            form(name="sendRadocForm")
+                .form-group
+                    label.col-md-2.control-label.text-right Docente:
+                    .col-md-8
+                        autocomplete(ng-model="data.teacher", attr-input-class="form-control", data="data.teachers", attr-placeholder="", autocomplete-required="true", click-activation="true", track-by="'_id'", display-by="'nome'")  
+                        
+                .col-md-8.col-md-offset-2
+                    input#radoc-input(type='file', nv-file-select='', uploader='data.sendRadoc.uploader')
+                    #radoc-button.well.my-drop-zone.center.pointer-element(nv-file-drop='', uploader='data.sendRadoc.uploader')
+                        br
+                        br
+                        br
+                        | Arraste aqui o arquivo ou clique para selecionar
+                        br
+                        br
+                        br
+                        br
+                .col-md-8.col-md-offset-2.center
+                    div
+                        strong Arquivo Selecionado: 
+                        span(ng-if="data.sendRadoc.uploader.queue.length === 0") nenhum.
+                        span(ng-if="data.sendRadoc.uploader.queue.length > 0") 
+                            | {{data.sendRadoc.uploader.queue[0].file.name}}
+                    br
+                    br
+                    button.btn.btn-primary(ng-disabled="!sendRadocForm.$valid || data.sendRadoc.uploader.queue.length === 0", ng-click="upload()") Enviar arquivo
+                    br
+                    br
+                    
+        div.text-center(ng-show="data.sending")
+            i.fa.fa-fw.fa-3x.fa-spin.fa-circle-o-notch
