@@ -10,7 +10,7 @@ module.exports = function(app){
 	var controller = {};
 
     controller.getRadocsFromUser = function(req, res){
-        Radoc.find({idUsuario: req.params.id}).sort("-anoBase").select("anoBase instituicao urlPdf").exec(function(err, radocs){
+        Radoc.find({idUsuario: req.params.id}).sort("-anoBase").select("idUsuario anoBase instituicao urlPdf").populate("idUsuario").exec(function(err, radocs){
             res.send(radocs);
         });
     };

@@ -1,0 +1,28 @@
+.container-fluid(style="padding-top: 60px")
+    .col-md-10.col-md-offset-1
+        h2 Gerenciar Radocs
+        br
+        br
+        .form-group
+            label.col-md-2.control-label.text-right Docente:
+            .col-md-6
+                autocomplete(ng-model="data.teacher", attr-input-class="form-control", data="data.teachers", attr-placeholder="", autocomplete-required="true", click-activation="true", track-by="'_id'", display-by="'nome'")  
+                  
+        br
+        hr
+        table.table.table-hover(ng-if="data.allRadocs.length > 0")
+            thead
+                tr
+                    th Ano Base
+                    th Docente
+                    th PDF
+            tbody
+                tr(ng-repeat="radoc in data.allRadocs")
+                    td {{radoc.anoBase}}
+                    td {{radoc.idUsuario.nome}}
+                    td
+                        a.btn.btn-md.btn-primary(ng-href="/{{radoc.urlPdf}}", target="_blank")
+                            i.fa.fa-fw.fa-download
+                        
+                            
+        h4(ng-if="data.allRadocs.length === 0 && data.teacher !== ''") Este usuário não possui nenhum radoc cadastrado.

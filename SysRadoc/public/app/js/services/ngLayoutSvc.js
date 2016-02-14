@@ -46,6 +46,23 @@ angular.module('app').factory('ngLayoutSvc', function ($location, ngIdentity, ng
                         path: "/allRequests"
                     }
                 ]
+            },
+            {
+                icon: "fa-file",
+                item: "Radocs",
+                path: "",
+                secondLevel: [
+                    {
+                        icon: "",
+                        item: "Enviar Radoc",
+                        path: "/sendRadoc"
+                    },
+                    {
+                        icon: "",
+                        item: "Gerenciar Radocs",
+                        path: "/allRadocs"
+                    }
+                ]
             }
         ],
         Secretaria: [
@@ -94,6 +111,23 @@ angular.module('app').factory('ngLayoutSvc', function ($location, ngIdentity, ng
                         path: "/allRequests"
                     }
                 ]
+            },
+            {
+                icon: "fa-file",
+                item: "Radocs",
+                path: "",
+                secondLevel: [
+                    {
+                        icon: "",
+                        item: "Enviar Radoc",
+                        path: "/sendRadoc"
+                    },
+                    {
+                        icon: "",
+                        item: "Gerenciar Radocs",
+                        path: "/allRadocs"
+                    }
+                ]
             }
         ],
         Professor: {
@@ -129,7 +163,18 @@ angular.module('app').factory('ngLayoutSvc', function ($location, ngIdentity, ng
                 }
             ],
             CAD: [
-
+                {
+                    icon: "fa-file",
+                    item: "Radocs",
+                    path: "",
+                    secondLevel: [
+                        {
+                            icon: "",
+                            item: "Gerenciar Radocs",
+                            path: "/allRadocs"
+                        }
+                    ]
+                }
             ]
         }
     };
