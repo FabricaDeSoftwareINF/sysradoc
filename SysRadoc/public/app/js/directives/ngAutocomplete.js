@@ -50,6 +50,8 @@ app.directive('autocomplete', function() {
             for (var s = 0; s < $scope.suggestions.length; s++){
                 if ($scope.suggestions[s][$scope.trackBy] === newValue){
                     $scope.searchParam = $scope.suggestions[s][$scope.displayBy];
+                    $scope.select();
+                    break;
                 }
             }
         }

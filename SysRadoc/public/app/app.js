@@ -107,7 +107,7 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
                     auth: routeRoleChecks.teacher.auth,
                 }
             })
-            .when('/allRequesst', {
+            .when('/allRequests', {
                 templateUrl: '/partials/views/manager/all-requests',
                 controller: 'ngAllRequestsCtrl',
                 resolve: {

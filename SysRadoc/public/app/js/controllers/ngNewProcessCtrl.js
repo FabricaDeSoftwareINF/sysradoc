@@ -1,4 +1,4 @@
-angular.module('app').controller("ngNewProcessCtrl", function($scope, ngNotifier, ngProcessSvc, ngUserSvc) {
+angular.module('app').controller("ngNewProcessCtrl", function($scope, $timeout, ngNotifier, ngProcessSvc, ngUserSvc, $location) {
     var cleanNewProcessData = {
         tipo: "",
         dataDeInicio: new Date(),
@@ -25,7 +25,7 @@ angular.module('app').controller("ngNewProcessCtrl", function($scope, ngNotifier
         }
         ngProcessSvc.createProcess($scope.data.newProcess).then(function() {
             ngNotifier.notify('Processo registrado com sucesso!');
-            $scope.data.newProcess = angular.copy(cleanNewProcessData);
+            $location.path("/allProcesses").search({});
         }, function(data) {
             ngNotifier.error(data.reason);
         });
@@ -43,5 +43,25 @@ angular.module('app').controller("ngNewProcessCtrl", function($scope, ngNotifier
 
         $scope.data.evaluators = filtered;
     }, true);
+
+    var checkUrl = function(){
+        var urlParam = $location.search();
+        if (!!urlParam.professor){
+            var interval = setInterval(function(){
+                if ($scope.data.teachers.length > 0){
+                    $scope.data.newProcess.idProfessor = urlParam.professor;
+                    $timeout(function(){});
+                    clearInterval(interval);
+                }
+            }, 500);
+
+        }
+
+
+        if (!!urlParam.tipo)
+            $scope.data.newProcess.tipo = urlParam.tipo;
+    };
+
+    checkUrl();
 
 });
