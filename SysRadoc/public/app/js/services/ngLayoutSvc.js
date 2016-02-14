@@ -163,7 +163,7 @@ angular.module('app').factory('ngLayoutSvc', function ($location, ngIdentity, ng
         },
         changeSidenavTab: function(path){
             if (path && path !== "" && path !== "#")
-                $location.path(path);
+                $location.path(path).search({});
         },
         reloadSidenav: function(){
             ngReloadSidenav.reload();

@@ -1,0 +1,38 @@
+.container-fluid(style="padding-top: 60px")
+    .col-md-10.col-md-offset-1
+        h2 Lista de Solicitações
+        br
+        .col-md-12.text-right
+            form.form-inline
+                .input-group
+                    span.input-group-addon
+                        i.fa.fa-fw.fa-search
+                    .form-group
+                        input.form-control(type="text", ng-model="data.filter")
+                    .form-group
+                        select.form-control(ng-model="data.filterType")
+                            option(value="professor") Professor
+                            option(value="tipo") Tipo
+        br
+        hr
+        table.table.table-hover(ng-if="data.maxIndex > 0")
+            thead
+                tr
+                    th #
+                    th Docente
+                    th Tipo
+                    th Data/Hora
+                    th Ações
+            tbody
+                tr(ng-repeat="request in data.allRequests", ng-show="!request.hidden")
+                    td {{request.numero}}
+                    td {{request.idUsuario.nome}}
+                    td {{request.tipo}}
+                    td 
+                        span(ng-bind-html="request.data | date:'dd/MM/yyyy - HH:mm' | html")
+                    td
+                        button.btn.btn-sm.btn-primary(ng-click="openProcess($index)", uib-tooltip="Abrir Processo", tooltip-placement="top")
+                            span.fa.fa-fw.fa-book
+                            
+        h4(ng-if="data.maxIndex === 0 && data.allRequests.length > 0") Não existe nenhuma solicitação com esta busca
+        h4(ng-if="data.maxIndex === 0 && data.allRequests.length === 0") Não existe nenhuma solicitação cadastrado no momento

@@ -29,8 +29,10 @@ module.exports = function(app){
                     Request.count({idUsuario: processData.idProfessor, tipo: processData.tipo}, function(err, countRequest){
                         if (countRequest > 0){
                             Process.create(req.body, function(err, process){
-                                Request.remove({idUsuario: processData.idProfessor, tipo: processData.tipo});
-                                res.send({success: true});
+                                Request.remove({idUsuario: processData.idProfessor, tipo: processData.tipo}).exec(function(err, collection){
+                                    res.send({success: true});
+                                });
+
                             });
                         }
                         else{
