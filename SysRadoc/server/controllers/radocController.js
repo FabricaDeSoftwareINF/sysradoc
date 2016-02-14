@@ -9,6 +9,12 @@ module.exports = function(app){
 
 	var controller = {};
 
+    controller.getRadocsFromUser = function(req, res){
+        Radoc.find({idUsuario: req.params.id}).sort("-anoBase").select("anoBase instituicao urlPdf").exec(function(err, radocs){
+            res.send(radocs);
+        });
+    };
+
     controller.receiveRadoc = function(req, res){
 		var user = req.user;
 		if (!user)
@@ -30,15 +36,25 @@ module.exports = function(app){
 						else{
 		                    var parsedRadoc = radocParse.parse(pdf);
 							parsedRadoc.urlPdf = path;
-							parsedRadoc.usuario = user._id;
-							Radoc.create(parsedRadoc, function(err, rad){
-								if (err){
-									res.send({success: false});
-								}
-								else {
-									res.send({success: true});
-								}
-							});
+							parsedRadoc.idUsuario = user._id;
+							Radoc.findOne({idUsuario: user._id, anoBase: parsedRadoc.anoBase}).exec(function(err, radocDoc){
+                                if (radocDoc){
+                                    for (var attr in parsedRadoc){
+                                        radocDoc[attr] = parsedRadoc[attr];
+                                    }
+                                    radocDoc.save();
+                                }
+                                else{
+                                    Radoc.create(parsedRadoc, function(err, rad){
+        								if (err){
+        									res.send({success: false});
+        								}
+        								else {
+        									res.send({success: true});
+        								}
+        							});
+                                }
+                            });
 						}
 					});
                 }
