@@ -11,6 +11,7 @@ module.exports = function () {
         idAvaliador: { type: mongoose.Schema.ObjectId, ref: 'User' },
         nota: String,
         situacao: String,
+        pendencias: [String],
         idQuadroSumario: mongoose.Schema.Types.ObjectId,
         radocs: [{ type: mongoose.Schema.ObjectId, ref: 'Radoc' }]
 
