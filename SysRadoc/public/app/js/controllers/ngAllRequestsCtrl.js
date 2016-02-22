@@ -47,7 +47,7 @@ angular.module('app').controller("ngAllRequestsCtrl", function($scope, ngUserSvc
 
     $scope.openProcess = function(index){
         var request = $scope.data.allRequests[index];
-        $location.path("/newProcess").search({professor: request.idUsuario._id, tipo: request.tipo});
+        $location.path("/newProcess").search({professor: request.idUsuario._id, tipo: request.tipo, dataDeInicio: request.dataDeInicio, dataFim: request.dataFim});
     };
 
     $scope.$watch('data.allRequests', function(newValue, oldValue) {

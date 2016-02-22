@@ -73,6 +73,12 @@ angular.module('app').controller("ngNewProcessCtrl", function($scope, $timeout, 
 
         if (!!urlParam.tipo)
             $scope.data.newProcess.tipo = urlParam.tipo;
+
+        if (!!urlParam.dataDeInicio)
+            $scope.data.newProcess.dataDeInicio = new Date(urlParam.dataDeInicio);
+
+        if (!!urlParam.dataFim)
+            $scope.data.newProcess.dataFim = new Date(urlParam.dataFim);
     };
 
     checkUrl();
