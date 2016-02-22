@@ -12,12 +12,10 @@ Funcionalidade: Inserir Nota Docente (Diretoria)
 		E que o docente ja tenha sido pesquisado
 		Então eu gostaria de inserir a nota do docente dada pela diretoria
 
-	Cenario: Pesquisar docente
-		Quando Pesquisar os processos que estão com o status em andamento
+	Cenario: Inserir notas
+		Quando Pesquisar os processos que estão com o status "em andamento"
 		E podendo filtrar por status ou nome do docente.
 		Entao o software ira listar o resultado da pesquisa
-
-	Cenario: Inserir notas
 		Quando eu clicar em inserir media do discente.
 		Entao o software ira mostrar um campo para digitar a nota da diretoria
 	    E logo acima os campos para inserir a nota dos discentes
