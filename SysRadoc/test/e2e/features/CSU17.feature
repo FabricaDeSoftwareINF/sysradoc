@@ -3,15 +3,14 @@
 Funcionalidade: Associar Relator
 	Como integrante da CAD
 	Quero associar me associar como relator a um processo
-	Para prosseguir com o processo de avaliação do Docente
+	Para prosseguir com o processo de avaliaÃ§Ã£o do Docente
 
-Contexto:
-	Dado que o processo de avaliação foi aberto
-E que o Radoc já tenha sido inserido
-E que o processo esteja “Aguardando relator”
+	Contexto:
+		Dado que o processo de avaliaÃ§Ã£o foi aberto
+		E que o Radoc jÃ¡ tenha sido inserido
 
-Cenário 1: Alocando Relatores
-	Quando selecionar um processo com estado “aguardando relator”
-	E clicar em  “Relatar Processo”
-	Então eu passarei a ser o relator do processo
-	E o processo irá ser pontuado
+	Cenario: Alocando Relatores
+		Quando selecionar um processo com estado "Aguardando relator"
+		E clicar em "Relatar Processo"
+		Entao eu passarei a ser o relator do processo
+		E o processo irÃ¡ ser pontuado

@@ -1,21 +1,22 @@
 #language: pt
 
-Funcionalidade: Gerar e Visualizar Quadro sum·rio
+Funcionalidade: Gerar e Visualizar Quadro sum√°rio
 	Como a CAD
-	Quero instanciar um quadro sum·rio para um docente
-	Para armazenar as informaÁıes de cada docente
+	Quero instanciar um quadro sum√°rio para um docente
+	Para armazenar as informa√ß√µes de cada docente
 
 	Contexto:
 		Dado que estou logado no sistema
-		E que faÁo parte da CAD
+		E que fa√ßo parte da CAD
+		Eu gostaria de gerenciar as informa√ß√µes b√°sicas de um docente
 
-cen·rio 1:  Gerar Quadro Sum·rio
-Dado que estou logado como CAD
-	Quando as informaÁıes do Radoc do docente terminarem de ser convertidas
-	Ent„o o sistema ir· gerar o quadro sum·rio automaticamente 
-E preenchÍ-lo com as informaÁıes convertidas pelo requisito RF06 
+	Cenario:  Gerar Quadro Sum√°rio
+		Dado que estou logado como CAD
+		Quando as informa√ß√µes do Radoc do docente terminarem de ser convertidas
+		Entao o sistema ir√° gerar o quadro sum√°rio automaticamente
+		E preench√™-lo com as informa√ß√µes convertidas pelo requisito RF06
 
-cen·rio 2: Visualizar Quadro Sum·rio
-Dado que estou logado como qualquer usu·rio
-	Quando o Quadro Sum·rio de determinado docente estiver pronto
-	Ent„o ser· possÌvel visualizar o Quadro Sum·rio com as informaÁıes contidas nele 
+	Cenario: Visualizar Quadro Sum√°rio
+		Dado que estou logado como qualquer usu√°rio
+		Quando o Quadro Sum√°rio de determinado docente estiver pronto
+		Entao ser√° poss√≠vel visualizar o Quadro Sum√°rio com as informa√ß√µes contidas nele

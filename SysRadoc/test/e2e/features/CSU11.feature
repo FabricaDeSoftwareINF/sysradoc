@@ -1,25 +1,26 @@
 #language: pt
 
-Funcionalidade: Solicitar Processo de Progress„o Funcional
-	Como docente
-	Quero solicitar a abertura de processo de Progress„o Funcional
+Funcionalidade: Solicitar Processo de Progress√£o Funcional
+	Como um docente
+	Quero solicitar a abertura de processo de Progress√£o Funcional
 
 	Contexto:
 		Dado que estou devidamente autorizado no sistema
-		E que estou na p·gina de solicitaÁ„o de abetura
 		E que estou com 24 meses no cargo efetivo
 
-	CÈnario 01: Solicitar Abertura do Processo de Progress„o Funcional
-		Ao clicar para Solicitar Processo de Progress„o Funcional
-		O software notifica os interessados e envolvidos da abertura do processo
-		Uma mensagem de sucesso do envio da solicitaÁ„o ser· mostrada
-		E as informaÁıes da solicitaÁ„o s„o armazenadas no sistema
+	Cenario: Solicitar Abertura do Processo de Progress√£o Funcional
+		Dado que estou na p√°gina de solicita√ß√£o de abertura
+		Quando clicar para Solicitar Processo de Progress√£o Funcional
+		Entao o sistema notifica os interessados e envolvidos da abertura do processo
+		E mensagem de sucesso do envio da solicita√ß√£o ser√° mostrada
+		E as informa√ß√µes da solicita√ß√£o s√£o armazenadas no sistema
 
-	CÈnario 02: Verificar Resultado Parcial da CAD
-		Ao clicar para ver o andamento do Processo de Progress„o Funcional
-		Aparece se foi aprovado ou n„o
-		Caso n„o seja aprovado, pode ser verificado as sugestıes de melhoria
-	CÈnario 03: Verificar o Resultado Final da SolicitaÁ„o
-		Ao clicar para ver o andamento do Processo de Progress„o Funcional
-		Caso tenha sido aprovado, ir· mostrar uma mensagem da aprovaÁ„o
-		Caso n„o tenha sido aprovado, poder· recorrer da decis„o
+	Cenario: Verificar Resultado Parcial da CAD
+		Dado que estou na p√°gina de solicita√ß√£o de abertura
+		Quando clicar para ver o andamento do Processo de Progress√£o Funcional
+		Entao o sistema mostra se foi aprovado ou n√£o (caso n√£o seja aprovado, pode ser verificado as sugest√µes de melhoria)
+
+	Cenario: Verificar o Resultado Final da Solicita√ß√£o
+		Dado que estou na p√°gina de solicita√ß√£o de abertura
+		Quando clicar para ver o andamento do Processo de Progress√£o Funcional
+		Entao o sistema mostrar√° uma mensagem da aprova√ß√£o (caso n√£o tenha sido aprovado, poder√° recorrer da decis√£o)

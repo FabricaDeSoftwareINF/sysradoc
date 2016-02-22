@@ -1,20 +1,20 @@
 #language: pt
 
-Funcionalidade: Visualizar Lista de Processos ConcluÌdos
-Como qualquer usu·rio
-Quero abrir para visualizar a lista de processos concluÌdos dos docentes.
-Para que eu possa acompanhar os processos que est„o com status de concluÌdos.
+Funcionalidade: Visualizar Lista de Processos Conclu√≠dos
+	Como qualquer usu√°rio
+	Quero abrir para visualizar a lista de processos conclu√≠dos dos docentes
+	Para que eu possa acompanhar os processos que est√£o com status de conclu√≠dos.
 
-Contexto:
-Dado que eu estou logado no sistema 
-E na tela de pesquisa de processos concluÌdos.
-Eu gostaria de acompanhar os processos concluÌdos.
+	Contexto:
+		Dado que eu estou logado no sistema
+		E na tela de pesquisa de processos conclu√≠dos
+		Eu gostaria de acompanhar os processos conclu√≠dos.
 
-cen·rio 1: Visualizar Lista de Processos ConcluÌdos
-Quando eu clicar no bot„o pesquisar e digitar o nome docente.
-Ent„o o software vai apresentar a lista de processos concluÌdos do docente atÈ a data atual.
+	Cenario: Visualizar Lista de Processos conclu√≠dos
+		Quando eu clicar no bot√£o "Pesquisar" e digitar o nome docente.
+		Entao o software vai apresentar a lista de processos conclu√≠dos do docente at√© a data atual.
 
-cen·rio 2: Sem Processos Concluidos
-	Quando eu clicar no bot„o  pesquisar e um processo concluÌdo.
-E se n„o houver processos concluÌdos atÈ a data de pesquisa.
-Ent„o o sistema ir· informar  <Sem_Processos_concluidos>
+	Cenario: Sem Processos Concluidos
+		Quando eu clicar no bot√£o "Pesquisar" e um processo conclu√≠do.
+		E se n√£o houver processos conclu√≠dos at√© a data de pesquisa.
+		Entao o sistema ir√° informar: "Sem Processos concluidos."

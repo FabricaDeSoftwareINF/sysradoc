@@ -1,19 +1,18 @@
 #language: pt
 
-Funcionalidade: Abrir Processo de Progress„o Funcional
+Funcionalidade: Abrir Processo de Progress√£o Funcional
 	Como a secretaria
-	Quero abrir um processo eletrÙnico para registrar e armazenar as informaÁıes de  cada docente que est· em progress„o funcional
-	Para que eu possa manter um histÛrico das informaÁıes do usu·rio
+	Quero abrir um processo eletr√¥nico para registrar e armazenar as informa√ß√µes de cada docente que est√° em progress√£o funcional
+	Para que eu possa manter um hist√≥rico das informa√ß√µes do usu√°rio
 
-Contexto:
-	Dado que o docente j· possui um Radoc
-	E que faÁo parte da secretaria
-E que a progress„o funcional ter· uma duraÁ„o de 24 meses, gerando um um radoc anual caso o docente tenha iniciado seu processo de progress„o funcional no inÌcio do ano ou, um radoc semestral caso este tenha adentrado no segundo semestre
+	Contexto:
+		Dado que o docente j√° possui um Radoc
+		E que fa√ßo parte da secretaria
+		E que a progress√£o funcional ter√° uma dura√ß√£o de 24 meses, gerando um um radoc anual caso o docente tenha iniciado seu processo de progress√£o funcional no in√≠cio do ano ou, um radoc semestral caso este tenha adentrado no segundo semestre
+		Eu gostaria de ter acesso ao SysRadoc para registrar e armazenar Radocs dos docentes
 
-Eu gostaria de ter acesso ao SysRadoc para registrar e armazenar Radocs dos docentes
-
-Cen·rio 1: Abrir Processo do Est·gio ProbatÛrio
-Dado que estou na p·gina de abrir o processo de um usu·rio
-Quando eu clicar em abrir um processo
-E selecionar abrir uma progress„o funcional de um docente, poderei confirmar e atualizar, caso necess·rio,  as	informaÁıes deste docente (Nome completo, ano de ingresso na UFG, matrÌcula da UFG)
-E o sistema notifica o docente da situaÁ„o do processo
+	Cenario: Abrir Processo do Est√°gio Probat√≥rio
+		Dado que estou na p√°gina de abrir o processo de um usu√°rio
+		Quando eu clicar em abrir um processo
+		E selecionar abrir uma progress√£o funcional de um docente, poderei confirmar e atualizar, caso necess√°rio, as informa√ß√µes deste docente (Nome completo, ano de ingresso na UFG, matr√≠cula da UFG)
+		E o sistema notifica o docente da situa√ß√£o do processo

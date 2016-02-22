@@ -1,32 +1,32 @@
 #language: pt
 
-Funcionalidade : Abrir processo de promoÁ„o na carreira de magistÈrio
+Funcionalidade: Abrir processo de promo√ß√£o na carreira de magist√©rio
 	Como secretaria
-	Quero abrir um processo de promoÁ„o na carreira de magistÈrio
-	Para acompanhar e registrar os dados do processo e ter um controle maior sobre as informaÁıes.
+	Quero abrir um processo de promo√ß√£o na carreira de magist√©rio
+	Para acompanhar e registrar os dados do processo e ter um controle maior sobre as informa√ß√µes.
 
-Contexto :
-	Dado que o docente fez a solicitaÁ„o para abertura do processo
-	E que o docente se encontra no nivel correspondente para avanÁar na promoÁ„o.
-	E j· ter sido aprovado em est·gio probatÛrio
-	E ter comprido o intervalo de no minimo dois anos no nÌvel da classe atual
-	Eu gostaria de abrir o processo do docente.
+	Contexto:
+		Dado que o docente fez a solicita√ß√£o para abertura do processo
+		E que o docente se encontra no nivel correspondente para avan√ßar na promo√ß√£o.
+		E j√° ter sido aprovado em est√°gio probat√≥rio
+		E ter cumprido o intervalo de no minimo dois anos no n√≠vel da classe atual
+		Eu gostaria de abrir o processo do docente
 
-Cen·rio 1 : Pesquisar processos por docente
-	Dado que estou na pagina de pesquisar docentes podendo filtrar por nome
-	Quando clicar em pesquisar
-	O software ira me listar os docentes de acordo com o filtro de pesquisa
+	Cenario: "Pesquisar" processos por docente
+		Dado que estou na pagina de "Pesquisar" docentes podendo filtrar por nome
+		Quando clicar em "Pesquisar"
+		Entao o sistema ir√° me listar os docentes de acordo com o filtro de pesquisa
 
-Cen·rio 2 : Pesquisar processo por pedidos
-Dado que estou na pagina de pesquisar pedidos de abertura de processos, podendo filtrar por nome do docente
-Quando eu clicar em pesquisar
-O software ira me listar os pedidos de processos de acordo com o filtro de pesquisa.
+	Cenario: "Pesquisar" processo por pedidos
+		Dado que estou na pagina de "Pesquisar" pedidos de abertura de processos, podendo filtrar por nome do docente
+		Quando clicar em "Pesquisar"
+		Entao o sistema ir√° me listar os pedidos de processos de acordo com o filtro de pesquisa
 
-CÈnario 3 : Abrir processo de promoÁ„o
-Dado que a pesquisa ja tenha sido efetuado
-	E que encontrei o pedido na pesquisa
-	Quando eu clicar em abrir processo de promoÁ„o 
-O software ira dar a opÁ„o para confirmar e atualizar, caso necess·rio,  as	informaÁıes deste docente (Nome completo, ano de ingresso na UFG, matrÌcula da UFG)
-	E o software ira validade se o radoc se encontra atualizado
-	E caso esteja desatualizado dever· enviar um email para o docente solicitando a atualizaÁ„o.
-	E dever· criar um processo com status em andamento.
+	Cenario: Abrir processo de promo√ß√£o
+		Dado que a pesquisa j√° tenha sido efetuada
+		E que encontrei o pedido na pesquisa
+		Quando eu clicar em abrir processo de promo√ß√£o
+		Entao o sistema ir√° dar a op√ß√£o para confirmar e atualizar, caso necess√°rio, as informa√ß√µes deste docente (Nome completo, ano de ingresso na UFG, matr√≠cula da UFG)
+		E o validar√° se o radoc se encontra atualizado
+		E caso esteja desatualizado, dever√° enviar um email para o docente solicitando a atualiza√ß√£o.
+		E dever√° criar um processo com status em andamento.
