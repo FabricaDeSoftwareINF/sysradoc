@@ -25,15 +25,8 @@ module.exports = function(app){
                 res.send({reason: "Não é possível realizar mais de uma solicitação por vêz."});
             }
             else{
-                Process.count({idProfessor: requestData.idUsuario}, function(err, countProc){
-                    if (countProc > 0){
-                        res.send({reason: "Não é possível fazer uma solicitação com um processo aberto."});
-                    }
-                    else{
-                        Request.create(requestData, function(err, request){
-                            res.send({success: true});
-                        });
-                    }
+                Request.create(requestData, function(err, request){
+                    res.send({success: true});
                 });
             }
         });
