@@ -15,10 +15,16 @@ Funcionalidade: Solicitar Processo de Progressão Funcional
 		E mensagem de sucesso do envio da solicitação será mostrada
 		E as informações da solicitação são armazenadas no sistema
 
-	Cenario: Verificar Resultado Parcial da CAD
+	Cenario: Verificar Resultado Parcial de docente aprovado
 		Dado que estou na página de solicitação de abertura
 		Quando clicar para ver o andamento do Processo de Progressão Funcional
-		Entao o sistema mostra se foi aprovado ou não (caso não seja aprovado, pode ser verificado as sugestões de melhoria)
+		Entao o sistema mostra a mensagem: "Aprovado" 
+
+	Cenario: Verificar Resultado Parcial de docente reprovado
+	 	Dado que estou na página de solicitação de abertura
+		Quando clicar para ver o andamento do Processo de Progressão Funcional
+		Entao o sistema mostra a mensagem: "reprovado" 
+		E pode ser verificado as sugestões de melhoria
 
 	Cenario: Verificar o Resultado Final da Solicitação
 		Dado que estou na página de solicitação de abertura
