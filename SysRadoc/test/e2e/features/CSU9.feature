@@ -10,7 +10,7 @@ Funcionalidade: Abrir processo de promoção na carreira de magistério
 		E que o docente se encontra no nivel correspondente para avançar na promoção.
 		E já ter sido aprovado em estágio probatório
 		E ter cumprido o intervalo de no minimo dois anos no nível da classe atual
-		Eu gostaria de abrir o processo do docente
+		Então eu gostaria de abrir o processo do docente
 
 	Cenario: "Pesquisar" processos por docente
 		Dado que estou na pagina de "Pesquisar" docentes podendo filtrar por nome

@@ -1,11 +1,14 @@
+'use strict';
+
 var sampleSteps = function() {
 
   this.Given(/^que eu estou na página principal$/, function(callback) {
-    browser.get("/").then(callback);
+    browser.get("/");
+    this.expect(browser.getTitle()).to.eventually.equal('Sys Radoc2').and.notify(callback);
   });
 
   this.Given(/^eu clicar em Cadastrar Novo Usuário$/, function(callback) {
-    this.expect(browser.getTitle()).to.equal("hello");
+    
     callback();
   });
 

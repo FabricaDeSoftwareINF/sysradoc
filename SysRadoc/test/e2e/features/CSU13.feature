@@ -8,9 +8,9 @@ Funcionalidade: Gerar e Visualizar Quadro sumário
 	Contexto:
 		Dado que estou logado no sistema
 		E que faço parte da CAD
-		Eu gostaria de gerenciar as informações básicas de um docente
+		Então eu gostaria de gerenciar as informações básicas de um docente
 
-	Cenario:  Gerar Quadro Sumário
+	Cenario: Gerar Quadro Sumário
 		Dado que estou logado como CAD
 		Quando as informações do Radoc do docente terminarem de ser convertidas
 		Entao o sistema irá gerar o quadro sumário automaticamente

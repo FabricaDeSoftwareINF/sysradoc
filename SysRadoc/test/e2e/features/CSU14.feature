@@ -8,7 +8,7 @@ Funcionalidade: Visualizar Lista de Processos em andamento
 	Contexto:
 	Dado que eu estou logado no sistema
 	E na tela de pesquisa de processos
-	Eu gostaria de acompanhar os processos em andamento
+	Então eu gostaria de acompanhar os processos em andamento
 
 	Cenario: Visualizar Lista de Processos em andamento
 		Quando eu clicar no botão "Pesquisar" e "Pesquisar" um determinado docente

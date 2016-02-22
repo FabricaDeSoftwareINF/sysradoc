@@ -6,6 +6,6 @@ Funcionalidade: Pontuar Radoc
 	Para que o processo possa ser continuado
 
 	Contexto:
-	Dado que o Radoc já tenha sido enviado
-	E que me associei a um processo como relator
-	Eu gostaria de converter os dados do Radoc em notas
+		Dado que o Radoc já tenha sido enviado
+		E que me associei a um processo como relator
+		Então eu gostaria de converter os dados do Radoc em notas

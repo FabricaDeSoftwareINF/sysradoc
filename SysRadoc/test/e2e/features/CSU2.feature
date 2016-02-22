@@ -8,7 +8,7 @@ Funcionalidade: Login de Usuário
 	Contexto:
 		Dado que estou na página de login
 		E sou um usuário cadastrado
-		Eu gostaria de ter acesso ao SysRadoc para facilitação do processo de avaliação de docentes
+		Então eu gostaria de ter acesso ao SysRadoc para facilitação do processo de avaliação de docentes
 
 	Cenario: Login de usuário qualquer
 		Dado que estou na caixa "Login"

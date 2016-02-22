@@ -10,7 +10,7 @@ Funcionalidade: Visualizar Status do processo Quadro Sumário
 		Dado que o docente já possui um Radoc.
 		E nota da secretaria ou nota dos discentes inseridas no sistema.
 		E que eu tenha permissão para executar tal função
-		Eu gostaria de ter acesso ao quadro sumário para acompanhar o andamento da avaliação e conferir as notas do docente em questão avaliado.
+		Então eu gostaria de ter acesso ao quadro sumário para acompanhar o andamento da avaliação e conferir as notas do docente em questão avaliado.
 
 	Cenario: Visualizando Quadro Sumário
 		Dado que a tela de pesquisa de quadro sumário está aberta

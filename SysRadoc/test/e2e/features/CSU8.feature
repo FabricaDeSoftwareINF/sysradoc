@@ -9,7 +9,7 @@ Funcionalidade: Abrir Processo de Progressão Funcional
 		Dado que o docente já possui um Radoc
 		E que faço parte da secretaria
 		E que a progressão funcional terá uma duração de 24 meses, gerando um um radoc anual caso o docente tenha iniciado seu processo de progressão funcional no início do ano ou, um radoc semestral caso este tenha adentrado no segundo semestre
-		Eu gostaria de ter acesso ao SysRadoc para registrar e armazenar Radocs dos docentes
+		Então eu gostaria de ter acesso ao SysRadoc para registrar e armazenar Radocs dos docentes
 
 	Cenario: Abrir Processo do Estágio Probatório
 		Dado que estou na página de abrir o processo de um usuário

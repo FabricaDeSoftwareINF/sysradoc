@@ -10,7 +10,7 @@ Funcionalidade: Inserir Nota Docente (Discente - Secretaria)
 		E que o meu usuário tenha acesso à etapa descrita
 		E que o Radoc ja tenha sido inserido
 		E que o docente ja tenha sido pesquisado
-		Eu gostaria de inserir a nota do docente por disciplina ministrada
+		Então eu gostaria de inserir a nota do docente por disciplina ministrada
 
 	Cenario: Pesquisar docente
 		Quando Pesquisar os processos que estão com o status em andamento

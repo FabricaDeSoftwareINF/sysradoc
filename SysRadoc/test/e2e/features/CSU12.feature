@@ -10,7 +10,7 @@ Funcionalidade: Continuar Processo de Estágio Probatório
 		E que faço parte da secretaria
 		E o docente pode continuar participando do Processo de Estágio Probatório
 
-	Cenario: Continuar Processo de Estágio Probatório
+	Esquema do Cenario: Continuar Processo de Estágio Probatório
 		Dado que estou na página de confirmação para continuar o processo de estágio probatório
 		Quando eu clicar em "Confirmar"
 		E enviar a confirmação, estaraáarmazenada no sistema

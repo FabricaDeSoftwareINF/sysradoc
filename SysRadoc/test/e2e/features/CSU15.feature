@@ -8,7 +8,7 @@ Funcionalidade: Visualizar Lista de Processos Concluídos
 	Contexto:
 		Dado que eu estou logado no sistema
 		E na tela de pesquisa de processos concluídos
-		Eu gostaria de acompanhar os processos concluídos.
+		Então eu gostaria de acompanhar os processos concluídos.
 
 	Cenario: Visualizar Lista de Processos concluídos
 		Quando eu clicar no botão "Pesquisar" e digitar o nome docente.
