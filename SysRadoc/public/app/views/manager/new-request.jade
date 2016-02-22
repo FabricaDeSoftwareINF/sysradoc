@@ -12,7 +12,18 @@
                         option(value="") Escolha...
                         option(ng-repeat="type in data.types", ng-value="type") {{type}}
 
-                br
+
+            .form-group
+                label.col-md-4.control-label Data de Início:
+                .col-md-6
+                    uib-datepicker(ng-model="data.newRequest.dataDeInicio", min-mode="month", class="well well-sm")
+
+            .form-group
+                label.col-md-4.control-label Data de Fim:
+                .col-md-6
+                    uib-datepicker(ng-model="data.newRequest.dataFim", min-mode="month", min-date="data.newRequest.dataDeInicio", class="well well-sm")
+            
+            br
             .form-group
                 .col-md-6.col-md-offset-4.text-center
                     button.btn.btn-md.btn-primary(ng-click="createRequest()", ng-disabled="!newRequestForm.$valid") Solicitar

@@ -2,6 +2,8 @@ angular.module('app').controller("ngNewRequestCtrl", function($scope, ngNotifier
     var cleanNewRequestData = {
         tipo: "",
         idUsuario: ngIdentity.currentUser._id,
+        dataDeInicio: new Date(),
+        dataFim: new Date()
     };
 
     $scope.data = {

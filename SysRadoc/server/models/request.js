@@ -5,6 +5,8 @@ module.exports = function () {
 
     var requestSchema = mongoose.Schema({
         idUsuario: { type: mongoose.Schema.ObjectId, ref: 'User' },
+        dataDeInicio: Date,
+        dataFim: Date,
         tipo: String,
         data: Date
     });

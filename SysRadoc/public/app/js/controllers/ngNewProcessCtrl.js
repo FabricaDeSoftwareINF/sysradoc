@@ -1,4 +1,5 @@
 angular.module('app').controller("ngNewProcessCtrl", function($scope, $timeout, ngNotifier, ngProcessSvc, ngUserSvc, $location) {
+
     var cleanNewProcessData = {
         tipo: "",
         dataDeInicio: new Date(),
@@ -8,6 +9,7 @@ angular.module('app').controller("ngNewProcessCtrl", function($scope, $timeout, 
     };
 
     $scope.data = {
+        today: new Date(),
         newProcess: angular.copy(cleanNewProcessData),
         types: [
             "Estágio Probatório",
@@ -16,6 +18,17 @@ angular.module('app').controller("ngNewProcessCtrl", function($scope, $timeout, 
             ],
         evaluators: [],
         teachers: ngUserSvc.getAllUsersByCategory("Professor")
+    };
+
+    $scope.getMinDate = function(){
+        if ($scope.data.newProcess.idProfessor === "")
+            return $scope.data.today;
+
+        for (var index = 0; index < $scope.data.teachers.length; index++){
+            if ($scope.data.teachers[index]._id === $scope.data.newProcess.idProfessor){
+                return $scope.data.teachers[index].dataDeIngresso;
+            }
+        }
     };
 
     $scope.createProcess = function(){

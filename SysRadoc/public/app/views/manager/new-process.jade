@@ -26,13 +26,13 @@
                 .form-group
                     label.col-md-4.control-label Data de Início:
                     .col-md-6
-                        uib-datepicker(ng-model="data.newProcess.dataDeInicio", class="well well-sm")
+                        uib-datepicker(ng-model="data.newProcess.dataDeInicio", min-mode="month", min-date="getMinDate()", class="well well-sm")
 
             div
                 .form-group
                     label.col-md-4.control-label Data de Fim:
                     .col-md-6
-                        uib-datepicker(ng-model="data.newProcess.dataFim", class="well well-sm")
+                        uib-datepicker(ng-model="data.newProcess.dataFim", min-mode="month", min-date="data.newProcess.dataDeInicio", class="well well-sm")
 
                 br
             .form-group
