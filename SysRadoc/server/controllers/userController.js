@@ -67,6 +67,7 @@ module.exports = function(app){
             if (!userData.estagioProbatorioCompleto){
                 var dataFim = new Date(userData.dataDeIngresso);
                 dataFim.setFullYear(dataFim.getFullYear() + 3);
+                dataFim.setMonth(dataFim.getMonth() - 1);
                 var requestData = {
                     tipo: "Estágio Probatório",
                     idUsuario: user._id,

@@ -12,6 +12,8 @@ module.exports = function () {
         tabela: [
             {
                 idRadoc: { type: mongoose.Schema.ObjectId, ref: 'Radoc' },
+                anoBase: Number,
+                mesesAvaliados: Number,
                 pontuacaoRadoc: {
                     ensino: {
                         graduacao: Number,
@@ -68,5 +70,5 @@ module.exports = function () {
         resultado: String
     });
 
-    return mongoose.model('summaryTable', summaryTableSchema);
+    return mongoose.model('SummaryTable', summaryTableSchema);
 };
