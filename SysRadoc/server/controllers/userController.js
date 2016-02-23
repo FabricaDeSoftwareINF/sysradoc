@@ -47,6 +47,7 @@ module.exports = function(app){
         if (!userData.notANewTeacher){
             userData.estagioProbatorioCompleto = false;
             userData.dataEntradaUltimoNivel = userData.dataDeIngresso;
+            userData.dataFimUltimoProcesso = userData.dataDeIngresso;
         }
 
         var model = mongoose.model(userData.categoria);

@@ -61,6 +61,11 @@
                         label.col-md-4.control-label Data da ultima progressão/promoção:
                         .col-md-6
                             uib-datepicker(ng-model="data.newUser.dataEntradaUltimoNivel", min-date="data.newUser.dataDeIngresso", min-mode="month", class="well well-sm")
+                    br
+                    .form-group
+                        label.col-md-4.control-label Data do fim do último processo aprovado:
+                        .col-md-6
+                            uib-datepicker(ng-model="data.newUser.dataFimUltimoProcesso", min-date="data.newUser.dataDeIngresso", min-mode="month", class="well well-sm")
                             
                 br
             .form-group

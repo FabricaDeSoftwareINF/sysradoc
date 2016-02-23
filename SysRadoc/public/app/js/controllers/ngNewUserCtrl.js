@@ -12,7 +12,8 @@ angular.module('app').controller("ngNewUserCtrl", function($scope, ngNotifier, n
         nivel: "",
         notANewTeacher: false,
         estagioProbatorioCompleto: false,
-        dataEntradaUltimoNivel: new Date()
+        dataEntradaUltimoNivel: new Date(),
+        dataFimUltimoProcesso: new Date()
     };
 
     $scope.data = {

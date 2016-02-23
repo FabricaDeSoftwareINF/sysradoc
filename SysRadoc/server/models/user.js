@@ -11,6 +11,7 @@ module.exports =  function(){
         matricula: String,
         estagioProbatorioCompleto: Boolean,
         dataEntradaUltimoNivel: Date,
+        dataFimUltimoProcesso: Date,
         salt: {type: String, required: '{PATH} is required!'},
         hash: {type: String, required: '{PATH} is required!'},
         papeis: [String]
