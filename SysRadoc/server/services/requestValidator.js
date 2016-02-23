@@ -37,7 +37,7 @@ module.exports = function(app){
             else{
                 User.findOne({_id: requestData.idUsuario}).exec(function(err, user){
                     var lastChangeMonths = diffMonths(new Date(user.dataEntradaUltimoNivel), new Date());
-                    console.log(lastChangeMonths);
+                    var timespace = diffMonths(new Date(requestData.dataDeInicio), new Date(requestData.dataFim)) + 1;
                     if (requestData.tipo === "Progressão Funcional"){
                         if (levels[user.classe].indexOf(user.nivel) === levels[user.classe].length - 1){
                             callback({reason: "Não é possível pedir uma progressão, pois você já se encontra no último nível de sua classe."});
@@ -45,6 +45,10 @@ module.exports = function(app){
                         }
                         else if (lastChangeMonths < 24){
                             callback({reason: "Não é possível pedir uma progressão, pois você não cumpriu ainda um total de 24 meses no seu nível atual."});
+                            return false;
+                        }
+                        else if (timespace !== 24){
+                            callback({reason: "O período a ser avaliado deve ser composto por 24 meses."});
                             return false;
                         }
 
@@ -64,6 +68,10 @@ module.exports = function(app){
                         }
                         else if (lastChangeMonths < 24){
                             callback({reason: "Não é possível pedir uma promoção pois você não cumpriu ainda um total de 2 anos no último nível de sua classe."});
+                            return false;
+                        }
+                        else if (timespace !== 24){
+                            callback({reason: "O período a ser avaliado deve ser composto por 24 meses."});
                             return false;
                         }
                     }
