@@ -29,7 +29,7 @@
                 .form-group
                     label.col-md-4.control-label Data de Ingresso:
                     .col-md-6
-                        uib-datepicker(ng-model="data.newUser.dataDeIngresso", min-mode="month", class="well well-sm")
+                        uib-datepicker(ng-model="data.newUser.dataDeIngresso", max-date="data.today", min-mode="month", class="well well-sm")
                         
                 .form-group
                     label.col-md-4.control-label Classes

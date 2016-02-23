@@ -41,6 +41,7 @@ angular.module('app').controller("ngNewUserCtrl", function($scope, ngNotifier, n
             D: ["1", "2", "3", "4"],
             E: ["1"]
         },
+        today: new Date()
 
     };
 
