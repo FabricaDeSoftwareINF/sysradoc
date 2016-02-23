@@ -23,7 +23,7 @@ module.exports = function(app){
                         return;
                     }
                 Process.create(processData, function(err, processDoc){
-                    Request.remove({idUsuario: processData.idProfessor + "s", tipo: processData.tipo}).exec(function(err, collection){
+                    Request.remove({idUsuario: processData.idProfessor, tipo: processData.tipo}).exec(function(err, collection){
                         callback({success: true});
                         service.updateStatusAndPendencies(processDoc);
                     });
