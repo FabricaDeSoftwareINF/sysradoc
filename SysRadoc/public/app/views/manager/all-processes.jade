@@ -23,6 +23,7 @@
                     th Relator
                     th Tipo
                     th Situação
+                    th Pendências
                     th Ações
             tbody
                 tr(ng-repeat="process in data.allProcesses", ng-show="!process.hidden")
@@ -33,6 +34,10 @@
                         span(ng-if="!process.idAvaliador") Nenhum
                     td {{process.tipo}}
                     td {{process.situacao}}
+                    td
+                        ul
+                            li(ng-repeat="pendencia in process.pendencias")
+                                span {{pendencia}}
                     td
                         button.btn.btn-sm.btn-primary(data-toggle="modal", data-target="#modalAssociate", ng-click="callAssociate($index)", uib-tooltip="Associar Relator", tooltip-placement="top")
                             span.fa.fa-fw.fa-user
