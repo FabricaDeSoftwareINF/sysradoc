@@ -9,7 +9,10 @@ angular.module('app').controller("ngNewUserCtrl", function($scope, ngNotifier, n
         // Professor data
         dataDeIngresso: new Date(),
         classe: "",
-        nivel: ""
+        nivel: "",
+        notANewTeacher: false,
+        estagioProbatorioCompleto: false,
+        dataEntradaUltimoNivel: new Date()
     };
 
     $scope.data = {
@@ -56,4 +59,5 @@ angular.module('app').controller("ngNewUserCtrl", function($scope, ngNotifier, n
     $scope.$watch(function(scope){ return scope.data.newUser.classe; }, function(newValue, oldValue) {
         $scope.data.newUser.nivel = "";
     });
+
 });

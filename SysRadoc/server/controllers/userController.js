@@ -20,7 +20,8 @@ var mailOptions = {
 
 module.exports = function(app){
 	var User = app.models.user,
-		Token = app.models.token;
+		Token = app.models.token,
+        Request = app.models.request;
 
 	var controller = {};
 
@@ -43,6 +44,11 @@ module.exports = function(app){
         userData.salt = encryption.createSalt();
         userData.hash = encryption.hashPwd(userData.salt, userData.password);
 
+        if (!userData.notANewTeacher){
+            userData.estagioProbatorioCompleto = false;
+            userData.dataEntradaUltimoNivel = userData.dataDeIngresso;
+        }
+
         var model = mongoose.model(userData.categoria);
         model.create(userData, function (err, user) {
             if (err) {
@@ -57,7 +63,23 @@ module.exports = function(app){
             var html = "Prezada(o),<br><br> Uma conta de " + userData.categoria + " foi criada para você no SysRadoc. Acesse <a href='" + url + "'>" + url + "<a> utilizando os seguintes dados:<br><ul><li><strong>Email: </strong>" + userData.email + "</li><li><strong>Senha: </strong>" + userData.password + "</li></ul> <br><br>Sysradoc.";
             var subject = "Conta Cadastrada - SysRadoc";
             emailAgent.sendEmail(userData.email, subject, html, url);
-            res.send({success: true});
+            if (!userData.estagioProbatorioCompleto){
+                var dataFim = new Date(userData.dataDeIngresso);
+                dataFim.setFullYear(dataFim.getFullYear() + 3);
+                var requestData = {
+                    tipo: "Estágio Probatório",
+                    idUsuario: user._id,
+                    dataDeInicio: userData.dataDeIngresso,
+                    dataFim: dataFim,
+                    data: new Date()
+                };
+                Request.create(requestData, function(err, requestDoc){
+                    res.send({success: true});
+                });
+            }
+            else{
+                res.send({success: true});
+            }
         });
     };
 

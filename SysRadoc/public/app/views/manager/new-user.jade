@@ -44,6 +44,24 @@
                         select.form-control(name="userLevel", ng-model="data.newUser.nivel", required)  
                             option(value="") Escolha...
                             option(ng-repeat="level in data.levels[data.newUser.classe]", ng-value="level") {{level}} 
+                .form-group
+                    .col-md-6.col-md-offset-4
+                        input(type="checkbox", ng-model="data.newUser.notANewTeacher") 
+                        = ' '
+                        label.control-label Professor veterano
+                div(ng-if="data.newUser.notANewTeacher")
+                    .from-group
+                        .col-md-6.col-md-offset-4
+                            input(type="checkbox", ng-model="data.newUser.estagioProbatorioCompleto") 
+                            = ' '
+                            label.control-label Estágio probatório completo
+                    br
+                    br
+                    .form-group
+                        label.col-md-4.control-label Data da ultima progressão/promoção:
+                        .col-md-6
+                            uib-datepicker(ng-model="data.newUser.dataEntradaUltimoNivel", min-date="data.newUser.dataDeIngresso", min-mode="month", class="well well-sm")
+                            
                 br
             .form-group
                 .col-md-6.col-md-offset-4.text-center
