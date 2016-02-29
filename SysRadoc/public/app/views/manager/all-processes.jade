@@ -41,6 +41,10 @@
                     td
                         button.btn.btn-sm.btn-primary(data-toggle="modal", data-target="#modalAssociate", ng-click="callAssociate($index)", uib-tooltip="Associar Relator", tooltip-placement="top")
                             span.fa.fa-fw.fa-user
+                        button.btn.btn-sm.btn-success(ng-if="process.pendencias.indexOf('Pontuação dos Discentes pendente') !== -1 && (getUserType() === 'Secretaria' || getUserType() === 'Administrador')", data-toggle="modal", data-target="#modalAddScore", ng-click="putScore($index, 'discente')", uib-tooltip="Inserir Nota do Discente", tooltip-placement="top")
+                            span.fa.fa-fw.fa-pencil-square
+                        button.btn.btn-sm.btn-success(ng-if="process.pendencias.indexOf('Pontuação dos Diretoria pendente') !== -1 && (getUserType() === 'Professor' && isAuthorized('Diretoria'))", data-toggle="modal", data-target="#modalAddScore", ng-click="putScore($index, 'diretoria')", uib-tooltip="Inserir Nota da Diretoria", tooltip-placement="top")
+                            span.fa.fa-fw.fa-pencil-square
                             
         h4(ng-if="data.maxIndex === 0 && data.allProcesses.length > 0") Não existe nenhum processo com esta busca
         h4(ng-if="data.maxIndex === 0 && data.allProcesses.length === 0") Não existe nenhum processo cadastrado no momento
@@ -68,5 +72,28 @@
                 .modal-footer
                     button.btn.btn-primary.side-margins(ng-click="finishAssociate()")
                         span Associar
+                    button.btn.btn-default(data-dismiss="modal")
+                        span Cancelar
+
+
+    #modalAddScore.modal.fade.bs-example-modal-lg(tabindex="-1", role="dialog", aria-labelledby="myLargeModalLabel")
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    h4
+                        span Adicionar nota&nbsp;
+                        span(ng-if="data.putScore.scoreType === 'discente'") dos discentes
+                        span(ng-if="data.putScore.scoreType === 'diretoria'") da diretoria
+                .modal-body
+                    .row(ng-repeat="year in data.putScore.years", ng-if="data.allProcesses[data.putscore.index].pendencias.indexOf('RADOC ' + year + ' pendente') === -1")
+                        label.col-md-4.control-label.text-right Nota do ano de {{ano}}
+                        .col-md-6
+                            input(type="text", ng-model="data.putScore.yearsInput[$index]")
+                    
+                    br
+                    br
+                .modal-footer
+                    button.btn.btn-primary.side-margins(ng-click="finishAddScore()")
+                        span Adicionar Notas
                     button.btn.btn-default(data-dismiss="modal")
                         span Cancelar
