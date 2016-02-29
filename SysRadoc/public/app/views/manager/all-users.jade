@@ -8,6 +8,7 @@
                     th #
                     th Usuário
                     th Categoria
+                    th Estágio Probatório Completo
                     th Ações
             tbody
                 tr(ng-repeat="user in data.users")
@@ -16,6 +17,9 @@
                     td 
                         span(ng-if="user._categoria") {{user._categoria}}
                         span(ng-if="!user._categoria") Administrador
+                    td.text-center
+                        span(ng-if="user.estagioProbatorioCompleto && user._categoria && user._categoria === 'Professor'") Sim
+                        span(ng-if="!user.estagioProbatorioCompleto && user._categoria && user._categoria === 'Professor'") Não
                     td
                         button.btn.btn-sm.btn-warning(data-toggle="modal", data-target="#modalEdit", ng-click="callEdit($index)", uib-tooltip="Editar Usuário", tooltip-placement="top")
                             span.fa.fa-fw.fa-pencil
