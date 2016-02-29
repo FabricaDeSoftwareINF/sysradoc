@@ -1,13 +1,15 @@
 var PDFParser = require("pdf2json/pdfparser");
 var radocParse = require("./../services/radocParse");
 var uploadMover = require("./../services/uploadMover");
+var radocScoreService = require("./../services/radocScore");
 var formidable = require('formidable');
 var rm = require('rm-r');
 
 module.exports = function(app){
 
 	var Radoc = app.models.radoc,
-        User = app.models.user;
+        User = app.models.user,
+        RadocScore = app.models.radocScore;
 
 	var controller = {};
 
@@ -47,12 +49,14 @@ module.exports = function(app){
             						else{
                                         parsedRadoc.urlPdf = path;
                                         Radoc.findOne({idUsuario: userId, anoBase: parsedRadoc.anoBase}).exec(function(err, radocDoc){
+                                            var scoredRadoc = radocScoreService.calculateScore(parsedRadoc);
                                             if (radocDoc){
                                                 rm.file(radocDoc.urlPdf);
                                                 for (var attr in parsedRadoc){
                                                     radocDoc[attr] = parsedRadoc[attr];
                                                 }
                                                 radocDoc.save();
+                                                RadocScore.update({idRadoc: radocDoc._id}, scoredRadoc);
                                                 res.send({success: true, updated: true});
                                             }
                                             else{
@@ -62,6 +66,7 @@ module.exports = function(app){
                     								}
                     								else {
                     									res.send({success: true});
+                                                        RadocScore.create(scoredRadoc);
                     								}
                     							});
                                             }
