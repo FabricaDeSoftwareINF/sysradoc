@@ -12,7 +12,7 @@ Funcionalidade: Login de Usuário
 
 	Cenario: Login de usuário qualquer
 		Dado que estou na caixa "Login"
-		E que preenchi corretamente os dados do login: joaquina@intituto.ufg.br
+		E que preenchi corretamente os dados do login: joaquina@instituto.ufg.br
 		E senha: joaquina123
 		Quando eu clicar no botão "Login"
 		Entao o sistema irá entrar na "Página principal"
@@ -20,7 +20,8 @@ Funcionalidade: Login de Usuário
 
 	Cenario: Login/senha inválido
 		Dado que sou um usuário qualquer que não está cadastrado
-		E que preenchi incorretamente os dados email: joaquina@instituto.ufg.br ou senha: joaquina124
+		E que preenchi incorretamente os dados email: joaquina@instituto.ufg.br 
+		E senha: joaquina124
 		Quando eu clicar no botão "Login"
 		Entao o sistema informa: "Os dados de login não conferem."
-		E vai para a página de login
+		E redireciona vai para a página de login

@@ -9,3 +9,5 @@ Funcionalidade: Pontuar Radoc
 		Dado que o Radoc já tenha sido enviado
 		E que me associei a um processo como relator
 		Então eu gostaria de converter os dados do Radoc em notas
+
+	
