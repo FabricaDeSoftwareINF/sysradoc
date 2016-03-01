@@ -1,18 +1,18 @@
 #language: pt
 
-Funcionalidade: Abrir Processo de Est·gio ProbatÛrio
-Como a secretaria
-Quero abrir um processo eletrÙnico para registrar e armazenar as informaÁıes de  cada docente
-Para que eu possa manter um histÛrico das informaÁıes do usu·rio
+Funcionalidade: Abrir Processo de Est√°gio Probat√≥rio
+	Como a secretaria
+	Quero abrir um processo eletr√¥nico para registrar e armazenar as informa√ß√µes de cada docente
+	Para que eu possa manter um hist√≥rico das informa√ß√µes do usu√°rio
 
-Contexto:
-Dado que o docente j· possui um Radoc
-	E que faÁo parte da secretaria
-E que o est·gio probatÛrio ter· uma duraÁ„o de 36 meses, gerando um um radoc anual caso o docente tenha adentrado no inÌcio do ano ou, um radoc semestral caso este tenha adentrado no segundo semestre
-Eu gostaria de ter acesso ao SysRadoc para registrar e armazenar Radocs dos docentes
+	Contexto:
+		Dado que o docente j√° possui um Radoc
+		E que fa√ßo parte da secretaria
+		E que o est√°gio probat√≥rio ter√° uma dura√ß√£o de 36 meses, gerando um um radoc anual caso o docente tenha adentrado no in√≠cio do ano ou, um radoc semestral caso este tenha adentrado no segundo semestre
+		Entao eu gostaria de ter acesso ao SysRadoc para registrar e armazenar Radocs dos docentes
 
-Cen·rio 1: Abrir Processo do Est·gio ProbatÛrio
-Dado que estou na p·gina de abrir o processo de um usu·rio
-Quando eu clicar em abrir um processo
-E selecionar abrir um est·gio probatÛrio de um docente, poderei cadastrar as	informaÁıes deste docente (Nome completo, ano de ingresso na UFG, matrÌcula da UFG)
-E o sistema notifica o docente da situaÁ„o do processo
+	Cenario: Abrir Processo do Est√°gio Probat√≥rio
+		Dado que estou na p√°gina de abrir o processo de um usu√°rio
+		Quando eu clicar em abrir um processo
+		E selecionar abrir um est√°gio probat√≥rio de um docente, poderei cadastrar as informa√ß√µes deste docente (Nome completo, ano de ingresso na UFG, matr√≠cula da UFG)
+		Entao o sistema notifica o docente da situa√ß√£o do processo

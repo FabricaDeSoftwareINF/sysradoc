@@ -2,22 +2,21 @@
 
 Funcionalidade: Converter Radoc
 	Como a secretaria
-Quero extrair os dados de um documento Radoc em formato pdf e salv·-los no banco de dados
-	Para que a CAD possa utiliz·-los durante o processo avaliativo de um docente.
+	Quero extrair os dados de um documento Radoc em formato pdf e salv√°-los no banco de dados
+	Para que a CAD possa utiliz√°-los durante o processo avaliativo de um docente.
 
 	Contexto:
 		Dado que estou devidamente autorizado no sistema
-		Que faÁo parte da secretaria
-		E que o Radoc tenha sido enviado com sucesso
+		E fa√ßo parte da secretaria
+		E que um Radoc tenha sido enviado com sucesso
 
-Cen·rio 1: ConfirmaÁ„o de envio
-Dado que estou na p·gina de documentos enviados
-	Quando eu receber a mensagem de envio com sucesso
-	Ent„o o software dever· extrair os dados do Radoc em PDF
+	Cenario: Confirma√ß√£o de envio
+		Dado que estou na p√°gina de documentos enviados
+		Quando eu receber a mensagem de envio com sucesso
+		Entao o software dever√° extrair os dados do Radoc em PDF
 
-Cen·rio 2: Sucesso de convers„o
-	Dado que os dados foram extraÌdos com sucesso
-	Quando os dados terminarem de serem extraÌdos
-	Ent„o o software dever· salvar os dados no Banco de Dados
-	E ir· informar que o Radoc foi enviado com sucesso
-	
+	Cenario: Sucesso de convers√£o
+		Dado que os dados foram extra√≠dos com sucesso
+		Quando os dados terminarem de serem extra√≠dos
+		Entao o software dever√° salvar os dados no Banco de Dados
+		E o sistema informa: "Radoc enviado com sucesso!"

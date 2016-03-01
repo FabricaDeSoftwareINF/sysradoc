@@ -1,21 +1,22 @@
 #language: pt
 
 Funcionalidade: Submeter Radoc
-	Como a secretaria
-	Quero enviar um documento Radoc em formato pdf 
+	Como um docente
+	Quero enviar um documento Radoc em formato pdf
 	Para que eu possa iniciar ou continuar o processo avaliativo de um docente
 
 	Contexto:
-		Dado que estou devidamente autorizado no sistema
-		E que faÁo parte da secretaria
-E que estou na p·gina de envio de documentos
-		
-Cen·rio 1: ValidaÁ„o da estrutura do Radoc
-	Quando eu clicar em enviar um Radoc
-E selecionar um Radoc no formato pdf no estilo radoc_exemplo01.pdf 
-Ent„o o sistema ir· validar se o arquivo enviado est· no formato de pdf correto
+		Dado que estou na p√°gina principal
+		E sou um usu√°rio devidamente logado no sistema
+		E que fa√ßo parte da secretaria
+		E que estou na p√°gina de envio de documentos
 
-Cen·rio 2:  Radoc inv·lido
-	Quando eu clicar em enviar um Radoc
-E selecionar um Radoc em formato incorreto Radoc.odt
-	Ent„o o sistema ir· informar que o Radoc  est· em formato inv·lido
+	Cenario: Valida√ß√£o da estrutura do Radoc
+		Quando eu clicar em enviar um Radoc
+		E selecionar um Radoc no formato pdf no estilo "radoc_exemplo01.pdf"
+		Entao o sistema ir√° validar se o arquivo enviado est√° no formato de pdf correto
+
+	Cenario: Radoc inv√°lido
+		Quando eu clicar em enviar um Radoc
+		E selecionar um Radoc em formato incorreto "Radoc.odt"
+		Entao o sistema informa: "Ocorreu um erro no envio do arquivo. Tente novamente."

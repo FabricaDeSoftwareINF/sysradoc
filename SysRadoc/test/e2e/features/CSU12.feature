@@ -1,23 +1,22 @@
 #language: pt
 
-Funcionalidade: Continuar Processo de Est·gio ProbatÛrio
+Funcionalidade: Continuar Processo de Est√°gio Probat√≥rio
 	Como a secretaria
-	Quero enviar os dados para dar continuidade no Processo de Est·gio ProbatÛrio
+	Quero enviar os dados para dar continuidade no Processo de Est√°gio Probat√≥rio
 	Para que eu possa continuar o processo avaliativo de um docente
 
 	Contexto:
 		Dado que estou devidamente autorizada no sistema
-		E que faÁo parte da secretaria
-		E o docente pode continuar participando do Processo de Est·gio ProbatÛrio
+		E que fa√ßo parte da secretaria
+		E o docente pode continuar participando do Processo de Est√°gio Probat√≥rio
 
-cen·rio 1:  Continuar Processo de Est·gio ProbatÛrio
-Dado que estou na p·gina de confirmaÁ„o para continuar o processo de est·gio probatÛrio
-	Quando eu clicar em confirmar  
-E enviar a confirmaÁ„o, esta È armazenada no sistema
-	Ent„o as informaÁıes ficaram aguardando a aprovaÁ„o
-
-Exemplos:
-| exemplo_radoc_pdf | mensagem_radoc |
-|radoc_exemplo01.pdf| v·lido, mensagem de sucesso |
-|radoc_exemplo02.pdf| v·lido, mensagem de sucesso |
-|radoc_exemplo03.xls| inv·lido, mensagem de formato de Radoc inv·lido|
+	Esquema do Cenario: Continuar Processo de Est√°gio Probat√≥rio
+		Dado que estou na p√°gina de confirma√ß√£o para continuar o processo de est√°gio probat√≥rio
+		Quando eu clicar em "Confirmar"
+		E enviar a confirma√ß√£o, estara√°armazenada no sistema
+		Ent√£o as informa√ß√µes ficaram aguardando a aprova√ß√£o
+		Exemplos:
+		| exemplo_radoc_pdf | mensagem_radoc |
+		|radoc_exemplo01.pdf| v√°lido, mensagem de sucesso |
+		|radoc_exemplo02.pdf| v√°lido, mensagem de sucesso |
+		|radoc_exemplo03.xls| inv√°lido, mensagem de formato de Radoc inv√°lido|

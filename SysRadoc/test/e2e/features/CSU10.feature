@@ -1,22 +1,21 @@
 #language: pt
 
-Funcionalidade: Solicitar Processo de PromoÁ„o na Carreira de MagistÈrio
+Funcionalidade: Solicitar Processo de Promo√ß√£o na Carreira de Magist√©rio
+	Como um docente
+	Eu quero solicitar a minha pr√≥pria promo√ß√£o
+	Para que eu possa crescer na carreira de magist√©rio na UFG.
 
-Como docente
-	Quero Solicitar abertura de processo de Processo de PromoÁ„o de Carreira
-	
 	Contexto:
 		Dado que estou devidamente autenticado no sistema
-		E que estou na p·gina de SolicitaÁ„o de Abertura
+		E que estou na p√°gina de Solicita√ß√£o de Abertura
 
-	Cen·rio 01: Solicitar Processo de PromoÁ„o na Carreira de MagistÈrio
-Quando eu clicar na opÁ„o de Solicitar PromoÁ„o de MagistÈrio;
-Ent„o o software envia um e-mail prÈ configurado para a secret·ria;
-E ir· avisar que o e-mail foi enviado com sucesso;
-Ent„o o software salva no banco de dados que existe um processo de carreira de magistÈrio aberto;
+	Cenario: Solicitar Processo de Promo√ß√£o na Carreira de Magist√©rio
+		Quando eu clicar na op√ß√£o de "Solicitar Promo√ß√£o de Magist√©rio"
+		Entao o software envia um e-mail pr√© configurado para a secret√°ria
+		E ir√° avisar que o e-mail foi enviado com sucesso
+		Entao o software salva no banco de dados que existe um processo de carreira de magisterio aberto
 
-
-Cen·rio 02: AtualizaÁ„o do processo
-Dado que eu estou devidamente autenticado no sistema
-Ent„o o software dever· verificar se o processo foi concluido
-E ir· mostrar uma notificaÁ„o na tela quando eu entrar no sistema 
+	Cenario: Atualiza√ß√£o do processo
+		Dado que eu estou devidamente autenticado no sistema
+		Entao o software dever√° verificar se o processo foi concluido
+		E ir√° mostrar uma notifica√ß√£o na tela quando eu entrar no sistema

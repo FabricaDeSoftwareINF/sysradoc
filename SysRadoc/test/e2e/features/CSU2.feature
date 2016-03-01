@@ -1,24 +1,27 @@
 #language: pt
 
-Funcionalidade: Login de Usu·rio
-	Como usu·rio qualquer
+Funcionalidade: Login de Usu√°rio
+	Como um docente
 	Quero me logar no sistema
-Para que eu possa ter acesso as funcionalidades disponÌveis para o usu·rio cadastrado
+	Para que eu possa utilizar o sistema SysRadoc.
 
 	Contexto:
-		Dado que estou na p·gina de login 
+		Dado que estou na p√°gina de login
+		E sou um usu√°rio cadastrado
+		Ent√£o eu gostaria de ter acesso ao SysRadoc para facilita√ß√£o do processo de avalia√ß√£o de docentes
 
-	Cen·rio 01: Login de usu·rio qualquer
-		Dado que sou um usu·rio cadastrado
-		E que preenchi corretamente os dados login: joaquina@intituto.com.br
+	Cenario: Login de usu√°rio qualquer
+		Dado que estou na caixa "Login"
+		E que preenchi corretamente os dados do login: joaquina@instituto.ufg.br
 		E senha: joaquina123
-		Quando eu clicar no bot„o ìLoginî
-		Ent„o o sistema ir· entrar na p·gina principal
-E me dar acesso ‡s funcionalidades referentes ao meu cadastro 
+		Quando eu clicar no bot√£o "Login"
+		Entao o sistema ir√° entrar na "P√°gina principal"
+		E me dar acesso √†s funcionalidades referentes ao meu cadastro
 
-	Cen·rio 02: Login/senha inv·lido
-		Dado que sou um usu·rio qualquer que n„o est· cadastrado
-E que preenchi incorretamente os dados email: joaquina@instituto.kom ou senha: joaquina124
-		Quando eu clicar no bot„o ìLoginî
-Ent„o o sistema ir· informar que o login/senha est· inv·lido
-E ir para a p·gina de login
+	Cenario: Login/senha inv√°lido
+		Dado que sou um usu√°rio qualquer que n√£o est√° cadastrado
+		E que preenchi incorretamente os dados email: joaquina@instituto.ufg.br 
+		E senha: joaquina124
+		Quando eu clicar no bot√£o "Login"
+		Entao o sistema informa: "Os dados de login n√£o conferem."
+		E redireciona vai para a p√°gina de login
