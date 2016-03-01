@@ -1,7 +1,7 @@
 exports.parseLinearSection = function(pdfArray, sectionConfig) {
     if (pdfArray.indexOf(sectionConfig.header) === -1)
         return [];
-        
+
     var start = pdfArray.indexOf(sectionConfig.header) + sectionConfig.afterHeaderSkip,
         pos = start,
         sectionArray = [],
@@ -10,13 +10,14 @@ exports.parseLinearSection = function(pdfArray, sectionConfig) {
     while(true){
         var newSection = {},
             addSection = true;
+            
         for (var l = 0; l < labels.length; l++){
             var nextLabel = labels[(l + 1) % labels.length];
             if (labels[l] !== pdfArray[pos]){
                 addSection = false;
                 break;
             }
-            if (pdfArray[pos + 1] === nextLabel){
+            if (pdfArray[pos + 1] === nextLabel || pdfArray[pos + 1].indexOf("_______/") !== -1){
                 newSection[labels[l]] = "";
                 pos++;
             }
