@@ -1,18 +1,9 @@
-﻿# Microsoft Office .gitignore
-
-*.tmp
-~$*.doc*
-~$*.xls*
-*.xlk
-
-# IDEs .gitignore
-/Artefatos de Código Fonte/.idea/
-/Artefatos de Código Fonte/nb-configuration.xml
-
-# Compiled and Dependencies
-Artefatos de Código Fonte/node_modules/
-/Artefatos de Código Fonte/public/css/site.css
-/Artefatos de Código Fonte/public/vendor/
+.idea
+node_modules
+/public/css/site.css
+/public/css/autocomplete.css
+/public/vendor/
+/uploads
 
 # OS generated files
 .DS_Store
@@ -24,3 +15,5 @@ ehthumbs.db
 Thumbs.db
 *.*~
 .html
+radoc.pdf
+radoc2.js
