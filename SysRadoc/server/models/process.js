@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
 module.exports = function () {
 
     var processSchema = mongoose.Schema({
+        identificador: String, //Modelo 23070.000000/2015-58
         tipo: String,
         dataDeInicio: Date,
         dataFim: Date,
