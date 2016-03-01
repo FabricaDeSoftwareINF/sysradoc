@@ -14,6 +14,10 @@ angular.module('app').controller("ngNewRequestCtrl", function($scope, ngNotifier
             ]
     };
 
+    $scope.getLastProcessDate = function(){
+        return ngIdentity.currentUser.dataFimUltimoProcesso || ngIdentity.currentUser.dataDeIngresso || new Date();
+    };
+
     $scope.createRequest = function(){
         ngRequestSvc.createRequest($scope.data.newRequest).then(function() {
             ngNotifier.notify('Processo registrado com sucesso!');

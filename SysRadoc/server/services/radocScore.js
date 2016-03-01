@@ -35,8 +35,8 @@ var config = require('./radocParseConfig');
 */
 
 var getMonths = function(data){
-    var init = data["Data início:"];
-    var ending = data["Data término:"];
+    var init = data["Data início:"] || data["Data de início:"];
+    var ending = data["Data término:"] || data["Data de término:"];
     return parseInt(ending.substring(3, 5)) - parseInt(init.substring(3, 5)) + 1;
 };
 
@@ -322,7 +322,7 @@ exports.calculateScore = function(radoc){
             prodScore.push({secao: "2", subsecao: "4", subitem: "7", pontuacao: 8});
         }
         else{
-            prodScore.push({officialReason: "Atividade não encontrada na resolução", secao: "", subsecao: "", subitem: "", pontuacao: 0});
+            prodScore.push({modificacaoSoftware: "Atividade não encontrada na resolução", secao: "", subsecao: "", subitem: "", pontuacao: 0});
         }
     }
 
@@ -392,7 +392,7 @@ exports.calculateScore = function(radoc){
                 researchScore.push({secao: "3", subsecao: "2", subitem: "12.2", pontuacao: 5});
         }
         else{
-            researchScore.push({officialReason: "Atividade não encontrada na resolução", secao: "", subsecao: "", subitem: "", pontuacao: 0});
+            researchScore.push({modificacaoSoftware: "Atividade não encontrada na resolução", secao: "", subsecao: "", subitem: "", pontuacao: 0});
         }
     }
 
@@ -453,7 +453,7 @@ exports.calculateScore = function(radoc){
                 extScore.push({secao: "3", subsecao: "2", subitem: "12.2", pontuacao: 5});
         }
         else{
-            extScore.push({officialReason: "Atividade não encontrada na resolução", secao: "", subsecao: "", subitem: "", pontuacao: 0});
+            extScore.push({modificacaoSoftware: "Atividade não encontrada na resolução", secao: "", subsecao: "", subitem: "", pontuacao: 0});
         }
     }
 
@@ -592,7 +592,7 @@ exports.calculateScore = function(radoc){
             admScore.push({secao: "4", subsecao: "4", subitem: "6", pontuacao: maxScore});
         }
         else{
-            admScore.push({officialReason: "Atividade não encontrada na resolução", secao: "", subsecao: "", subitem: "", pontuacao: 0});
+            admScore.push({modificacaoSoftware: "Atividade não encontrada na resolução", secao: "", subsecao: "", subitem: "", pontuacao: 0});
         }
     }
 
@@ -705,7 +705,7 @@ exports.calculateScore = function(radoc){
             oriScore.push({secao: "5", subsecao: "1", subitem: "35", pontuacao: 20});
         }
         else{
-            oriScore.push({officialReason: "Atividade não encontrada na resolução", secao: "", subsecao: "", subitem: "", pontuacao: 0});
+            oriScore.push({modificacaoSoftware: "Atividade não encontrada na resolução", secao: "", subsecao: "", subitem: "", pontuacao: 0});
         }
     }
 
@@ -761,7 +761,7 @@ exports.calculateScore = function(radoc){
             acdScore.push({secao: "5", subsecao: "2", subitem: "10", pontuacao: 10});
         }
         else{
-            acdScore.push({officialReason: "Atividade não encontrada na resolução", secao: "", subsecao: "", subitem: "", pontuacao: 0});
+            acdScore.push({modificacaoSoftware: "Atividade não encontrada na resolução", secao: "", subsecao: "", subitem: "", pontuacao: 0});
         }
     }
 
@@ -787,7 +787,7 @@ exports.calculateScore = function(radoc){
             quaScore.push({secao: "5", subsecao: "3", subitem: "6", pontuacao: 1});
         }
         else{
-            quaScore.push({officialReason: "Atividade não encontrada na resolução", secao: "", subsecao: "", subitem: "", pontuacao: 0});
+            quaScore.push({modificacaoSoftware: "Atividade não encontrada na resolução", secao: "", subsecao: "", subitem: "", pontuacao: 0});
         }
     }
 
@@ -830,12 +830,12 @@ exports.calculateScore = function(radoc){
             }
         }
 
-        if (scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem] !== undefined){
-            if (scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem])
-                scoreObj.pontuacao = 0;
-            else
-                scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem] = true;
-        }
+        // if (scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem] !== undefined){
+        //     if (scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem])
+        //         scoreObj.pontuacao = 0;
+        //     else
+        //         scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem] = true;
+        // }
 
     }
 
@@ -875,12 +875,12 @@ exports.calculateScore = function(radoc){
             }
         }
 
-        if (scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem] !== undefined){
-            if (scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem])
-                scoreObj.pontuacao = 0;
-            else
-                scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem] = true;
-        }
+        // if (scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem] !== undefined){
+        //     if (scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem])
+        //         scoreObj.pontuacao = 0;
+        //     else
+        //         scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem] = true;
+        // }
     }
 
     maxScores = {
@@ -908,12 +908,12 @@ exports.calculateScore = function(radoc){
             }
         }
 
-        if (scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem] !== undefined){
-            if (scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem])
-                scoreObj.pontuacao = 0;
-            else
-                scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem] = true;
-        }
+        // if (scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem] !== undefined){
+        //     if (scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem])
+        //         scoreObj.pontuacao = 0;
+        //     else
+        //         scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem] = true;
+        // }
     }
 
     maxScores = {
@@ -956,12 +956,12 @@ exports.calculateScore = function(radoc){
             }
         }
 
-        if (scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem] !== undefined){
-            if (scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem])
-                scoreObj.pontuacao = 0;
-            else
-                scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem] = true;
-        }
+        // if (scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem] !== undefined){
+        //     if (scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem])
+        //         scoreObj.pontuacao = 0;
+        //     else
+        //         scoreByYear[scoreObj.subsecao + "-" + scoreObj.subitem] = true;
+        // }
     }
 
     maxScores = {

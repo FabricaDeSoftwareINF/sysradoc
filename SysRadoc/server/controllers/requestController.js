@@ -1,5 +1,7 @@
 module.exports = function(app){
 
+    var requestValidator = require("../services/requestValidator")(app);
+
 	var Request = app.models.request,
         Process = app.models.process;
 
@@ -20,15 +22,8 @@ module.exports = function(app){
     controller.createRequest = function(req, res){
         var requestData = req.body;
         requestData.data = new Date();
-        Request.count({idUsuario: requestData.idUsuario}, function(err, countReq){
-            if (countReq > 0){
-                res.send({reason: "Não é possível realizar mais de uma solicitação por vêz."});
-            }
-            else{
-                Request.create(requestData, function(err, request){
-                    res.send({success: true});
-                });
-            }
+        requestValidator.validateAndCreate(requestData, function(response){
+            res.send(response);
         });
     };
 

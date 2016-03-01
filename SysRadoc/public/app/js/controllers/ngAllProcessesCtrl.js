@@ -9,11 +9,21 @@ angular.module('app').controller("ngAllProcessesCtrl", function($scope, ngUserSv
             idAvaliador: "",
             index: 0
         },
+        putScore: {
+            scoreType: "",
+            index: 0,
+            years: [],
+            yearsInput: []
+        },
         maxIndex: 0
     };
 
     $scope.getUserType = function(){
         return ngIdentity.getAccessLevel();
+    };
+
+    $scope.isAuthorized = function(role){
+        return ngIdentity.isAuthorized(role);
     };
 
     $scope.callAssociate = function(index){
@@ -24,6 +34,22 @@ angular.module('app').controller("ngAllProcessesCtrl", function($scope, ngUserSv
         $scope.data.associate = {
             idAvaliador: idAvaliador,
             index: index
+        };
+    };
+
+    $scope.putScore = function(index, scoreType){
+        var process = $scope.data.allProcesses[index];
+        var years = [];
+        var yearsInput = [];
+        for (var y = new Date(process.dataDeInicio).getFullYear(); y <= new Date(process.dataFim).getFullYear(); y++){
+            years.push(y);
+            yearsInput.push("");
+        }
+        $scope.data.putScore = {
+            index: index,
+            scoreType: scoreType,
+            years: years,
+            yearsInput: yearsInput
         };
     };
 
@@ -40,6 +66,10 @@ angular.module('app').controller("ngAllProcessesCtrl", function($scope, ngUserSv
             ngNotifier.error("Ocorreu um erro, tente novamente.");
             angular.element('#modalAssociate').modal('hide');
         });
+    };
+
+    $scope.finishAddScore = function(){
+
     };
 
     var reloadProcesses = function(){

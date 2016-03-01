@@ -53,7 +53,7 @@ exports.sections = [
     {
         header: "RGCG - Regime de Graduação Semestral",
         sectionType: "table",
-        nextSection: "Atividades de orientação",
+        nextSection: "Pós-Graduação - Lato Sensu",
         afterHeaderSkip: 1,
         labels: [
             "Curso",
@@ -72,20 +72,17 @@ exports.sections = [
         ]
     },
     {
-        header: "Pós-Graduação Lato Sensu/Sctricto Sensu (RDC)",
+        header: "Pós-Graduação - Lato Sensu",
         sectionType: "table",
         nextSection: "Atividades de orientação",
         afterHeaderSkip: 1,
         labels: [
+            "Nível",
             "Curso",
             "Disciplina",
             "CHA",
             "Ano",
-            "Sem",
-            "Turma",
-            "Sub",
             "Nº alunos",
-            "Nº sub",
             "CHT",
             "CHP",
             "CHAC",

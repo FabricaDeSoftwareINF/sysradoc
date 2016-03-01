@@ -2,7 +2,7 @@ exports.config = {
   specs: [
     'e2e/features/*.feature'
   ],
-  seleniumAddress: 'http://10.0.2.2:4444/wd/hub',
+  seleniumAddress: 'http://localhost:4444/wd/hub',
   capabilities: {
     'browserName': 'chrome'
   },

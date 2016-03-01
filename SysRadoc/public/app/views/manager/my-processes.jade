@@ -11,6 +11,7 @@
                     th Relator
                     th Tipo
                     th Situação
+                    th Pendências
             tbody
                 tr(ng-repeat="process in data.allProcesses", ng-show="!process.hidden")
                     td {{process.numero}}
@@ -20,5 +21,9 @@
                         span(ng-if="!process.idAvaliador") Nenhum
                     td {{process.tipo}}
                     td {{process.situacao}}
+                    td
+                        ul
+                            li(ng-repeat="pendencia in process.pendencias")
+                                span {{pendencia}}
                             
         h4(ng-if="data.allProcesses.length === 0") Não existe nenhum processo cadastrado ainda
