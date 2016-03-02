@@ -74,6 +74,7 @@ module.exports = function(app) {
             });
             return summaryTable;
         });
-        return controller;
     };
+
+    return controller;
 };
