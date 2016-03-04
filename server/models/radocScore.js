@@ -5,6 +5,7 @@
 
      var radocScoreSchemaJSON = {
          idRadoc: { type: mongoose.Schema.ObjectId, ref: 'Radoc' },
+         idProcesso: { type: mongoose.Schema.ObjectId, ref: 'Process' },
          idProfessor: { type: mongoose.Schema.ObjectId, ref: 'User' }
 
      };

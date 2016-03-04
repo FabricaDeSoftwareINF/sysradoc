@@ -12,6 +12,7 @@ module.exports = function () {
         tabela: [
             {
                 idRadoc: { type: mongoose.Schema.ObjectId, ref: 'Radoc' },
+                idPontuacaoRadoc: { type: mongoose.Schema.ObjectId, ref: 'RadocScore' },
                 anoBase: Number,
                 mesesAvaliados: Number,
                 pontuacaoRadoc: {

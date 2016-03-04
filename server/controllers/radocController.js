@@ -7,6 +7,8 @@ var rm = require('rm-r');
 
 module.exports = function(app){
 
+    var processValidator = require("../services/processValidator")(app);
+
 	var Radoc = app.models.radoc,
         User = app.models.user,
         RadocScore = app.models.radocScore;
@@ -49,15 +51,14 @@ module.exports = function(app){
             						else{
                                         parsedRadoc.urlPdf = path;
                                         Radoc.findOne({idUsuario: userId, anoBase: parsedRadoc.anoBase}).exec(function(err, radocDoc){
-                                            var scoredRadoc = radocScoreService.calculateScore(parsedRadoc);
                                             if (radocDoc){
                                                 rm.file(radocDoc.urlPdf);
                                                 for (var attr in parsedRadoc){
                                                     radocDoc[attr] = parsedRadoc[attr];
                                                 }
                                                 radocDoc.save();
-                                                RadocScore.update({idRadoc: radocDoc._id}, scoredRadoc);
                                                 res.send({success: true, updated: true});
+                                                processValidator.updateSentRadocPendencies(radocDoc, true);
                                             }
                                             else{
                                                 Radoc.create(parsedRadoc, function(err, rad){
@@ -66,7 +67,7 @@ module.exports = function(app){
                     								}
                     								else {
                     									res.send({success: true});
-                                                        RadocScore.create(scoredRadoc);
+                                                        processValidator.updateSentRadocPendencies(rad, false);
                     								}
                     							});
                                             }
