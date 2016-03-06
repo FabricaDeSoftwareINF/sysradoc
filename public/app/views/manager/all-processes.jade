@@ -18,7 +18,7 @@
         table.table.table-hover(ng-if="data.maxIndex > 0")
             thead
                 tr
-                    th #
+                    th ID
                     th Docente
                     th Relator
                     th Tipo
@@ -27,7 +27,7 @@
                     th Ações
             tbody
                 tr(ng-repeat="process in data.allProcesses", ng-show="!process.hidden")
-                    td {{process.numero}}
+                    td {{process.identificador}}
                     td {{process.idProfessor.nome}}
                     td
                         span(ng-if="process.idAvaliador") {{process.idAvaliador.nome}}

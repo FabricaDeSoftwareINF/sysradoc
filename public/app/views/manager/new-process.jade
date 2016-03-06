@@ -11,6 +11,11 @@
                     select.form-control(name="typesList", ng-model="data.newProcess.tipo", required)
                         option(value="") Escolha...
                         option(ng-repeat="type in data.types", ng-value="type") {{type}}
+                        
+            .form-group
+                label.col-md-4.control-label Identificador do Processo:
+                .col-md-6
+                    input.form-control(name="processIdentifier", ng-model="data.newProcess.identificador", required)
 
             .form-group
                 label.col-md-4.control-label Professor Avaliado:

@@ -28,9 +28,18 @@ module.exports = function(app) {
         processData.situacao = "ABERTO";
         processData.pendencias = [];
 
-        processValidator.validateAndCreate(processData, function (response) {
-            res.send(response);
+        Process.findOne({identificador: processData.identificador}).exec(function(err, doc){
+            if (doc){
+                res.send({reason: "Já existe um processo cadastrado com este identificador"});
+            }
+            else{
+                processValidator.validateAndCreate(processData, function (response) {
+                    res.send(response);
+                });
+            }
         });
+
+
 
     };
 

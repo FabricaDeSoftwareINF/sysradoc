@@ -2,6 +2,7 @@ angular.module('app').controller("ngNewProcessCtrl", function($scope, $timeout, 
 
     var cleanNewProcessData = {
         tipo: "",
+        identificador: "",
         dataDeInicio: new Date(),
         dataFim: new Date(),
         idProfessor: "",
