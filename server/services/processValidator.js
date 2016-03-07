@@ -1,4 +1,5 @@
 var radocScoreService = require("./radocScore");
+var summaryTableCalculator = require("./summaryTableCalculator")();
 
 module.exports = function(app){
 
@@ -158,7 +159,7 @@ module.exports = function(app){
         else{
             var notPendenciesMatch = [
                 "Aguardando período de atividades",
-                //"Aguardando parecer da CAD",
+                "Aguardando parecer da CAD",
                 "Aguardando deliberação do Conselho Diretor"
             ];
             Process.find({idProfessor: radocDoc.idUsuario, radocs: radocDoc._id, situacao: "ABERTO", pendencias: { $nin: notPendenciesMatch}}).exec(function(err, processArr){
@@ -186,10 +187,11 @@ module.exports = function(app){
                             summaryTableDoc.tabela[tableIndex].idPontuacaoRadoc[attr] = scoredRadoc[attr];
                         }
 
-                        var pontuacaoRadoc = {};
+                        var pontuacaoRadoc = summaryTableCalculator.calculateSummaryTable(scoredRadoc);
                         summaryTableDoc.tabela[tableIndex].pontuacaoRadoc = pontuacaoRadoc;
 
                         summaryTableDoc.tabela[tableIndex].idPontuacaoRadoc.save();
+                        summaryTableDoc.save();
 
                     });
                 }

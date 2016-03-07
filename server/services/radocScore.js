@@ -7,22 +7,22 @@ var config = require('./radocParseConfig');
     este arquivo deve ser refatorado para manter seu funcionamento. |TODAS| as referências
     estão listadas abaixo:
 
-    config.sections[2].header = "rgcg - regime de graduação semestral"
-    config.sections[3].header = "pós-graduação lato sensu/sctricto sensu (rdc)"
-    config.sections[10].header = "produtos"
-    config.sections[10].labels[0] = "descrição do produto:"
-    config.sections[5].header = "atividades em projetos"
-    config.sections[5].labels[1] = "tabela:"
-    config.sections[6].header = "atividades de extensão"
-    config.sections[6].labels[0] = "tabela:"
-    config.sections[9].header = "atividades administrativas"
-    config.sections[9].labels[0] = "tabela:"
-    config.sections[4].header = "atividades de orientação"
-    config.sections[4].labels[1] = "tabela:"
-    config.sections[8].header = "atividades acadêmicas especiais"
-    config.sections[8].labels[0] = "tabela:"
-    config.sections[7].header = "atividades de qualificação"
-    config.sections[7].labels[0] = "tabela:"
+    config.sections[2].header = "RGCG  Regime de Graduação Semestral"
+    config.sections[3].header = "PósGraduação Lato Sensu/Sctricto Sensu (RDC)"
+    config.sections[10].header = "Produtos"
+    config.sections[10].labels[0] = "Descrição do produto:"
+    config.sections[5].header = "Atividades em projetos"
+    config.sections[5].labels[1] = "Tabela:"
+    config.sections[6].header = "Atividades de extensão"
+    config.sections[6].labels[0] = "Tabela:"
+    config.sections[9].header = "Atividades administrativas"
+    config.sections[9].labels[0] = "Tabela:"
+    config.sections[4].header = "Atividades de orientação"
+    config.sections[4].labels[1] = "Tabela:"
+    config.sections[8].header = "Atividades acadêmicas especiais"
+    config.sections[8].labels[0] = "Tabela:"
+    config.sections[7].header = "Atividades de qualificação"
+    config.sections[7].labels[0] = "Tabela:"
 
     Este arquivo é dividido em duas sessões:
     -Somas
@@ -35,8 +35,8 @@ var config = require('./radocParseConfig');
 */
 
 var getMonths = function(data){
-    var init = data["data início:"] || data["data de início:"];
-    var ending = data["data término:"] || data["data de término:"];
+    var init = data["Data início:"] || data["Data de início:"];
+    var ending = data["Data término:"] || data["Data de término:"];
     return parseInt(ending.substring(3, 5)) - parseInt(init.substring(3, 5)) + 1;
 };
 
