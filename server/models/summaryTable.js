@@ -17,36 +17,36 @@ module.exports = function () {
                 mesesAvaliados: Number,
                 pontuacaoRadoc: {
                     ensino: {
-                        graduacao: Number,
-                        posGraduacao: Number,
-                        total: Number
+                        graduacao: {type: Number, default: 0},
+                        posGraduacao: {type: Number, default: 0},
+                        total: {type: Number, default: 0}
                     },
                     producaoIntelectual: {
-                        cientifica: Number,
-                        artisticaCultural: Number,
-                        tecnicaTecnologica: Number,
-                        outros: Number,
-                        total: Number
+                        cientifica: {type: Number, default: 0},
+                        artisticaCultural: {type: Number, default: 0},
+                        tecnicaTecnologica: {type: Number, default: 0},
+                        outros: {type: Number, default: 0},
+                        total: {type: Number, default: 0}
                     },
                     pesquisaExtensao: {
-                        pesquisa: Number,
-                        extensao: Number,
-                        total: Number
+                        pesquisa: {type: Number, default: 0},
+                        extensao: {type: Number, default: 0},
+                        total: {type: Number, default: 0}
                     },
                     administrativas: {
-                        direcaoFuncaoGratificada: Number,
-                        administrativas: Number,
-                        outras: Number,
-                        representacaoFora: Number,
-                        total: Number
+                        direcaoFuncaoGratificada: {type: Number, default: 0},
+                        administrativas: {type: Number, default: 0},
+                        outras: {type: Number, default: 0},
+                        representacaoFora: {type: Number, default: 0},
+                        total: {type: Number, default: 0}
                     },
                     outrasAtividades: {
-                        orientacao: Number,
-                        academicas: Number,
-                        aprendizado: Number,
-                        total: Number
+                        orientacao: {type: Number, default: 0},
+                        academicas: {type: Number, default: 0},
+                        aprendizado: {type: Number, default: 0},
+                        total: {type: Number, default: 0}
                     },
-                    total: Number
+                    total: {type: Number, default: 0}
                 },
                 notasAvaliacao: {
                     notaCAD: {type: Number, default: null},
