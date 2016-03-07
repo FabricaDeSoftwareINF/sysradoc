@@ -189,6 +189,20 @@ angular.module('app').factory('ngLayoutSvc', function ($location, ngIdentity, ng
                         }
                     ]
                 }
+            ],
+            Diretor: [
+                {
+                    icon: "fa-tasks",
+                    item: "Gerenciar",
+                    path: "",
+                    secondLevel: [
+                        {
+                            icon: "",
+                            item: "Gerenciar Processos",
+                            path: "/allProcesses"
+                        }
+                    ]
+                }
             ]
         }
     };

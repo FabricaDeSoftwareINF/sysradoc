@@ -43,7 +43,7 @@
                             span.fa.fa-fw.fa-user
                         button.btn.btn-sm.btn-success(ng-if="process.pendencias.indexOf('Pontuação dos Discentes pendente') !== -1 && (getUserType() === 'Secretaria' || getUserType() === 'Administrador')", data-toggle="modal", data-target="#modalAddScore", ng-click="putScore($index, 'discente')", uib-tooltip="Inserir Nota do Discente", tooltip-placement="top")
                             span.fa.fa-fw.fa-pencil-square
-                        button.btn.btn-sm.btn-success(ng-if="process.pendencias.indexOf('Pontuação da Diretoria pendente') !== -1 && (getUserType() === 'Professor' && isAuthorized('CD'))", data-toggle="modal", data-target="#modalAddScore", ng-click="putScore($index, 'diretoria')", uib-tooltip="Inserir Nota da Diretoria", tooltip-placement="top")
+                        button.btn.btn-sm.btn-success(ng-if="process.pendencias.indexOf('Pontuação da Diretoria pendente') !== -1 && (getUserType() === 'Professor' && isAuthorized('Diretor'))", data-toggle="modal", data-target="#modalAddScore", ng-click="putScore($index, 'diretoria')", uib-tooltip="Inserir Nota da Diretoria", tooltip-placement="top")
                             span.fa.fa-fw.fa-pencil-square
                             
         h4(ng-if="data.maxIndex === 0 && data.allProcesses.length > 0") Não existe nenhum processo com esta busca

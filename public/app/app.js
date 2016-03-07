@@ -18,7 +18,7 @@ app.config(function ($routeProvider, $locationProvider, $controllerProvider, $co
         manager: {
             auth: function(ngAuth){
                 if (ngAuth.grantAnyAccessLevelForRoute(['Administrador', 'Secretaria']) !== true)
-                    return ngAuth.grantAccessLevelForRoute('Professor') && ngAuth.authorizeAnyCurrentUserForRoute(['CAD', 'CD']);
+                    return ngAuth.grantAccessLevelForRoute('Professor') && ngAuth.authorizeAnyCurrentUserForRoute(['CAD', 'CD', 'Diretor']);
 
                 return true;
             }
