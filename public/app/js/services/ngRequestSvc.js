@@ -19,7 +19,7 @@ angular.module('app').factory('ngRequestSvc', function ($q, ngRequest) {
                 else
                     dfd.reject(response);
             }, function (response) {
-                dfd.reject({reason: "Não foi possível enviar o pedido de criação de Requesto."});
+                dfd.reject({reason: "Não foi possível enviar o pedido de criação de solicitação."});
             });
 
             return dfd.promise;
