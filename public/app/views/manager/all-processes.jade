@@ -306,77 +306,80 @@
 
                                 tr
                                     td VI-1
-                                    td Nota da CAD (ART. 13 ou Art. 25 - Consuni 21/2009) - N1
+                                    td Nota da CAD – Ni
                                     td(ng-repeat="tabela in data.summaryTable.tabela")    
                                         span(ng-if="tabela.notasAvaliacao.notaCAD") {{tabela.notasAvaliacao.notaCAD}}
 
                                 tr
                                     td VI-2
-                                    td Nota da Chefia (somente estágio probatório) - N2
+                                    td Nota da chefia
                                     td(ng-repeat="tabela in data.summaryTable.tabela")    
                                         span(ng-if="tabela.notasAvaliacao.notaChefia") {{tabela.notasAvaliacao.notaChefia}}
 
                                 tr
                                     td VI-3
-                                    td Nota da avaliação discente - N3 ou Nd
+                                    td Nota da avaliação discente
                                     td(ng-repeat="tabela in data.summaryTable.tabela")        
                                         span(ng-if="tabela.notasAvaliacao.notaDiscente") {{tabela.notasAvaliacao.notaDiscente}}
 
                                 tr
                                     td VI-4
-                                    td Pontuação da Produção Intelectual (II-1, II-2, II-3 e V-1)
+                                    td Pontuação da produção intelectual
                                     td(ng-repeat="tabela in data.summaryTable.tabela")     
                                         span(ng-if="tabela.notasAvaliacao.producaoIntelectual") {{tabela.notasAvaliacao.producaoIntelectual}}                                
                                     
                                 tr
                                     th VII
-                                    th NOTA PARCIAL
+                                    th NOTA FINAL
                                     th(colspan="{{data.summaryTable.tabela.length}}")   
                                 
                                 tr
                                     td VII-1
-                                    td Estágio Probatório (art. 14) - NP
-                                    td(colspan="{{data.summaryTable.tabela.length}}")   
+                                    td Estágio Probatório – NF
+                                    td(colspan="{{data.summaryTable.tabela.length}}")  
+                                        span(ng-if="data.summaryTable.notaFinal.estagioProbatorio") {{data.summaryTable.notaFinal.estagioProbatorio}}
                                 
                                 tr
                                     td VII-2
-                                    td Progressão Horizontal (art. 25) - Ncad
-                                    td(colspan="{{data.summaryTable.tabela.length}}")   
+                                    td Progressão – NF
+                                    td(colspan="{{data.summaryTable.tabela.length}}")    
+                                        span(ng-if="data.summaryTable.notaFinal.progressao") {{data.summaryTable.notaFinal.progressao}}
                                 
                                 tr
-                                    td
-                                    td Média da Avaliação discente
-                                    td(colspan="{{data.summaryTable.tabela.length}}")   
+                                    td VII-3
+                                    td Média da pontuação do Item I-1: Atividades de Ensino Graduação
+                                    td(colspan="{{data.summaryTable.tabela.length}}")    
+                                        span(ng-if="data.summaryTable.notaFinal.mediaEnsinoGraduacao") {{data.summaryTable.notaFinal.mediaEnsinoGraduacao}}
                                 
                                 tr
-                                    th VIII
-                                    th NOTA FINAL GLOBAL
-                                    td(colspan="{{data.summaryTable.tabela.length}}")   
+                                    td VII-4
+                                    td Média da pontuação do Item I: Atividades de Ensino
+                                    td(colspan="{{data.summaryTable.tabela.length}}")    
+                                        span(ng-if="data.summaryTable.notaFinal.mediaEnsino") {{data.summaryTable.notaFinal.mediaEnsino}}
                                 
                                 tr
-                                    td VIII-1
-                                    td Estágio Probatório (art. 15) - NF
-                                    td(colspan="{{data.summaryTable.tabela.length}}")   
+                                    td VII-5
+                                    td Média da pontuação do Item II: Produção Intelectual
+                                    td(colspan="{{data.summaryTable.tabela.length}}")    
+                                        span(ng-if="data.summaryTable.notaFinal.mediaProducaoIntelectual") {{data.summaryTable.notaFinal.mediaProducaoIntelectual}}
                                 
                                 tr
-                                    td VIII-2
-                                    td Progressão Horizontal (art. 26) - NG
-                                    td(colspan="{{data.summaryTable.tabela.length}}")   
+                                    td VII-6
+                                    td Média da avaliação da Diretoria
+                                    td(colspan="{{data.summaryTable.tabela.length}}")    
+                                        span(ng-if="data.summaryTable.notaFinal.mediaChefia") {{data.summaryTable.notaFinal.mediaChefia}}
                                 
                                 tr
-                                    td VIII-3
-                                    td Média da pontuação do Item I - Atividades de Ensino
+                                    td VII-7
+                                    td Média da avaliação Discente
                                     td(colspan="{{data.summaryTable.tabela.length}}")   
+                                        span(ng-if="data.summaryTable.notaFinal.mediaDiscente") {{data.summaryTable.notaFinal.mediaDiscente}} 
                                 
                                 tr
-                                    td VIII-4
-                                    td Média da pontuação do Item VI-4 - Produção Intelectual
+                                    td VII-8
+                                    td Valor de S = Soma de todas as pontuações, exceto o Item II: Produção Intelectual
                                     td(colspan="{{data.summaryTable.tabela.length}}")   
-                                
-                                tr
-                                    td VIII-5
-                                    td Pontuação do Parágrafo 5 do Art. 27 (Progressão Horizontal)
-                                    td(colspan="{{data.summaryTable.tabela.length}}")   
+                                        span(ng-if="data.summaryTable.notaFinal.") {{data.summaryTable.notaFinal.notaFinal}}
                                 
                                 tr
                                     td

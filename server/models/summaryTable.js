@@ -54,20 +54,18 @@ module.exports = function () {
                     notaDiscente: {type: Number, default: null},
                     producaoIntelectual: {type: Number, default: null}
                 },
-                notaParcial: {
-                    estagioProbatorio: {type: Number, default: null},
-                    progressao: {type: Number, default: null},
-                    mediaDiscente: {type: Number, default: null}
-                },
-                notaFinalGlobal: {
-                    estagioProbatorio: {type: Number, default: null},
-                    progressao: {type: Number, default: null},
-                    mediaItemI: {type: Number, default: null},
-                    mediaItemIV4: {type: Number, default: null},
-                    pontuacaoParagrafo5Art27: {type: Number, default: null}
-                }
             }
         ],
+        notaFinal: {
+            estagioProbatorio: {type: Number, default: null},
+            progressao: {type: Number, default: null},
+            mediaEnsinoGraduacao: {type: Number, default: null},
+            mediaEnsino: {type: Number, default: null},
+            mediaProducaoIntelectual: {type: Number, default: null},
+            mediaChefia: {type: Number, default: null},
+            mediaDiscente: {type: Number, default: null},
+            notaFinal: {type: Number, default: null}
+        },
         resultado: String
     });
 
