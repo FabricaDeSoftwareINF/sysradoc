@@ -164,14 +164,28 @@ angular.module('app').factory('ngLayoutSvc', function ($location, ngIdentity, ng
             ],
             CAD: [
                 {
-                    icon: "fa-file",
-                    item: "Radocs",
+                    icon: "fa-tasks",
+                    item: "Gerenciar",
                     path: "",
                     secondLevel: [
                         {
                             icon: "",
-                            item: "Gerenciar Radocs",
-                            path: "/allRadocs"
+                            item: "Gerenciar Processos",
+                            path: "/allProcesses"
+                        }
+                    ]
+                }
+            ],
+            CD: [
+                {
+                    icon: "fa-tasks",
+                    item: "Gerenciar",
+                    path: "",
+                    secondLevel: [
+                        {
+                            icon: "",
+                            item: "Gerenciar Processos",
+                            path: "/allProcesses"
                         }
                     ]
                 }

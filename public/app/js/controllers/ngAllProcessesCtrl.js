@@ -42,8 +42,10 @@ angular.module('app').controller("ngAllProcessesCtrl", function($scope, ngUserSv
         var years = [];
         var yearsInput = [];
         for (var y = new Date(process.dataDeInicio).getFullYear(); y <= new Date(process.dataFim).getFullYear(); y++){
-            years.push(y);
-            yearsInput.push("");
+            if(process.tipo !== "Estágio Probatório" || y === process.anoEstagioProbatorio){
+                years.push(y);
+                yearsInput.push("");
+            }
         }
         $scope.data.putScore = {
             index: index,
@@ -69,7 +71,14 @@ angular.module('app').controller("ngAllProcessesCtrl", function($scope, ngUserSv
     };
 
     $scope.finishAddScore = function(){
-
+        ngProcessSvc.updateScores($scope.data.allProcesses[$scope.data.putScore.index]._id, $scope.data.putScore.scoreType, $scope.data.putScore.years, $scope.data.putScore.yearsInput).then(function() {
+            ngNotifier.notify('Nota enviada com sucesso!');
+            angular.element('#modalAddScore').modal('hide');
+            reloadProcesses();
+        }, function(data) {
+            ngNotifier.error("Ocorreu um erro, tente novamente.");
+            angular.element('#modalAddScore').modal('hide');
+        });
     };
 
     var reloadProcesses = function(){

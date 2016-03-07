@@ -35,7 +35,23 @@ angular.module('app').factory('ngProcessSvc', function ($q, ngProcess) {
                 else
                     dfd.reject(response);
             }, function (response) {
-                dfd.reject({reason: "Não foi possível enviar o pedido de criação de processo."});
+                dfd.reject({reason: "Não foi possível enviar o pedido de modificação de relator."});
+            });
+
+            return dfd.promise;
+        },
+
+        updateScores: function(idProcess, noteType, yearsArr, inputArr){
+            var proc = new ngProcess({idProcess: idProcess, noteType: noteType, yearsArr: yearsArr, inputArr: inputArr});
+            var dfd = $q.defer();
+
+            proc.$update().then(function (response) {
+                if(response.success)
+                    dfd.resolve();
+                else
+                    dfd.reject(response);
+            }, function (response) {
+                dfd.reject({reason: "Não foi possível enviar as notas."});
             });
 
             return dfd.promise;

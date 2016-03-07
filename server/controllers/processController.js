@@ -53,6 +53,20 @@ module.exports = function(app) {
         });
     };
 
+    controller.updateScores = function(req, res){
+        var depRedirect = {discente: "Pontuação dos Discentes pendente", diretoria: "Pontuação da Diretoria pendente"};
+        Process.findOne({_id: req.body.idProcess}).populate("idQuadroSumario").exec(function (err, proc) {
+            if (proc.pendencias.indexOf(depRedirect[req.body.noteType]) === -1){
+                res.send({reason: "O processo parece estar desatualizado. Atualize a página e tente novamente."});
+            }
+            else{
+                processValidator.updateSentScoresPendencies(req.body, proc, function(response){
+                    res.send(response);
+                });
+            }
+        });
+    };
+
     controller.generateSummaryTable = function (req, res) {
 
         var radocs;

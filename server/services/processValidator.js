@@ -157,9 +157,9 @@ module.exports = function(app){
         }
         else{
             var notPendenciesMatch = [
-                "Esperando período de atividades",
-                "Esperando Parecer CAD",
-                "Esperando Parecer Diretoria"
+                "Aguardando período de atividades",
+                "Aguardando parecer da CAD",
+                "Aguardando deliberação do Conselho Diretor"
             ];
             Process.find({idProfessor: radocDoc.idUsuario, radocs: radocDoc._id, situacao: "ABERTO", pendencias: { $nin: notPendenciesMatch}}).exec(function(err, processArr){
                 for (var index = 0; index < processArr.length; index++){
@@ -195,6 +195,25 @@ module.exports = function(app){
                 }
             });
         }
+    };
+
+    service.updateSentScoresPendencies = function(scoreData, processDoc, callback){
+        var depRedirect = {discente: "Pontuação dos Discentes pendente", diretoria: "Pontuação da Diretoria pendente"};
+        var attrRedirect = {discente: "notaDiscente", diretoria: "notaChefia"};
+        for (var t = 0; t < processDoc.idQuadroSumario.tabela.length; t++){
+            var yearIndex = scoreData.yearsArr.indexOf(processDoc.idQuadroSumario.tabela[t].anoBase);
+            if (yearIndex !== -1){
+                processDoc.idQuadroSumario.tabela[t].notasAvaliacao[attrRedirect[scoreData.noteType]] = scoreData.inputArr[yearIndex];
+            }
+        }
+        processDoc.idQuadroSumario.save();
+        processDoc.pendencias.splice(processDoc.pendencias.indexOf(depRedirect[scoreData.noteType]), 1);
+        if (processDoc.pendencias.length === 0){
+            processDoc.pendencias.push("Aguardando parecer da CAD");
+            processDoc.mudancaDeAvaliadorDisponivel = false;
+        }
+        processDoc.save();
+        callback({success: true});
     };
 
 	return service;

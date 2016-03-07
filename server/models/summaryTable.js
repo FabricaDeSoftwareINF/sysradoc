@@ -49,22 +49,22 @@ module.exports = function () {
                     total: Number
                 },
                 notasAvaliacao: {
-                    notaCAD: Number,
-                    notaChefia: Number,
-                    notaDiscente: Number,
-                    producaoIntelectual: Number
+                    notaCAD: {type: Number, default: null},
+                    notaChefia: {type: Number, default: null},
+                    notaDiscente: {type: Number, default: null},
+                    producaoIntelectual: {type: Number, default: null}
                 },
                 notaParcial: {
-                    estagioProbatorio: Number,
-                    progressao: Number,
-                    mediaDiscente: Number
+                    estagioProbatorio: {type: Number, default: null},
+                    progressao: {type: Number, default: null},
+                    mediaDiscente: {type: Number, default: null}
                 },
                 notaFinalGlobal: {
-                    estagioProbatorio: Number,
-                    progressao: Number,
-                    mediaItemI: Number,
-                    mediaItemIV4: Number,
-                    pontuacaoParagrafo5Art27: Number
+                    estagioProbatorio: {type: Number, default: null},
+                    progressao: {type: Number, default: null},
+                    mediaItemI: {type: Number, default: null},
+                    mediaItemIV4: {type: Number, default: null},
+                    pontuacaoParagrafo5Art27: {type: Number, default: null}
                 }
             }
         ],

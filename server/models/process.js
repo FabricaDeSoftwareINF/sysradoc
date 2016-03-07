@@ -13,6 +13,7 @@ module.exports = function () {
         situacao: String,
         pendencias: [String],
         anoEstagioProbatorio: Number,
+        mudancaDeAvaliadorDisponivel: { type: Boolean, default: true },
         idQuadroSumario: { type: mongoose.Schema.ObjectId, ref: 'SummaryTable' },
         radocs: [{ type: mongoose.Schema.ObjectId, ref: 'Radoc' }]
 
