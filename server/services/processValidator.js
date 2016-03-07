@@ -77,6 +77,16 @@ module.exports = function(app){
                     scoredRadoc.idProcesso = processDoc._id;
                     RadocScore.create(scoredRadoc, function(err, scoredRadocDoc){
                         var pontuacaoRadoc = summaryTableCalculator.calculateSummaryTable(scoredRadocDoc);
+                        var regime = radocDoc["Dados do docente"]["Regime de trabalho:"];
+                        var notaCAD;
+                        if (regime === "DE" || regime === "40")
+                            notaCAD = pontuacaoRadoc.total / 16;
+                        else
+                            notaCAD = pontuacaoRadoc.total / 8;
+
+                        if (notaCAD > 10)
+                            notaCAD = 10;
+
                         summaryTableData.tabela.push({
                             idRadoc: radocDoc._id,
                             idPontuacaoRadoc: scoredRadocDoc._id,
@@ -84,7 +94,8 @@ module.exports = function(app){
                             mesesAvaliados: months,
                             pontuacaoRadoc: pontuacaoRadoc,
                             notasAvaliacao: {
-                                producaoIntelectual: (pontuacaoRadoc.producaoIntelectual.total - pontuacaoRadoc.producaoIntelectual.outros) + pontuacaoRadoc.outrasAtividades.orientacao
+                                producaoIntelectual: pontuacaoRadoc.producaoIntelectual.total,
+                                notaCAD: notaCAD
                             }
                         });
                     });
@@ -160,10 +171,20 @@ module.exports = function(app){
                     RadocScore.create(scoredRadoc, function(err, scoredRadocDoc){
                         var radocTabela = processDoc.idQuadroSumario.tabela[tableIndex];
                         var pontuacaoRadoc = summaryTableCalculator.calculateSummaryTable(scoredRadocDoc);
+                        var regime = radocDoc["Dados do docente"]["Regime de trabalho:"];
+                        var notaCAD;
+                        if (regime === "DE" || regime === "40")
+                            notaCAD = pontuacaoRadoc.total / 16;
+                        else
+                            notaCAD = pontuacaoRadoc.total / 8;
+
+                        if (notaCAD > 10)
+                            notaCAD = 10;
                         radocTabela.idRadoc = radocDoc._id;
                         radocTabela.idPontuacaoRadoc = scoredRadocDoc._id;
                         radocTabela.pontuacaoRadoc = pontuacaoRadoc;
-                        radocTabela.notasAvaliacao.producaoIntelectual = (pontuacaoRadoc.producaoIntelectual.total - pontuacaoRadoc.producaoIntelectual.outros) + pontuacaoRadoc.outrasAtividades.orientacao;
+                        radocTabela.notasAvaliacao.notaCAD = notaCAD;
+                        radocTabela.notasAvaliacao.producaoIntelectual = pontuacaoRadoc.producaoIntelectual.total;
                         processDoc.idQuadroSumario.save();
                         processDoc.save();
                     });
@@ -202,8 +223,18 @@ module.exports = function(app){
                         }
 
                         var pontuacaoRadoc = summaryTableCalculator.calculateSummaryTable(scoredRadoc);
+                        var regime = radocDoc["Dados do docente"]["Regime de trabalho:"];
+                        var notaCAD;
+                        if (regime === "DE" || regime === "40")
+                            notaCAD = pontuacaoRadoc.total / 16;
+                        else
+                            notaCAD = pontuacaoRadoc.total / 8;
+
+                        if (notaCAD > 10)
+                            notaCAD = 10;
                         summaryTableDoc.tabela[tableIndex].pontuacaoRadoc = pontuacaoRadoc;
-                        summaryTableDoc.tabela[tableIndex].notasAvaliacao.producaoIntelectual = (pontuacaoRadoc.producaoIntelectual.total - pontuacaoRadoc.producaoIntelectual.outros) + pontuacaoRadoc.outrasAtividades.orientacao;
+                        summaryTableDoc.tabela[tableIndex].notasAvaliacao.notaCAD = notaCAD;
+                        summaryTableDoc.tabela[tableIndex].notasAvaliacao.producaoIntelectual = pontuacaoRadoc.producaoIntelectual.total;
                         summaryTableDoc.tabela[tableIndex].idPontuacaoRadoc.save();
                         summaryTableDoc.save();
 
