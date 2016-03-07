@@ -15,8 +15,12 @@ angular.module('app').controller("ngAllProcessesCtrl", function($scope, ngUserSv
             years: [],
             yearsInput: []
         },
+        summaryTableIndex: -1,
+        summaryTable: null,
         maxIndex: 0
     };
+
+
 
     $scope.getUserType = function(){
         return ngIdentity.getAccessLevel();
@@ -53,6 +57,11 @@ angular.module('app').controller("ngAllProcessesCtrl", function($scope, ngUserSv
             years: years,
             yearsInput: yearsInput
         };
+    };
+
+    $scope.showSummaryTable = function(index){
+        $scope.data.summaryTableIndex = index;
+        $scope.data.summaryTable = $scope.data.allProcesses[index].idQuadroSumario;
     };
 
     $scope.finishAssociate = function(){

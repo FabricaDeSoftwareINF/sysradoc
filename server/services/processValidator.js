@@ -70,25 +70,29 @@ module.exports = function(app){
                 months = dataFim.getMonth() + 1;
 
             return function processRadoc(err, radocDoc){
-                if (radocDoc){
+                if (radocDoc && year <= lastYear){
                     var scoredRadoc = radocScoreService.calculateScore(parsedRadoc);
                     scoredRadoc.idRadoc = radocDoc._id;
                     scoredRadoc.idProfessor = processDoc.idProfessor;
                     scoredRadoc.idProcesso = processDoc._id;
                     RadocScore.create(scoredRadoc, function(err, scoredRadocDoc){
-                        var pontuacaoRadoc = {};
+                        var pontuacaoRadoc = summaryTableCalculator.calculateSummaryTable(scoredRadocDoc);
                         summaryTableData.tabela.push({
                             idRadoc: radocDoc._id,
                             idPontuacaoRadoc: scoredRadocDoc._id,
                             anoBase: year,
                             mesesAvaliados: months,
-                            pontuacaoRadoc: pontuacaoRadoc
+                            pontuacaoRadoc: pontuacaoRadoc,
+                            notasAvaliacao: {
+                                producaoIntelectual: (pontuacaoRadoc.producaoIntelectual.total - pontuacaoRadoc.producaoIntelectual.outros) + pontuacaoRadoc.outrasAtividades.orientacao
+                            }
                         });
                     });
                     processDoc.radocs.push(radocDoc._id);                }
                 else{
                     summaryTableData.tabela.push({idRadoc: null, anoBase: year, mesesAvaliados: months});
-                    processDoc.pendencias.push("RADOC " + year + " pendente");
+                    if (year <= lastYear)
+                        processDoc.pendencias.push("RADOC " + year + " pendente");
                 }
 
                 if (year === lastYear){
@@ -109,14 +113,21 @@ module.exports = function(app){
         }
 
         if (processDoc.tipo !== "Estágio Probatório" || (new Date()).getFullYear() > dataDeInicio.getFullYear() ){
-            for (var year = dataDeInicio.getFullYear(); year <= lastYear; year++){
-                console.log("Search: " + year);
+            for (var year = dataDeInicio.getFullYear(); year <= dataFim.getFullYear(); year++){
                 Radoc.findOne({idUsuario: processDoc.idProfessor, anoBase: year}).exec(makeRadocCallback(year));
             }
         }
         else{
+            for (var year = dataDeInicio.getFullYear(); year <= dataFim.getFullYear(); year++){
+                var months = 12;
+                if (year === dataDeInicio.getFullYear())
+                    months = 12 - dataDeInicio.getMonth();
+                else if (year === dataFim.getFullYear())
+                    months = dataFim.getMonth() + 1;
+                summaryTableData.tabela.push({idRadoc: null, anoBase: year, mesesAvaliados: months});
+            }
             processDoc.pendencias.push("Esperando período de atividades");
-            processDoc.save();
+            endRadocParseCallback();
         }
 
     };
@@ -148,10 +159,11 @@ module.exports = function(app){
                     }
                     RadocScore.create(scoredRadoc, function(err, scoredRadocDoc){
                         var radocTabela = processDoc.idQuadroSumario.tabela[tableIndex];
-                        var pontuacaoRadoc = {};
+                        var pontuacaoRadoc = summaryTableCalculator.calculateSummaryTable(scoredRadocDoc);
                         radocTabela.idRadoc = radocDoc._id;
                         radocTabela.idPontuacaoRadoc = scoredRadocDoc._id;
                         radocTabela.pontuacaoRadoc = pontuacaoRadoc;
+                        radocTabela.notasAvaliacao.producaoIntelectual = (pontuacaoRadoc.producaoIntelectual.total - pontuacaoRadoc.producaoIntelectual.outros) + pontuacaoRadoc.outrasAtividades.orientacao;
                         processDoc.idQuadroSumario.save();
                         processDoc.save();
                     });
@@ -191,7 +203,7 @@ module.exports = function(app){
 
                         var pontuacaoRadoc = summaryTableCalculator.calculateSummaryTable(scoredRadoc);
                         summaryTableDoc.tabela[tableIndex].pontuacaoRadoc = pontuacaoRadoc;
-
+                        summaryTableDoc.tabela[tableIndex].notasAvaliacao.producaoIntelectual = (pontuacaoRadoc.producaoIntelectual.total - pontuacaoRadoc.producaoIntelectual.outros) + pontuacaoRadoc.outrasAtividades.orientacao;
                         summaryTableDoc.tabela[tableIndex].idPontuacaoRadoc.save();
                         summaryTableDoc.save();
 

@@ -10,13 +10,13 @@ module.exports = function(app) {
 
 
     controller.getProcesses = function (req, res) {
-        Process.find({}).populate("idProfessor idAvaliador").populate("radocs", "ano-base").exec(function (err, processes) {
+        Process.find({}).populate("idProfessor idAvaliador idQuadroSumario").exec(function (err, processes) {
             res.send(processes);
         });
     };
 
     controller.getProcessesById = function (req, res) {
-        Process.find({idProfessor: req.params.id}).populate("idProfessor idAvaliador").populate("radocs", "ano-base").exec(function (err, processes) {
+        Process.find({idProfessor: req.params.id}).populate("idProfessor idAvaliador idQuadroSumario").exec(function (err, processes) {
             res.send(processes);
         });
     };

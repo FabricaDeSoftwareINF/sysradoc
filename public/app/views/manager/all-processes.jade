@@ -45,6 +45,8 @@
                             span.fa.fa-fw.fa-pencil-square
                         button.btn.btn-sm.btn-success(ng-if="process.pendencias.indexOf('Pontuação da Diretoria pendente') !== -1 && (getUserType() === 'Professor' && isAuthorized('Diretor'))", data-toggle="modal", data-target="#modalAddScore", ng-click="putScore($index, 'diretoria')", uib-tooltip="Inserir Nota da Diretoria", tooltip-placement="top")
                             span.fa.fa-fw.fa-pencil-square
+                        button.btn.btn-sm.btn-info(ng-if="process.idQuadroSumario", data-toggle="modal", data-target="#modalShowSummaryTable", ng-click="showSummaryTable($index)", uib-tooltip="Visualizar Quadro Sumário", tooltip-placement="top")
+                            span.fa.fa-fw.fa-table
                             
         h4(ng-if="data.maxIndex === 0 && data.allProcesses.length > 0") Não existe nenhum processo com esta busca
         h4(ng-if="data.maxIndex === 0 && data.allProcesses.length === 0") Não existe nenhum processo cadastrado no momento
@@ -99,3 +101,288 @@
                             span Adicionar Notas
                         button.btn.btn-default(data-dismiss="modal")
                             span Cancelar
+
+    #modalShowSummaryTable.modal.fade(tabindex="-1", role="dialog", aria-labelledby="myLargeModalLabel")
+        .modal-dialog.modal-lg
+            .modal-content
+                form(name="formAddScore")
+                    .modal-header
+                        h4
+                            span Quadro Sumário
+                    .modal-body(ng-if="data.summaryTableIndex !== -1")
+                        table.table.table-striped.table-bordered
+                            tbody
+                                tr
+                                    td
+                                    th Quadro Sumário da Avaliação
+                                    th Tipo de Avaliação:
+                                    td {{data.summaryTable.tipo}}
+                                    td {{data.summaryTable.status}}
+                                tr
+                                    th Professor
+                                    td {{data.allProcesses[data.summaryTableIndex].idProfessor.nome}}
+                                    th Matrícula
+                                    td {{data.allProcesses[data.summaryTableIndex].idProfessor.matricula}}
+                                    td
+                                tr
+                                    th Período
+                                    td {{data.allProcesses[data.summaryTableIndex].dataDeInicio | date:'MM/yyyy'}} a {{data.allProcesses[data.summaryTableIndex].dataFim | date:'MM/yyyy'}}
+                                    th Processo
+                                    td {{data.allProcesses[data.summaryTableIndex].identificador}}
+                                    td
+                                tr 
+                                    td
+                                    td Anos Avaliados
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")
+                                        span {{tabela.anoBase}}
+                                        
+                                tr 
+                                    td
+                                    td Meses Considerados
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")
+                                        span {{tabela.mesesAvaliados}}
+                                        
+                                tr
+                                    td
+                                    td Avaliação parcial baseada no RADOC
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")
+                                        span Av. Parcial Pontos
+                                        
+                                tr
+                                    th I
+                                    th Atividades de Ensino
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")
+
+                                tr
+                                    td I-1
+                                    td Ensino de graduação
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")  
+                                        span {{tabela.pontuacaoRadoc.ensino.graduacao}}
+
+                                tr
+                                    td I-2
+                                    td Ensino de pós-graduação
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.ensino.posGraduacao}}
+
+                                tr
+                                    td 
+                                    th Pontuação Total
+                                    th(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.ensino.total}}
+
+                                tr
+                                    th II
+                                    th PRODUÇÃO INTELECTUAL
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")  
+
+                                tr
+                                    td II-1
+                                    td Produção Científica
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.producaoIntelectual.cientifica}}
+
+                                tr
+                                    td II-2
+                                    td Produção Artística e Cultural
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.producaoIntelectual.artisticaCultural}}
+
+                                tr
+                                    td II-3
+                                    td Produção Técnica ou Tecnológica
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.producaoIntelectual.tecnicaTecnologica}}
+
+                                tr
+                                    td II-4
+                                    td Outro tipo de produção
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.producaoIntelectual.outros}}
+
+                                tr
+                                    td 
+                                    th Pontuação Total
+                                    th(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.producaoIntelectual.total}}
+
+                                tr
+                                    th III
+                                    th ATIVIDADES DE PESQUISA E EXTENSÃO
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")  
+
+                                tr
+                                    td III-1
+                                    td Pesquisa
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.pesquisaExtensao.pesquisa}}
+
+                                tr
+                                    td III-2
+                                    td Extensão
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.pesquisaExtensao.extensao}}
+
+                                tr
+                                    td 
+                                    th Pontuação Total
+                                    th(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.pesquisaExtensao.total}}
+
+                                tr
+                                    th IV
+                                    th ATIVIDADES ADMINISTRATIVAS
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")   
+
+                                tr
+                                    td IV-1
+                                    td Direção e função gratificada
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.administrativas.direcaoFuncaoGratificada}}
+
+                                tr
+                                    td IV-2
+                                    td Atividades administrativas
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.administrativas.administrativas}}
+
+                                tr
+                                    td IV-3
+                                    td Outras atividades administrativas
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.administrativas.outras}}
+
+                                tr
+                                    td IV-4
+                                    td Atividades de representação fora da UFG
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")     
+                                        span {{tabela.pontuacaoRadoc.administrativas.representacaoFora}}
+
+                                tr 
+                                    td 
+                                    th Pontuação Total
+                                    th(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.administrativas.total}}
+
+                                tr
+                                    th V
+                                    th OUTRAS ATIVIDADES
+                                    td(ng-repeat="tabela in data.summaryTable.tabela") 
+
+                                tr
+                                    td V-1
+                                    td Orientação
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.outrasAtividades.orientacao}}
+
+                                tr
+                                    td V-2
+                                    td Atividades Acadêmicas - Bancas e Cursos
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.outrasAtividades.academicas}}
+
+                                tr
+                                    td V-3
+                                    td Atividades de Aprendizado e Aperfeiçoamento
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.outrasAtividades.aprendizado}}
+
+                                tr
+                                    td 
+                                    th Pontuação Total
+                                    th(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.outrasAtividades.total}}
+
+                                tr
+                                    td 
+                                    th PONTUAÇÃO TOTAL (I +II+III+IV+V)
+                                    th(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span {{tabela.pontuacaoRadoc.total}}
+
+                                tr
+                                    th VI
+                                    th NOTAS DE AVALIAÇÃO
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")  
+
+                                tr
+                                    td VI-1
+                                    td Nota da CAD (ART. 13 ou Art. 25 - Consuni 21/2009) - N1
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span(ng-if="tabela.notasAvaliacao.notaCAD") {{tabela.notasAvaliacao.notaCAD}}
+
+                                tr
+                                    td VI-2
+                                    td Nota da Chefia (somente estágio probatório) - N2
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")    
+                                        span(ng-if="tabela.notasAvaliacao.notaChefia") {{tabela.notasAvaliacao.notaChefia}}
+
+                                tr
+                                    td VI-3
+                                    td Nota da avaliação discente - N3 ou Nd
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")        
+                                        span(ng-if="tabela.notasAvaliacao.notaDiscente") {{tabela.notasAvaliacao.notaDiscente}}
+
+                                tr
+                                    td VI-4
+                                    td Pontuação da Produção Intelectual (II-1, II-2, II-3 e V-1)
+                                    td(ng-repeat="tabela in data.summaryTable.tabela")     
+                                        span(ng-if="tabela.notasAvaliacao.producaoIntelectual") {{tabela.notasAvaliacao.producaoIntelectual}}                                
+                                    
+                                tr
+                                    th VII
+                                    th NOTA PARCIAL
+                                    th(colspan="{{data.summaryTable.tabela.length}}")   
+                                
+                                tr
+                                    td VII-1
+                                    td Estágio Probatório (art. 14) - NP
+                                    td(colspan="{{data.summaryTable.tabela.length}}")   
+                                
+                                tr
+                                    td VII-2
+                                    td Progressão Horizontal (art. 25) - Ncad
+                                    td(colspan="{{data.summaryTable.tabela.length}}")   
+                                
+                                tr
+                                    td
+                                    td Média da Avaliação discente
+                                    td(colspan="{{data.summaryTable.tabela.length}}")   
+                                
+                                tr
+                                    th VIII
+                                    th NOTA FINAL GLOBAL
+                                    td(colspan="{{data.summaryTable.tabela.length}}")   
+                                
+                                tr
+                                    td VIII-1
+                                    td Estágio Probatório (art. 15) - NF
+                                    td(colspan="{{data.summaryTable.tabela.length}}")   
+                                
+                                tr
+                                    td VIII-2
+                                    td Progressão Horizontal (art. 26) - NG
+                                    td(colspan="{{data.summaryTable.tabela.length}}")   
+                                
+                                tr
+                                    td VIII-3
+                                    td Média da pontuação do Item I - Atividades de Ensino
+                                    td(colspan="{{data.summaryTable.tabela.length}}")   
+                                
+                                tr
+                                    td VIII-4
+                                    td Média da pontuação do Item VI-4 - Produção Intelectual
+                                    td(colspan="{{data.summaryTable.tabela.length}}")   
+                                
+                                tr
+                                    td VIII-5
+                                    td Pontuação do Parágrafo 5 do Art. 27 (Progressão Horizontal)
+                                    td(colspan="{{data.summaryTable.tabela.length}}")   
+                                
+                                tr
+                                    td
+                                    th RESULTADO
+                                    th(colspan="{{data.summaryTable.tabela.length}}")  
+                                        
+                    .modal-footer
+                        button.btn.btn-default(data-dismiss="modal")
+                            span Fechar
