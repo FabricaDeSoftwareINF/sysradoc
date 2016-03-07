@@ -158,7 +158,7 @@ module.exports = function(app){
         else{
             var notPendenciesMatch = [
                 "Aguardando período de atividades",
-                "Aguardando parecer da CAD",
+                //"Aguardando parecer da CAD",
                 "Aguardando deliberação do Conselho Diretor"
             ];
             Process.find({idProfessor: radocDoc.idUsuario, radocs: radocDoc._id, situacao: "ABERTO", pendencias: { $nin: notPendenciesMatch}}).exec(function(err, processArr){
