@@ -9,7 +9,7 @@ var config = require('./config/config')[env];
 require('./config/express')(app, config);
 require('./config/database')(app, config);
 require('./config/passport')(app);
-var score = require('./server/services/radocScore');
+require('./config/cronjob')(app);
 
 app.listen(config.port);
 
