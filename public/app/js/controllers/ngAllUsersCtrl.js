@@ -29,11 +29,11 @@ angular.module('app').controller("ngAllUsersCtrl", function($scope, ngUserSvc, n
             ]
         },
         classes: [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E"
+            {id: "A", label: "Classe A - Docente Adjunto A, Docente Assistente A, e Docente Auxiliar"},
+            {id: "B", label: "Classe B - Docente Assistente"},
+            {id: "C", label: "Classe C - Docente Adjunto"},
+            {id: "D", label: "Classe D - Docente Associado"},
+            {id: "E", label: "Classe E - Docente Titular"}
         ],
         levels: {
             A: ["1", "2"],

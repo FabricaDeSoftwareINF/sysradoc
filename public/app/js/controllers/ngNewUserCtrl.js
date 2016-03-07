@@ -34,6 +34,13 @@ angular.module('app').controller("ngNewUserCtrl", function($scope, ngNotifier, n
             "D",
             "E"
         ],
+        classesNames: [
+            "Classe A - Docente Adjunto A, Docente Assistente A, e Docente Auxiliar",
+            "Classe B - Docente Assistente",
+            "Classe C - Docente Adjunto",
+            "Classe D - Docente Associado",
+            "Classe E - Docente Titular"
+        ],
         levels: {
             A: ["1", "2"],
             B: ["1", "2"],

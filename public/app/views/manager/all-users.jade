@@ -73,9 +73,9 @@
                                     uib-datepicker(ng-model="data.editing.dataDeIngresso", min-mode="month")
                                     
                             .form-group
-                                label.col-md-4.control-label Classes
+                                label.col-md-4.control-label Classe
                                 .col-md-6
-                                    select.form-control(name="userClass", ng-model="data.editing.classe", ng-options="class as class for class in data.classes", required)  
+                                    select.form-control(name="userClass", ng-model="data.editing.classe", ng-options="class.id as class.label for class in data.classes", required)  
                                         
                             .form-group
                                 label.col-md-4.control-label Nivel

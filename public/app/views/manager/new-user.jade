@@ -32,11 +32,11 @@
                         uib-datepicker(ng-model="data.newUser.dataDeIngresso", max-date="data.today", min-mode="month", class="well well-sm")
                         
                 .form-group
-                    label.col-md-4.control-label Classes
+                    label.col-md-4.control-label Classe
                     .col-md-6
                         select.form-control(name="userClass", ng-model="data.newUser.classe", required)  
                             option(value="") Escolha...
-                            option(ng-repeat="class in data.classes", ng-value="class") {{class}}
+                            option(ng-repeat="class in data.classes", ng-value="class") {{data.classesNames[$index]}}
                             
                 .form-group
                     label.col-md-4.control-label Nivel
