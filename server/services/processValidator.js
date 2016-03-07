@@ -210,9 +210,12 @@ module.exports = function(app){
         }
         processDoc.idQuadroSumario.save();
         processDoc.pendencias.splice(processDoc.pendencias.indexOf(depRedirect[scoreData.noteType]), 1);
-        if (processDoc.pendencias.length === 0){
+        if (processDoc.pendencias.length === 0 && processDoc.idAvaliador){
             processDoc.pendencias.push("Aguardando parecer da CAD");
             processDoc.mudancaDeAvaliadorDisponivel = false;
+        }
+        else if (processDoc.pendencias.length === 0 && !processDoc.idAvaliador){
+            processDoc.pendencias.push("Aguardando associação de relator ao processo");
         }
         processDoc.save();
         callback({success: true});
