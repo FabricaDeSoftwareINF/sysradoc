@@ -4,7 +4,8 @@ module.exports = function(app) {
 
     var Process = app.models.process,
         Request = app.models.request,
-        RadocScore = app.models.radocScore;
+        RadocScore = app.models.radocScore,
+        Radoc = app.models.radoc;
 
     var controller = {};
 
@@ -51,8 +52,25 @@ module.exports = function(app) {
             if (proc.pendencias.indexOf("Aguardando associação de relator ao processo") !== -1){
                 proc.pendencias.splice(proc.pendencias.indexOf("Aguardando associação de relator ao processo"), 1);
                 if (proc.pendencias.length === 0){
-                    proc.pendencias.push("Aguardando parecer da CAD");
+                    //proc.pendencias.push("Aguardando parecer da CAD");
                     proc.mudancaDeAvaliadorDisponivel = false;
+                    var now = new Date();
+                    if (proc.tipo === "Estágio Probatório" && proc.anoEstagioProbatorio < (new Date(proc.dataFim)).getFullYear()){
+                        proc.anoEstagioProbatorio++;
+                        if (now.getFullYear() > proc.anoEstagioProbatorio || (now.getFullYear() === proc.anoEstagioProbatorio && now.getMonth() > (new Date(proc.dataFim)).getMonth()) ){
+                            proc.pendencias.push("RADOC " + proc.anoEstagioProbatorio + " pendente");
+                            proc.save();
+                            Radoc.findOne({idUsuario: proc.idProfessor, anoBase: proc.anoEstagioProbatorio}).exec(function(err, radocDoc){
+                                if (radocDoc){
+                                    service.updateSentRadocPendencies(radocDoc);
+                                }
+                            });
+                        }
+                        else{
+                            proc.pendencias.push("Aguardando período de atividades");
+                            proc.save();
+                        }
+                    }
                 }
             }
             proc.save();

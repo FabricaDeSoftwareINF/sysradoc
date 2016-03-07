@@ -106,7 +106,7 @@ module.exports = function(app){
                         processDoc.pendencias.push("RADOC " + year + " pendente");
                 }
 
-                if (year === lastYear){
+                if (year === dataFim.getFullYear()){
                     endRadocParseCallback();
                 }
             };
@@ -255,14 +255,34 @@ module.exports = function(app){
         }
         processDoc.idQuadroSumario.save();
         processDoc.pendencias.splice(processDoc.pendencias.indexOf(depRedirect[scoreData.noteType]), 1);
-        if (processDoc.pendencias.length === 0 && processDoc.idAvaliador){
-            processDoc.pendencias.push("Aguardando parecer da CAD");
+        if (processDoc.pendencias.length > 0 && processDoc.idAvaliador){
+            //processDoc.pendencias.push("Aguardando parecer da CAD");
             processDoc.mudancaDeAvaliadorDisponivel = false;
+            var now = new Date();
+            if (processDoc.tipo === "Estágio Probatório" && processDoc.anoEstagioProbatorio < (new Date(processDoc.dataFim)).getFullYear()){
+                processDoc.anoEstagioProbatorio++;
+                if (now.getFullYear() > processDoc.anoEstagioProbatorio || (now.getFullYear() === processDoc.anoEstagioProbatorio && now.getMonth() > (new Date(processDoc.dataFim)).getMonth()) ){
+                    processDoc.pendencias.push("RADOC " + processDoc.anoEstagioProbatorio + " pendente");
+                    processDoc.save();
+                    Radoc.findOne({idUsuario: processDoc.idProfessor, anoBase: processDoc.anoEstagioProbatorio}).exec(function(err, radocDoc){
+                        if (radocDoc){
+                            service.updateSentRadocPendencies(radocDoc);
+                        }
+                    });
+                }
+                else{
+                    processDoc.pendencias.push("Aguardando período de atividades");
+                    processDoc.save();
+                }
+            }
         }
         else if (processDoc.pendencias.length === 0 && !processDoc.idAvaliador){
             processDoc.pendencias.push("Aguardando associação de relator ao processo");
+            processDoc.save();
         }
-        processDoc.save();
+        else{
+            processDoc.save();
+        }
         callback({success: true});
     };
 
