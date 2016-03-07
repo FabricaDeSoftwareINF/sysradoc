@@ -32,8 +32,8 @@ module.exports = function(app){
                 }
                 Process.create(processData, function(err, processDoc){
                     Request.remove({idUsuario: processData.idProfessor, tipo: processData.tipo}).exec(function(err, collection){
-                        callback({success: true});
                         service.updateInitialStatusAndPendencies(processDoc);
+                        callback({success: true});
                     });
 
                 });
@@ -110,11 +110,13 @@ module.exports = function(app){
 
         if (processDoc.tipo !== "Estágio Probatório" || (new Date()).getFullYear() > dataDeInicio.getFullYear() ){
             for (var year = dataDeInicio.getFullYear(); year <= lastYear; year++){
+                console.log("Search: " + year);
                 Radoc.findOne({idUsuario: processDoc.idProfessor, anoBase: year}).exec(makeRadocCallback(year));
             }
         }
         else{
             processDoc.pendencias.push("Esperando período de atividades");
+            processDoc.save();
         }
 
     };

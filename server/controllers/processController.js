@@ -48,9 +48,9 @@ module.exports = function(app) {
             req.body.idAvaliador = undefined;
         Process.findOne({_id: req.body.id}).exec(function (err, proc) {
             proc.idAvaliador = req.body.idAvaliador;
-            if (proc.dependencias.indexOf("Aguardando associação de relator ao processo") !== -1){
-                proc.dependencias.splice(proc.dependencias.indexOf("Aguardando associação de relator ao processo"), 1);
-                if (proc.dependencias.length === 0){
+            if (proc.pendencias.indexOf("Aguardando associação de relator ao processo") !== -1){
+                proc.pendencias.splice(proc.pendencias.indexOf("Aguardando associação de relator ao processo"), 1);
+                if (proc.pendencias.length === 0){
                     proc.pendencias.push("Aguardando parecer da CAD");
                     proc.mudancaDeAvaliadorDisponivel = false;
                 }
