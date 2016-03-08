@@ -24,6 +24,7 @@ angular.module('app').controller("ngNewUserCtrl", function($scope, ngNotifier, n
                 "Professor"
             ],
             Secretaria: [
+                "Secretaria",
                 "Professor"
             ]
         },
